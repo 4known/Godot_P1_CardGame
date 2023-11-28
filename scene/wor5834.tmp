@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1ac4kei5xqgt"]
+
+[ext_resource type="Script" path="res://Components/TurnManager.gd" id="1_5kit6"]
+[ext_resource type="PackedScene" uid="uid://bf0faxlkuclf0" path="res://Scene/terrain.tscn" id="2_2jkrk"]
+[ext_resource type="Script" path="res://Components/GameState.gd" id="3_0l3sw"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_5kit6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Terrain" parent="." instance=ExtResource("2_2jkrk")]
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("3_0l3sw")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("1_5kit6")
+
+[node name="Players" type="Node2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+y_sort_enabled = true
+
+[node name="Enemies" type="Node2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+y_sort_enabled = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=2 format=3 uid="uid://ble6blqkqay6g"]
+
+[ext_resource type="Script" path="res://resourceScripts/entity.gd" id="1_plopw"]
+
+[resource]
+script = ExtResource("1_plopw")
+hp = 0
+atk = 0
+def = 0
+id = 0
