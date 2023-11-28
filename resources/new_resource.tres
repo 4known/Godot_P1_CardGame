@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://bshlhbp1ymw3u"]
+
+[ext_resource type="Script" path="res://resourceScripts/skill.gd" id="1_qeqvf"]
+[ext_resource type="Script" path="res://resourceScripts/statusEffect.gd" id="2_ah33t"]
+
+[sub_resource type="Resource" id="Resource_oxby2"]
+script = ExtResource("2_ah33t")
+time = 0.0
+tier = 0
+id = 0
+
+[resource]
+script = ExtResource("1_qeqvf")
+statusEffect = Array[ExtResource("2_ah33t")]([SubResource("Resource_oxby2")])
+range_ = null
+projectile = null
+type = null
+id = null

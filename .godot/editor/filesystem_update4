@@ -1,3 +1,3 @@
-res://addons/CardEditor/cardEditorMain.tscn
-res://scene/world.tscn
 res://addons/CardEditor/cardPanel.tscn
+res://resourceScripts/skill.gd
+res://resources/new_resource.tres
