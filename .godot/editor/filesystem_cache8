@@ -1,13 +1,13 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701206926
+::res://::1701223093
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ::res://addons/::1701141244
-::res://addons/CardEditor/::1701141561
+::res://addons/CardEditor/::1701207382
 cardEditor.gd::GDScript::-1::1701140322::0::1::::<>EditorPlugin<>::
 cardEditorMain.tscn::PackedScene::3485099753674631590::1701141531::0::1::::<><>::
 cardPanel.gd::GDScript::-1::1701133456::0::1::::CardPanel<>Control<>::
-cardPanel.tscn::PackedScene::9006689603491760806::1701141561::0::1::::<><>::uid://bs2lup5b7fcrv::::res://icon.svg
+cardPanel.tscn::PackedScene::9006689603491760806::1701223206::0::1::::<><>::uid://bs2lup5b7fcrv::::res://icon.svg
 plugin.cfg::TextFile::-1::1701134126::0::1::::<><>::
 ::res://components/::1701141244
 EntityAttack.gd::GDScript::-1::1700945224::0::1::::EntityAttack<>Node<>::
@@ -21,13 +21,14 @@ Signals.gd::GDScript::-1::1700944878::0::1::::<>Node<>::
 Arrow.png::CompressedTexture2D::8229095664224096973::1700773515::1701141252::1::::<><>::
 Frame.png::CompressedTexture2D::5788095086403228119::1699320033::1701141252::1::::<><>::
 Isometric test.png::CompressedTexture2D::5181482608142643367::1699232116::1701141252::1::::<><>::
-::res://resources/::1701141329
+::res://resources/::1701207270
 -9223362209181005825.tres::Resource/Resource::5289645938669591275::1701140344::0::1::::<><>::res://resourceScripts/entity.gd
 -9223362213845078341.tres::Resource/Resource::13267236451984321::1701140343::0::1::::<><>::res://resourceScripts/entity.gd
 -9223364779903481914.tres::Resource/Resource::3168640090246848324::1701140035::0::1::::<><>::res://resourceScripts/entity.gd
 -9223364811998299718.tres::Resource/Resource::539509192927291486::1701140026::0::1::::<><>::res://resourceScripts/entity.gd
--9223369700996486633.tres::Resource/Entity::2906658305218556241::1701141329::0::1::::<><>::res://resourceScripts/entity.gd
-::res://resourceScripts/::1701141244
+-9223369700996486633.tres::Resource/Resource::2906658305218556241::1701141329::0::1::::<><>::res://resourceScripts/entity.gd
+new_resource.tres::Resource/Skill::3664950977843175300::1701207270::0::1::::<><>::res://resourceScripts/skill.gd<>res://resourceScripts/statusEffect.gd
+::res://resourceScripts/::1701207309
 activeSkill.gd::GDScript::-1::1701050429::0::1::::ActiveSkill<>Skill<>::
 cardBase.gd::GDScript::-1::1701048196::0::1::::CardBase<>Resource<>::
 consumable.gd::GDScript::-1::1701049843::0::1::::Consumable<>ItemBase<>::
@@ -35,10 +36,9 @@ entity.gd::GDScript::-1::1701048623::0::1::::Entity<>CardBase<>::
 equipment.gd::GDScript::-1::1701049923::0::1::::Equipment<>ItemBase<>::
 item.gd::GDScript::-1::1701049737::0::1::::ItemBase<>CardBase<>::
 passiveSkill.gd::GDScript::-1::1701050471::0::1::::PassiveSkill<>Skill<>::
-skill.gd::GDScript::-1::1701132123::0::1::::Skill<>CardBase<>::
+skill.gd::GDScript::-1::1701223206::0::1::::Skill<>CardBase<>::
 stat.gd::GDScript::-1::1701050793::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701049688::0::1::::StatMod<>Resource<>::
-statModifierList.gd::GDScript::-1::1701049537::0::1::::StatModList<>Resource<>::
 statusEffect.gd::GDScript::-1::1701050514::0::1::::StatusEffect<>CardBase<>::
 ::res://scene/::1701141531
 card.gd::GDScript::-1::1700969893::0::1::::Card<>Area2D<>::
@@ -48,6 +48,6 @@ projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res
 terrain.gd::GDScript::-1::1700950960::0::1::::Terrain<>TileMap<>::
 terrain.tscn::PackedScene::5610510281185814687::1701140148::0::1::::<><>::res://imports/Isometric test.png<>res://scene/terrain.gd
 world.gd::GDScript::-1::1700879691::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1701141531::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://components/GameState.gd<>res://components/TurnManager.gd
+world.tscn::PackedScene::1142251505819120208::1701141531::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh
 ::res://ui/::1701141244
 healthbar.tscn::PackedScene::1004608634430367477::1701029205::0::1::::<><>::

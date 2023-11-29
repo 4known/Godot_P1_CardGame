@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1k54klfrnwwk"]
+[gd_scene load_steps=5 format=3 uid="uid://d1k54klfrnwwk"]
 
+[ext_resource type="Script" path="res://addons/CardEditor/cardPanel.gd" id="1_gvst2"]
 [ext_resource type="Texture2D" uid="uid://bs2lup5b7fcrv" path="res://icon.svg" id="1_k32s2"]
+[ext_resource type="Resource" uid="uid://bshlhbp1ymw3u" path="res://resources/new_resource.tres" id="2_12p0p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_igh2q"]
 font_size = 35
 
-[node name="CardDisplay" type="Control"]
+[node name="CardDisplay" type="Control" node_paths=PackedStringArray("stats")]
 custom_minimum_size = Vector2(190, 320)
 layout_mode = 3
 anchor_right = 0.625
@@ -14,6 +16,9 @@ offset_right = -210.0
 offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gvst2")
+cardRes = ExtResource("2_12p0p")
+stats = NodePath("ScrollContainer/VBoxContainer/Stats")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

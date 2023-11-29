@@ -3,12 +3,12 @@ extends Resource
 class_name StatMod
 
 @export var value : int
-@export var stype: Stat.t
-@export var mtype : t
+@export var stype: Stat.T
+@export var mtype : T
 
-enum t{flat,percent}
+enum T{flat,percent}
 
-func _init(_value : int = 10, statType : Stat.t = Stat.t.hp, modtype : t = t.flat):
+func _init(_value : int = 10, statType : Stat.T = Stat.T.hp, modtype : T = T.flat):
 	value = _value
 	stype = statType
 	mtype = modtype

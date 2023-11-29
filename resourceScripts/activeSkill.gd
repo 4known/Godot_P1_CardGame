@@ -1,14 +1,18 @@
 extends Skill
 class_name ActiveSkill
 
+var statEftChance : Array[int]
+
 func _init():
-	type = Skill.t.Active
+	type = Skill.T.Active
 
 func getDamage(baseAtk : int) -> int:
 	var damage : int = baseAtk
-	if type == t.Active:
-		if statMod.mtype == StatMod.t.flat:
-			damage += statMod.value
-		elif statMod.mtype == StatMod.t.percent:
-			damage += round(baseAtk * statMod.value * 0.01)
+	for s in statModArr:
+		if s.stype == Stat.T.atk:
+			if s.mtype == StatMod.T.flat:
+				damage += s.value
+			elif s.mtype == StatMod.T.percent:
+				damage += round(baseAtk * s.value * 0.01)
+			break
 	return damage

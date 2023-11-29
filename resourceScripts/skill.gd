@@ -1,15 +1,23 @@
 extends CardBase
 class_name Skill
 
-@export var statMod : Array[StatMod]
-@export var statusEffect : Array[StatusEffect]
-@export var range_ : int
-@export var projectile : bool
-@export var type : t
-enum t{Passive,Active,PassivelyActive}
+@export var statModArr : Array[StatMod]
+@export var statEftArr : Array[StatusEffect]
 
-func _init(range__ : int = 4, projectile_ : bool = false, type_ : t = t.Active):
-	statMod = [StatMod.new(10,Stat.t.atk,StatMod.t.flat)]
-	range_ = range__
-	projectile = projectile_
-	type = type_
+@export var coolDown : int
+@export var range : int
+
+@export var projectile : bool
+
+@export var attribute : A
+@export var attInt : int
+enum A{none, vampire, revival, teamUp, ignoreDef}
+
+@export var type : T
+enum T{Passive,Active,PassivelyActive}
+
+func _init():
+	statModArr = [StatMod.new(10,Stat.T.atk,StatMod.T.flat)]
+	coolDown = 3
+	range = 4
+	projectile = false

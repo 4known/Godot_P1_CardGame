@@ -7,7 +7,7 @@ var MAXVALUE: int
 var statModDict = {} #index : StatModifier
 var recalc = false
 
-enum t{hp,atk,def,agi,regen}
+enum T{hp,atk,def,agi,regen}
 
 func _init(initialvalue : int):
 	basevalue = initialvalue
@@ -34,9 +34,9 @@ func modificationValue():
 	if statModDict.size() > 0:
 		for key in statModDict.keys():
 			var mod = statModDict[key]
-			if mod.mtype == StatMod.t.flat:
+			if mod.mtype == StatMod.T.flat:
 				finalValue += mod.value
-			elif mod.mtype == StatMod.t.percent:
+			elif mod.mtype == StatMod.T.percent:
 				finalValue += round(basevalue * mod.value * 0.01)
 	return finalValue
 
