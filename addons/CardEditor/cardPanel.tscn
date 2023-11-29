@@ -7,7 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_igh2q"]
 font_size = 35
 
-[node name="CardDisplay" type="Control" node_paths=PackedStringArray("stats")]
+[node name="CardDisplay" type="Control" node_paths=PackedStringArray("property")]
 custom_minimum_size = Vector2(190, 320)
 layout_mode = 3
 anchor_right = 0.625
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gvst2")
 cardRes = ExtResource("2_12p0p")
-stats = NodePath("ScrollContainer/VBoxContainer/Stats")
+property = NodePath("ScrollContainer/Properties")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -38,19 +38,19 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="Properties" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Texture" type="TextureButton" parent="ScrollContainer/VBoxContainer"]
+[node name="Texture" type="TextureButton" parent="ScrollContainer/Properties"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 texture_normal = ExtResource("1_k32s2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ID" type="Label" parent="ScrollContainer/VBoxContainer/Texture"]
+[node name="ID" type="Label" parent="ScrollContainer/Properties/Texture"]
 layout_mode = 1
 offset_left = 12.0
 offset_top = 13.0
@@ -61,28 +61,7 @@ size_flags_vertical = 0
 text = "0 "
 label_settings = SubResource("LabelSettings_igh2q")
 
-[node name="Name" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+[node name="Name" type="LineEdit" parent="ScrollContainer/Properties"]
 layout_mode = 2
 placeholder_text = "Enter Name"
 alignment = 1
-
-[node name="Stats" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="stat" type="OptionButton" parent="ScrollContainer/VBoxContainer/Stats"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-item_count = 1
-selected = 0
-popup/item_0/text = "Health"
-popup/item_0/id = 0
-
-[node name="amount" type="SpinBox" parent="ScrollContainer/VBoxContainer/Stats"]
-layout_mode = 2
-size_flags_horizontal = 8
-rounded = true
-allow_greater = true
-alignment = 1
-update_on_text_changed = true

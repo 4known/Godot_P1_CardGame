@@ -13,7 +13,7 @@ var contents : FlowContainer
 var folder : String = "res://resources/"
 
 #CardPanel
-const entityPanel = preload("res://addons/CardEditor/cardPanel.tscn")
+const cardPanel = preload("res://addons/CardEditor/cardPanel.tscn")
 var cardDict : Dictionary = {}
 
 func _enter_tree():
@@ -62,7 +62,14 @@ func clearCallBacks():
 		refreshBTN.pressed.disconnect(self.refresh)
 
 func createCard():
-	var newCard : Entity = Entity.new()
+	var newCard
+	match type.get_selected_id():
+		0:
+			newCard = Entity.new()
+		1:
+			newCard = ItemBase.new()
+		2:
+			newCard = ActiveSkill.new()
 	var savePath = folder + str(newCard.get_instance_id()) + ".tres"
 	ResourceSaver.save(newCard, savePath)
 	cardDict[newCard.id] = newCard
@@ -74,12 +81,11 @@ func deleteCard(card : CardBase):
 	refreshFiles()
 
 func createCardPanel(card : CardBase):
-	var newPanel = entityPanel.instantiate()
+	var newPanel = cardPanel.instantiate()
 	contents.add_child(newPanel)
-	#contents setup card data
+	newPanel.cardRes = card
 
 func refresh():
-	print("refresh")
 	clearContent()
 	var dir = DirAccess.open(folder)
 	if dir:
@@ -87,7 +93,6 @@ func refresh():
 		var file_name = dir.get_next()
 		while file_name != "":
 			var card = ResourceLoader.load(file_name)
-			print(file_name)
 			createCardPanel(card)
 			file_name = dir.get_next()
 

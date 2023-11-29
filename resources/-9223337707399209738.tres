@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=2 format=3 uid="uid://bmftycd8c6wlw"]
+
+[ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_emjov"]
+
+[resource]
+script = ExtResource("1_emjov")
+statModArr = Array[Resource("res://resourceScripts/statModifier.gd")]([])
+statEftArr = Array[Resource("res://resourceScripts/statusEffect.gd")]([])
+coolDown = 0
+range = 0
+projectile = false
+attribute = 0
+attInt = 0
+type = 1
+id = 0
