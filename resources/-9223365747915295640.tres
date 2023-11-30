@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ActiveSkill" load_steps=2 format=3 uid="uid://bmftycd8c6wlw"]
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=2 format=3 uid="uid://bc05xuli5qkgr"]
 
-[ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_emjov"]
+[ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_rtgt6"]
 
 [resource]
-script = ExtResource("1_emjov")
+script = ExtResource("1_rtgt6")
 statModArr = Array[Resource("res://resourceScripts/statModifier.gd")]([])
 statEftArr = Array[Resource("res://resourceScripts/statusEffect.gd")]([])
 coolDown = 0

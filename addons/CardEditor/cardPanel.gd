@@ -4,13 +4,13 @@ class_name CardPanel
 
 @export var cardRes : CardBase
 @export var property : VBoxContainer
+@export var name_ : LineEdit
 
 const enumValue = preload("res://addons/CardEditor/PropertyBoxes/EnumValue.tscn")
 const statmod = preload("res://addons/CardEditor/PropertyBoxes/StatMod.tscn")
 
 func _enter_tree():
-	if cardRes.get_script() == Skill:
-		print(cardRes.get_script())
+	if cardRes is ActiveSkill:
 		ActiveSkillCard()
 
 

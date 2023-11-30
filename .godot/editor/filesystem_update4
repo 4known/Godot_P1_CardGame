@@ -1,14 +1,3 @@
 res://addons/CardEditor/cardPanel.tscn
-res://resourceScripts/skill.gd
-res://resourceScripts/activeSkill.gd
-res://resourceScripts/stat.gd
-res://resourceScripts/statModifier.gd
-res://resourceScripts/passiveSkill.gd
-res://resourceScripts/statusEffect.gd
-res://addons/CardEditor/cardPanel.gd
 res://resources/new_resource.tres
-res://addons/CardEditor/cardEditorMain.tscn
-res://addons/CardEditor/propertyBox.tscn
-res://addons/CardEditor/PropertyBoxes/propertyBox.tscn
-res://addons/CardEditor/PropertyBoxes/StatMod.tscn
-res://addons/CardEditor/cardEditor.gd
+res://addons/CardEditor/cardPanel.gd
