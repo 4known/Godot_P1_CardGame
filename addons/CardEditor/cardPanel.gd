@@ -9,8 +9,8 @@ class_name CardPanel
 const enumValue = preload("res://addons/CardEditor/PropertyBoxes/EnumValue.tscn")
 const statmod = preload("res://addons/CardEditor/PropertyBoxes/StatMod.tscn")
 
-func _enter_tree():
-	if cardRes is ActiveSkill:
+func loadPanel():
+	if cardRes.get_script()  == ActiveSkill:
 		ActiveSkillCard()
 
 

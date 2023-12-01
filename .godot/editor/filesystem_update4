@@ -1,3 +1,5 @@
 res://addons/CardEditor/cardPanel.tscn
-res://resources/new_resource.tres
 res://addons/CardEditor/cardPanel.gd
+res://addons/CardEditor/cardEditor.gd
+res://resources/new_resource.tres
+res://resources/-9223366492102267250.tres

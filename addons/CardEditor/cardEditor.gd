@@ -22,7 +22,6 @@ func _enter_tree():
 	_make_visible(false)
 	setButtons()
 	setCallBacks()
-	refresh()
 
 func _exit_tree():
 	if screen:
@@ -84,6 +83,7 @@ func createCardPanel(card : CardBase):
 	var newPanel = cardPanel.instantiate()
 	contents.add_child(newPanel)
 	newPanel.cardRes = card
+	newPanel.loadPanel()
 
 func refresh():
 	clearContent()
@@ -91,10 +91,12 @@ func refresh():
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
-		while file_name != "":
-			var card = ResourceLoader.load(file_name)
+		while file_name.ends_with(".tres"):
+			var card = ResourceLoader.load(folder+file_name)
 			createCardPanel(card)
 			file_name = dir.get_next()
+		dir.list_dir_end()
+
 
 func clearContent():
 	for c in contents.get_children():
