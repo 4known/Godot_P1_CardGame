@@ -33,7 +33,7 @@ script = ExtResource("3_3r0p4")
 [node name="EntityStatus" type="Node" parent="."]
 script = ExtResource("4_q2kxn")
 
-[node name="EntityAttack" type="Node" parent="."]
+[node name="EntitySkill" type="Node" parent="."]
 script = ExtResource("5_o6yhq")
 
 [node name="Healthbar" parent="." instance=ExtResource("6_6entd")]
@@ -51,3 +51,5 @@ offset_right = 33.0
 offset_bottom = 1.0
 text = "0"
 label_settings = SubResource("LabelSettings_cjujv")
+
+[connection signal="turn" from="." to="EntityStatus" method="_on_card_turn"]

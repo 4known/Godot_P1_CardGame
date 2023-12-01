@@ -7,3 +7,4 @@ res://scene/world.tscn
 res://scene/card.gd
 res://components/EntitySkill.gd
 res://components/EntityStatus.gd
+res://scene/card.tscn

@@ -3,7 +3,7 @@ class_name Card
 
 @onready var stat = $EntityStat
 @onready var status = $EntityStatus
-@onready var attack = $EntityAttack
+@onready var attack = $EntitySkill
 
 var type : types
 enum types{player,enemy}
@@ -22,6 +22,7 @@ func _process(_delta):
 	followPath()
 
 func myTurn():
+	turn.emit()
 	Signals.emit_signal("requestTurn", self)
 
 func followPath():
@@ -53,7 +54,7 @@ func getStat() -> EntityStat:
 	return stat
 func getStatus()-> EntityStatus:
 	return status
-func getAttack() -> EntityAttack:
+func getAttack() -> EntitySkill:
 	return attack
 func getSpritePos()-> Vector2:
 	return get_child(0).global_position
