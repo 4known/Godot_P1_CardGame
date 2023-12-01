@@ -12,6 +12,8 @@ enum types{player,enemy}
 var currentPath : Array[Vector2i]
 var ter : Terrain
 var move : bool = false
+#Turn
+signal turn
 
 #func _ready():
 #	$Label.text = name

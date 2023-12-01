@@ -13,7 +13,6 @@ func loadPanel():
 	if cardRes.get_script()  == ActiveSkill:
 		ActiveSkillCard()
 
-
 func saveCard():
 	ResourceSaver.save(cardRes, cardRes.resource_path)
 

@@ -19,8 +19,5 @@ func updateHealth(value):
 	$"../Healthbar".max_value = maxHp
 	$"../Healthbar".value = hp
 
-func willHPDeplete(damage : int)-> bool:
-	return hp + damage <= 0
-
 func getHp() -> int:
 	return hp
