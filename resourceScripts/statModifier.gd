@@ -1,5 +1,4 @@
 extends Resource
-
 class_name StatMod
 
 @export var value : int

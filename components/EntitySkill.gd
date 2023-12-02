@@ -1,9 +1,7 @@
 extends Node
 class_name EntitySkill
 
-var vampire: int = 0
-var revival: int = 0
-var threat: int = 0
+
 
 
 func attackTarget():

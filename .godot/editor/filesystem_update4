@@ -6,3 +6,4 @@ res://resourceScripts/skill.gd
 res://resourceScripts/activeSkill.gd
 res://resourceScripts/stat.gd
 res://components/EntityStat.gd
+res://resourceScripts/statModifier.gd
