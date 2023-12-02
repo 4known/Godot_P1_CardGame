@@ -53,3 +53,4 @@ text = "0"
 label_settings = SubResource("LabelSettings_cjujv")
 
 [connection signal="turn" from="." to="EntityStatus" method="_on_card_turn"]
+[connection signal="turn" from="." to="EntitySkill" method="_on_card_turn"]
