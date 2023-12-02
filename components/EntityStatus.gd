@@ -1,14 +1,16 @@
 extends Node
 class_name EntityStatus
 
+@onready var healthBar : ProgressBar = $"../Healthbar"
 var maxHp : int = 100
 var hp : int = 100
 
-var statEftDict : Dictionary = {}
+var buff : Dictionary = {}
+var debuff : Dictionary = {}
 
 func _ready():
-	$"../Healthbar".max_value = maxHp
-	$"../Healthbar".value = hp
+	healthBar.max_value = maxHp
+	healthBar.value = hp
 
 func updateHealth(value):
 	if(hp + value > maxHp):
@@ -18,14 +20,30 @@ func updateHealth(value):
 		get_parent().destorySelf()
 	else:
 		hp += value
-	$"../Healthbar".max_value = maxHp
-	$"../Healthbar".value = hp
+	healthBar.max_value = maxHp
+	healthBar.value = hp
 
 func _on_card_turn():
 	#Update StatusEffect
 	pass
 
+
+func removeRanDebuff(num : int):
+	pass
+
+func removeRanBuff(num : int):
+	pass
+
+func removeAllDebuff():
+	debuff.clear()
+
+func removeAllBuff():
+	buff.clear()
+
 func getHp() -> int:
 	return hp
 
-
+class StatusEft:
+	var statusEft : StatusEffect
+	var turns : int
+	

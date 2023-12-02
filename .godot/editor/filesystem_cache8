@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701400015
+::res://::1701473565
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ::res://addons/::1701141244
@@ -7,15 +7,15 @@ README.md::TextFile::-1::1701141386::0::1::::<><>::
 cardEditor.gd::GDScript::-1::1701399950::0::1::::<>EditorPlugin<>::
 cardEditorMain.tscn::PackedScene::3485099753674631590::1701232357::0::1::::<><>::
 cardPanel.gd::GDScript::-1::1701400184::0::1::::CardPanel<>Control<>::
-cardPanel.tscn::PackedScene::9006689603491760806::1701400184::0::1::::<><>::res://addons/CardEditor/cardPanel.gd<>uid://bs2lup5b7fcrv::::res://icon.svg
+cardPanel.tscn::PackedScene::9006689603491760806::1701400184::0::1::::<><>::res://addons/CardEditor/cardPanel.gd<>uid://bs2lup5b7fcrv
 plugin.cfg::TextFile::-1::1701134126::0::1::::<><>::
 ::res://addons/CardEditor/PropertyBoxes/::1701231432
 EnumValue.tscn::PackedScene::7120601239683299765::1701230410::0::1::::<><>::
 StatMod.tscn::PackedScene::4403098978061613926::1701231432::0::1::::<><>::
-::res://components/::1701141244
-EntityAttack.gd::GDScript::-1::1700945224::0::1::::EntityAttack<>Node<>::
+::res://components/::1701401732
+EntitySkill.gd::GDScript::-1::1701401345::0::1::::EntitySkill<>Node<>::
 EntityStat.gd::GDScript::-1::1700945207::0::1::::EntityStat<>Node<>::
-EntityStatus.gd::GDScript::-1::1700965796::0::1::::EntityStatus<>Node<>::
+EntityStatus.gd::GDScript::-1::1701401732::0::1::::EntityStatus<>Node<>::
 GameState.gd::GDScript::-1::1700969713::0::1::::GameState<>Node<>::
 TurnManager.gd::GDScript::-1::1701029114::0::1::::TurnManager<>Node<>::
 ::res://global/::1701223247
@@ -25,8 +25,8 @@ Arrow.png::CompressedTexture2D::8229095664224096973::1700773515::1701141252::1::
 Frame.png::CompressedTexture2D::5788095086403228119::1699320033::1701141252::1::::<><>::
 Isometric test.png::CompressedTexture2D::5181482608142643367::1699232116::1701141252::1::::<><>::
 ::res://resources/::1701400124
-new_resource.tres::Resource/ActiveSkill::3370449005481319531::1701399988::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd
--9223366492102267250.tres::Resource/ActiveSkill::7239791259132632599::1701400124::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd
+-9223366492102267250.tres::Resource/Resource::7239791259132632599::1701400124::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd
+new_resource.tres::Resource/Resource::3370449005481319531::1701399988::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd
 ::res://resourceScripts/::1701310225
 activeSkill.gd::GDScript::-1::1701227582::0::1::::ActiveSkill<>Skill<>::
 cardBase.gd::GDScript::-1::1701048196::0::1::::CardBase<>Resource<>::
@@ -39,14 +39,14 @@ skill.gd::GDScript::-1::1701226576::0::1::::Skill<>CardBase<>::
 stat.gd::GDScript::-1::1701223589::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701223601::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1701226215::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1701141531
-card.gd::GDScript::-1::1701401284::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1701140148::0::1::::<><>::res://scene/card.gd<>res://imports/Frame.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntityAttack.gd<>res://ui/healthbar.tscn
+::res://scene/::1701473556
+card.gd::GDScript::-1::1701401762::0::1::::Card<>Area2D<>::
+card.tscn::PackedScene::3437437748356488327::1701473556::0::1::::<><>::res://scene/card.gd<>uid://cop2cy75r6yi6::::res://imports/Frame.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
 projectile.gd::GDScript::-1::1700966099::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl
 terrain.gd::GDScript::-1::1700950960::0::1::::Terrain<>TileMap<>::
 terrain.tscn::PackedScene::5610510281185814687::1701140148::0::1::::<><>::res://imports/Isometric test.png<>res://scene/terrain.gd
 world.gd::GDScript::-1::1700879691::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1701401284::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://components/GameState.gd<>res://components/TurnManager.gd
+world.tscn::PackedScene::1142251505819120208::1701473555::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://components/GameState.gd<>res://components/TurnManager.gd
 ::res://ui/::1701141244
 healthbar.tscn::PackedScene::1004608634430367477::1701029205::0::1::::<><>::

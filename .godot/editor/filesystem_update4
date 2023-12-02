@@ -1,10 +1,5 @@
-res://addons/CardEditor/cardPanel.tscn
-res://addons/CardEditor/cardPanel.gd
-res://addons/CardEditor/cardEditor.gd
-res://resources/new_resource.tres
-res://resources/-9223366492102267250.tres
-res://scene/world.tscn
-res://scene/card.gd
-res://components/EntitySkill.gd
-res://components/EntityStatus.gd
 res://scene/card.tscn
+res://components/EntityStatus.gd
+res://resourceScripts/statusEffect.gd
+res://components/EntitySkill.gd
+res://resourceScripts/skill.gd
