@@ -9,10 +9,6 @@ class_name Skill
 
 @export var projectile : bool
 
-@export var attribute : A
-@export var attInt : int
-enum A{none, vampire, revival, teamUp, ignoreDef}
-
 @export var type : T
 enum T{Passive,Active,PassivelyActive}
 

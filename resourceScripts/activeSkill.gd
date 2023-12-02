@@ -1,7 +1,7 @@
 extends Skill
 class_name ActiveSkill
 
-var statEftChance : Array[int]
+var statEffectChance : Array[int]
 
 func _init():
 	type = Skill.T.Active

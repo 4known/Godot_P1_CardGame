@@ -27,6 +27,11 @@ func _on_card_turn():
 	#Update StatusEffect
 	pass
 
+func addBuff(e : StatusEffectTurn):
+	pass
+
+func addDebuff(e : StatusEffectTurn):
+	pass
 
 func removeRanDebuff(num : int):
 	pass
@@ -43,7 +48,7 @@ func removeAllBuff():
 func getHp() -> int:
 	return hp
 
-class StatusEft:
+class StatusEffectTurn:
 	var statusEft : StatusEffect
 	var turns : int
 	
