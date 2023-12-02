@@ -30,20 +30,26 @@ func updateHealth(value):
 	healthBar.value = status[Stat.T.hp].curhp
 
 func _on_card_turn():
-	#Update StatusEffect
-	pass
+	for b in buff.keys():
+		buff[b].turns -= 1
+	for d in debuff.keys():
+		debuff[d].turns -= 1
 
-func addBuff(e : StatusEffectTurn):
-	buff[e.statusEft.id] = e.statusEft
+func addBuff(e : StatusEffect, turns : int):
+	buff[e.id] = StatusEffectTurn.new(e,turns)
 
-func addDebuff(e : StatusEffectTurn):
-	debuff[e.statusEft.id] = e.statusEft
+func addDebuff(e : StatusEffect, turns : int):
+	debuff[e.id] = StatusEffectTurn.new(e,turns)
 
 func removeRanDebuff(num : int):
-	pass
+	for n in range(num):
+		var i = debuff.keys().pick_random()
+		debuff.erase(i)
 
 func removeRanBuff(num : int):
-	pass
+	for n in range(num):
+		var i = buff.keys().pick_random()
+		buff.erase(i)
 
 func removeAllDebuff():
 	debuff.clear()
