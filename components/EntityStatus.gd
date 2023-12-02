@@ -34,10 +34,10 @@ func _on_card_turn():
 	pass
 
 func addBuff(e : StatusEffectTurn):
-	pass
+	buff[e.statusEft.id] = e.statusEft
 
 func addDebuff(e : StatusEffectTurn):
-	pass
+	debuff[e.statusEft.id] = e.statusEft
 
 func removeRanDebuff(num : int):
 	pass
