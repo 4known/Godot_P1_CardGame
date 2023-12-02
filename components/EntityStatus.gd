@@ -61,8 +61,8 @@ func removeAllDebuff():
 func removeAllBuff():
 	buff.clear()
 
-func getHp() -> int:
-	return statusDict[Stat.T.hp].cur
+func getCurrentValue(type : Stat.T) -> int:
+	return statusDict[type].cur
 
 class StatusEffectTurn:
 	var statusEft : StatusEffect

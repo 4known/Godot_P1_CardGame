@@ -16,7 +16,8 @@ func initStat():
 		Stat.T.vampire : Stat.new(0),
 		Stat.T.revival : Stat.new(0),
 		Stat.T.threat : Stat.new(0),
-		Stat.T.ignoreDef : Stat.new(0)
+		Stat.T.ignoreDef : Stat.new(0),
+		Stat.T.reflectAtk : Stat.new(0)
 	}
 
 func getStatValue(type : Stat.T):

@@ -7,7 +7,7 @@ var MAXVALUE: int
 var statModDict = {} #index : StatModifier
 var recalc = false
 
-enum T{hp,atk,def,agi,regen,vampire,revival,threat,ignoreDef}
+enum T{hp,atk,def,agi,regen,vampire,revival,threat,ignoreDef,reflectAtk}
 
 func _init(initialvalue : int):
 	basevalue = initialvalue
