@@ -15,8 +15,8 @@ func _ready():
 	healthBar.value = statusDict[Stat.T.hp].cur
 
 func initStatus():
-	for t in Stat.T:
-		statusDict[t] = MaxStat.new(stat.getStatValue(Stat.T[t]))
+	for t in stat.statDict.keys():
+		statusDict[t] = MaxStat.new(stat.getStatValue(t))
 
 func updateHealth(value):
 	if(statusDict[Stat.T.hp].cur + value > statusDict[Stat.T.hp].max):
@@ -27,7 +27,7 @@ func updateHealth(value):
 	else:
 		statusDict[Stat.T.hp].cur += value
 	healthBar.max_value = statusDict[Stat.T.hp].max
-	healthBar.value = statusDict[Stat.T.hp].curhp
+	healthBar.value = statusDict[Stat.T.hp].cur
 
 func _on_card_turn():
 	for b in buff.keys():

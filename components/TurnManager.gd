@@ -23,7 +23,7 @@ func _ready():
 	Signals.connect("projectileHitTarget", requestProcessed)
 
 func requestTurn(card : Card):
-	if card.getStatus().getHp() > 0:
+	if card.getStatus().getCurrentValue(Stat.T.hp) > 0:
 		var newRequest = Turn.new(card)
 		requestQueuePath.append(newRequest)
 		nextRequestPath()
@@ -118,12 +118,12 @@ func _on_game_state_new_turn(currentState):
 		for p in gState.players.get_children():
 			team.append(p)
 		for e in gState.enemies.get_children():
-			opponent[e] = e.getStatus().getHp()
+			opponent[e] = e.getStatus().getCurrentValue(Stat.T.hp)
 	elif currentState == gState.states.EntityTurn:
 		for e in gState.enemies.get_children():
 			team.append(e)
 		for p in gState.players.get_children():
-			opponent[p] = p.getStatus().getHp()
+			opponent[p] = p.getStatus().getCurrentValue(Stat.T.hp)
 
 class Turn:
 	var card : Card

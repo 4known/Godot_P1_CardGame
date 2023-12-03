@@ -18,7 +18,7 @@ func initSkillQueue():
 			skillQueue[s.coolDown] = [s]
 
 func _on_card_turn():
-	var newQueue : Dictionary
+	var newQueue : Dictionary = {}
 	for s in skillQueue.keys():
 		if s == 0:
 			newQueue[0] = skillQueue[0]
