@@ -1,9 +1,4 @@
+res://scene/world.tscn
 res://scene/card.tscn
-res://components/EntityStatus.gd
-res://resourceScripts/statusEffect.gd
-res://components/EntitySkill.gd
-res://resourceScripts/skill.gd
-res://resourceScripts/activeSkill.gd
-res://resourceScripts/stat.gd
 res://components/EntityStat.gd
-res://resourceScripts/statModifier.gd
+res://components/EntityStatus.gd

@@ -20,7 +20,7 @@ func initStat():
 		Stat.T.reflectAtk : Stat.new(0)
 	}
 
-func getStatValue(type : Stat.T):
+func getStatValue(type : Stat.T) -> int:
 	return statDict[type].getValue()
 
 func addModToStat(id: int, mod : StatMod):

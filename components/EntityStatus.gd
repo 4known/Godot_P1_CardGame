@@ -16,7 +16,7 @@ func _ready():
 
 func initStatus():
 	for t in Stat.T:
-		statusDict[t] = MaxStat.new(stat.getStatValue(t))
+		statusDict[t] = MaxStat.new(stat.getStatValue(Stat.T[t]))
 
 func updateHealth(value):
 	if(statusDict[Stat.T.hp].cur + value > statusDict[Stat.T.hp].max):
