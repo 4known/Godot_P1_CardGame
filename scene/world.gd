@@ -6,5 +6,9 @@ func _ready():
 	Signals.connect("displayStat", displayStats)
 
 func displayStats(card : Card):
-	statDisplay.text = card.name
+	var text = card.name + "\n"
+	var stats = card.getStat().statDict
+	for s in stats.keys():
+		text += str(Stat.T.keys()[s]) + ": " + str(card.getStat().getStatValue(s)) + "\n"
+	statDisplay.text = text
 
