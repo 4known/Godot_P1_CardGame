@@ -11,6 +11,41 @@ script = ExtResource("1_4eabr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Control" type="Control" parent="Camera2D"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 120.0
+offset_top = -317.0
+offset_right = 320.0
+offset_bottom = -77.0
+
+[node name="Panel" type="Panel" parent="Camera2D/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="Camera2D/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "something
+sdasdas
+
+dasdasda
+sdada"
+editable = false
+drag_and_drop_selection_enabled = false
+scroll_past_end_of_file = true
+
 [node name="Terrain" parent="." instance=ExtResource("2_5fmie")]
 
 [node name="GameState" type="Node" parent="."]

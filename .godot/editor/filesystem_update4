@@ -1,6 +1,2 @@
 res://scene/world.tscn
 res://scene/card.tscn
-res://components/EntityStat.gd
-res://components/EntityStatus.gd
-res://components/TurnManager.gd
-res://components/EntitySkill.gd
