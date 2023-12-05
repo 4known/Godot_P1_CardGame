@@ -42,9 +42,9 @@ func followPath():
 func destorySelf():
 	queue_free()
 
-func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		print("clicked")
+func _on_input_event(_viewport, _event, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		print(_event.as_text())
 
 #Setter/Getter
 func setTerrain(t : Terrain):
