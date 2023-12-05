@@ -44,7 +44,7 @@ func destorySelf():
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
-		print(_event.as_text())
+		Signals.emit_signal("displayStat", self)
 
 #Setter/Getter
 func setTerrain(t : Terrain):
