@@ -1,2 +1,5 @@
 res://scene/world.tscn
 res://scene/card.tscn
+res://scene/world.gd
+res://scene/card.gd
+res://components/GameState.gd

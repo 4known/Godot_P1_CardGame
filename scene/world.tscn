@@ -12,6 +12,7 @@ script = ExtResource("1_4eabr")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Control" type="Control" parent="Camera2D"]
+z_index = 1
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
 anchors_preset = 0

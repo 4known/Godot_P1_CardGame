@@ -42,6 +42,10 @@ func followPath():
 func destorySelf():
 	queue_free()
 
+func _on_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		print("clicked")
+
 #Setter/Getter
 func setTerrain(t : Terrain):
 	ter = t
@@ -58,3 +62,7 @@ func getAttack() -> EntitySkill:
 	return attack
 func getSpritePos()-> Vector2:
 	return get_child(0).global_position
+
+
+
+
