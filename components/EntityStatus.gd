@@ -6,8 +6,8 @@ class_name EntityStatus
 
 var statusDict : Dictionary = {} #Stat.T : MaxStat
 
-var buff : Dictionary = {}
-var debuff : Dictionary = {}
+var buff : Dictionary = {} #id : StatusEffectTurn
+var debuff : Dictionary = {} #id : StatusEffectTurn
 
 func _ready():
 	initStatus()

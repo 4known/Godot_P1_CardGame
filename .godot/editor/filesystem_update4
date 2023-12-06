@@ -1,8 +1,7 @@
 res://scene/world.tscn
 res://resources/defDown.tres
 res://resources/new_resource.tres
+res://scene/world.gd
+res://components/EntityStatus.gd
 res://scene/card.tscn
 res://components/EntitySkill.gd
-res://components/EntityStatus.gd
-res://components/GameState.gd
-res://scene/world.gd
