@@ -9,6 +9,6 @@ func displayStats(card : Card):
 	var text = card.name + "\n"
 	var stats = card.getStat().statDict
 	for s in stats.keys():
-		text += str(Stat.T.keys()[s]) + ": " + str(card.getStat().getStatValue(s)) + "\n"
+		text += str(Stat.T.keys()[s]) + ": " + str(card.getStatus().statusDict[s].cur) + "\n"
 	statDisplay.text = text
 

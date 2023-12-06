@@ -5,3 +5,4 @@ res://scene/card.tscn
 res://components/EntitySkill.gd
 res://components/EntityStatus.gd
 res://components/GameState.gd
+res://scene/world.gd
