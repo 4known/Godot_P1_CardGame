@@ -99,7 +99,7 @@ func shootProjectile():
 func requestProcessed():
 	processingAtk = false
 	if requestQueueAtk.is_empty() and requestQueuePath.is_empty():
-		gState.updateState()
+		gState.n()
 	else:
 		nextRequestAttack()
 		if !processingPath:

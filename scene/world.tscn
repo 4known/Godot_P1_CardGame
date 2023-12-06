@@ -38,14 +38,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "something
-sdasdas
-
-dasdasda
-sdada"
+placeholder_text = "Enter"
 editable = false
 drag_and_drop_selection_enabled = false
-scroll_past_end_of_file = true
 
 [node name="Terrain" parent="." instance=ExtResource("2_5fmie")]
 

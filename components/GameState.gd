@@ -8,8 +8,8 @@ class_name GameState
 
 const card = preload("res://Scene/card.tscn")
 
-var enemynum : int = 2
-var playernum : int = 10
+var enemynum : int = 1
+var playernum : int = 1
 var spawnpos : Array[Vector2i] = []
 
 enum states{GameLoad, PlayerTurn, EntityTurn}
@@ -17,9 +17,13 @@ var currentState : states = states.GameLoad
 var turnNum: int = 0
 signal newTurn
 
+var next : bool = true
 func _input(event):
-	if event.is_action_pressed("1"):
+	if event.is_action_pressed("1") and next:
 		updateState()
+
+func n():
+	next = true
 
 func updateState():
 	turnNum += 1
@@ -32,11 +36,13 @@ func updateState():
 			print("PlayerTurn")
 			emit_signal("newTurn", currentState)
 			playerTurn()
+			next = false
 			currentState = states.EntityTurn
 		states.EntityTurn:
 			print("EntityTurn")
 			emit_signal("newTurn", currentState)
 			entityTurn()
+			next = false
 			currentState = states.PlayerTurn
 
 func loadGame():

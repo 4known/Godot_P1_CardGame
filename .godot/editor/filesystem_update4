@@ -1,6 +1,9 @@
 res://scene/world.tscn
+res://resourceScripts/statusEffect.gd
 res://scene/card.tscn
-res://scene/world.gd
-res://scene/card.gd
 res://components/GameState.gd
-res://global/globalSignals.gd
+res://components/TurnManager.gd
+res://resourceScripts/skill.gd
+res://resourceScripts/activeSkill.gd
+res://components/EntitySkill.gd
+res://resourceScripts/skillEffect.gd

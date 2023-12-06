@@ -7,7 +7,10 @@ var skillDict : Dictionary #ID : ActiveSkill
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
 func attackTarget(target : Card):
-	pass
+	var skill = getNextSkill()
+	for i in range(skill.statEftArr.size()):
+		if skill.statEftArr[i].buff:
+			target.getStatus().addBuff(skill.statEftArr[i], skill.statEffectChance[i])
 
 func initSkillQueue():
 	if skillDict.is_empty(): return
@@ -33,6 +36,16 @@ func _on_card_turn():
 
 func getNextSkill() -> ActiveSkill:
 	return skillQueue[0].pick_random()
+
+func resetSkill(s : ActiveSkill):
+	for i in skillQueue[0]:
+		if i == s:
+			skillQueue[0].erase(s)
+			var turn = s.coolDown
+			if skillQueue.has(s.coolDown):
+				skillQueue[s.coolDown].append(s)
+			else:
+				skillQueue[s.coolDown] = [s] 
 
 func addSkill(s : ActiveSkill):
 	skillDict[s.id] = s
