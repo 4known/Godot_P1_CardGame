@@ -14,11 +14,11 @@ func _ready():
 
 func attackTarget(target : Card):
 	var skill = ski
-	for eft in skill.skillEftArr:
-		if eft.statusEffect.buff:
-			target.getStatus().addBuff(eft.statusEffect.statModArr[eft.tier], eft.turns)
-		else:
-			target.getStatus().addDebuff(eft.statusEffect.statModArr[eft.tier], eft.turns)
+#	for eft in skill.skillEftArr:
+#		if eft.statusEffect.buff:
+#			target.getStatus().addBuff(eft.statusEffect, eft.turns)
+#		else:
+#			target.getStatus().addDebuff(eft.statusEffect, eft.turns)
 
 func initSkillQueue():
 	if skillDict.is_empty(): return

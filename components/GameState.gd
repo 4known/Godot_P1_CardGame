@@ -8,8 +8,8 @@ class_name GameState
 
 const card = preload("res://Scene/card.tscn")
 
-var enemynum : int = 1
-var playernum : int = 1
+var enemynum : int = 10
+var playernum : int = 10
 var spawnpos : Array[Vector2i] = []
 
 enum states{GameLoad, PlayerTurn, EntityTurn}
