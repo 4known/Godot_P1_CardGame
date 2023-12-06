@@ -88,6 +88,7 @@ func nextRequestAttack():
 			requestProcessed()
 
 func thirdAttack():
+	reqAtk.card.getSkill().attackTarget(reqAtk.target)
 	shootProjectile()
 
 func shootProjectile():

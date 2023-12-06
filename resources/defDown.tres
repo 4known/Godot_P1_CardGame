@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=5 format=3 uid="uid://cvqw6ggnocedb"]
+
+[ext_resource type="Script" path="res://resourceScripts/statusEffect.gd" id="1_gf32g"]
+[ext_resource type="Script" path="res://resourceScripts/statModifier.gd" id="1_vfeml"]
+
+[sub_resource type="Resource" id="Resource_7q2rb"]
+script = ExtResource("1_vfeml")
+value = 10
+stype = 2
+mtype = 1
+
+[sub_resource type="Resource" id="Resource_0rbof"]
+script = ExtResource("1_vfeml")
+value = 15
+stype = 2
+mtype = 1
+
+[resource]
+script = ExtResource("1_gf32g")
+statModArr = Array[ExtResource("1_vfeml")]([SubResource("Resource_7q2rb"), SubResource("Resource_0rbof")])
+buff = false
+id = 6

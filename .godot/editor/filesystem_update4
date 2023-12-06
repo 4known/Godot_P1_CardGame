@@ -7,3 +7,7 @@ res://resourceScripts/skill.gd
 res://resourceScripts/activeSkill.gd
 res://components/EntitySkill.gd
 res://resourceScripts/skillEffect.gd
+res://resources/new_resource.tres
+res://resources/vampire.tres
+res://resources/defDown.tres
+res://scene/card.gd

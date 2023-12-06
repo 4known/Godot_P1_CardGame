@@ -6,11 +6,19 @@ class_name EntitySkill
 var skillDict : Dictionary #ID : ActiveSkill
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
+const ski : ActiveSkill = preload("res://resources/new_resource.tres")
+
+func _ready():
+	addSkill(ski)
+	initSkillQueue()
+
 func attackTarget(target : Card):
-	var skill = getNextSkill()
-	for i in range(skill.statEftArr.size()):
-		if skill.statEftArr[i].buff:
-			target.getStatus().addBuff(skill.statEftArr[i], skill.statEffectChance[i])
+	var skill = ski
+	for eft in skill.skillEftArr:
+		if eft.statusEffect.buff:
+			target.getStatus().addBuff(eft.statusEffect.statModArr[eft.tier], eft.turns)
+		else:
+			target.getStatus().addDebuff(eft.statusEffect.statModArr[eft.tier], eft.turns)
 
 func initSkillQueue():
 	if skillDict.is_empty(): return
@@ -35,6 +43,7 @@ func _on_card_turn():
 	newQueue.clear()
 
 func getNextSkill() -> ActiveSkill:
+	if skillQueue[0].is_empty(): return null
 	return skillQueue[0].pick_random()
 
 func resetSkill(s : ActiveSkill):

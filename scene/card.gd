@@ -3,7 +3,7 @@ class_name Card
 
 @onready var stat = $EntityStat
 @onready var status = $EntityStatus
-@onready var attack = $EntitySkill
+@onready var skill = $EntitySkill
 
 var type : types
 enum types{player,enemy}
@@ -59,8 +59,8 @@ func getStat() -> EntityStat:
 	return stat
 func getStatus()-> EntityStatus:
 	return status
-func getAttack() -> EntitySkill:
-	return attack
+func getSkill() -> EntitySkill:
+	return skill
 func getSpritePos()-> Vector2:
 	return get_child(0).global_position
 

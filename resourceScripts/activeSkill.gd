@@ -1,7 +1,7 @@
 extends Skill
 class_name ActiveSkill
 
-@export var statEftArr : Array[StatusEffect]
+@export var skillEftArr : Array[SkillEffect]
 @export var projectile : bool
 
 func _init():
