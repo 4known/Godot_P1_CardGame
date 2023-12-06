@@ -18,14 +18,17 @@ func initStatus():
 	for t in stat.statDict.keys():
 		statusDict[t] = Stat.new(stat.getStatValue(t))
 
-func updateHealth(value):
-	if(statusDict[Stat.T.hp].currentValue + value > statusDict[Stat.T.hp].getValue()):
+func updateHealth(value : int):
+	var calValue = value
+	if value < 0:
+		calValue = calculateDamage(abs(value)) * -1
+	if(statusDict[Stat.T.hp].currentValue + calValue > statusDict[Stat.T.hp].getValue()):
 		statusDict[Stat.T.hp].currentValue = statusDict[Stat.T.hp].getValue()
-	elif (statusDict[Stat.T.hp].currentValue + value <= 0):
+	elif (statusDict[Stat.T.hp].currentValue + calValue <= 0):
 		statusDict[Stat.T.hp].currentValue = 0
 		get_parent().destorySelf()
 	else:
-		statusDict[Stat.T.hp].currentValue += value
+		statusDict[Stat.T.hp].currentValue += calValue
 	healthBar.max_value = statusDict[Stat.T.hp].getValue()
 	healthBar.value = statusDict[Stat.T.hp].currentValue
 
@@ -64,6 +67,12 @@ func removeAllDebuff():
 
 func removeAllBuff():
 	buff.clear()
+
+func calculateDamage(damage : int) -> int:
+	var d = damage - statusDict[Stat.T.def].getValue()
+	if d < 0:
+		return 0
+	return d
 
 func getCurrentValue(type : Stat.T) -> int:
 	return statusDict[type].currentValue

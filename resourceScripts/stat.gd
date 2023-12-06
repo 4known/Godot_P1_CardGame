@@ -25,9 +25,8 @@ func getValue():
 	return MAXVALUE
 
 func addModifier(index : int, mod : StatMod):
-	if statModDict.has(index):
-		statModDict[index] = mod
-		recalc = true
+	statModDict[index] = mod
+	recalc = true
 
 func removeModifier(index : int):
 	statModDict.erase(index)

@@ -19,6 +19,9 @@ func displayStats(card : Card):
 	
 	var stats = card.getStat().statDict
 	for s in stats.keys():
+		if s == Stat.T.hp:
+			text += str(Stat.T.keys()[s]) + ": " + str(card.getStatus().statusDict[s].currentValue) + "\n"
+			continue
 		text += str(Stat.T.keys()[s]) + ": " + str(card.getStatus().statusDict[s].getValue()) + "\n"
 	statDisplay.text = text
 
