@@ -3,6 +3,7 @@ class_name Stat
 
 var basevalue : int
 var MAXVALUE: int
+var currentValue : int
 
 var statModDict = {} #index : StatModifier
 var recalc = false
@@ -12,11 +13,14 @@ enum T{hp,atk,def,agi,regen,vampire,revival,threat,ignoreDef,reflectAtk}
 func _init(initialvalue : int):
 	basevalue = initialvalue
 	MAXVALUE = initialvalue
+	currentValue = initialvalue
 	statModDict.clear()
 
 func getValue():
 	if recalc:
 		MAXVALUE = basevalue + modificationValue()
+		if currentValue > MAXVALUE:
+			currentValue = MAXVALUE
 		recalc = false
 	return MAXVALUE
 
@@ -39,6 +43,9 @@ func modificationValue():
 			elif mod.mtype == StatMod.T.percent:
 				finalValue += round(basevalue * mod.value * 0.01)
 	return finalValue
+
+func clearModifier():
+	statModDict.clear()
 
 func setBaseValue(value : int):
 	basevalue = value

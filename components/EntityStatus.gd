@@ -4,30 +4,30 @@ class_name EntityStatus
 @onready var healthBar : ProgressBar = $"../Healthbar"
 @onready var stat : EntityStat = $"../EntityStat"
 
-var statusDict : Dictionary = {} #Stat.T : MaxStat
+var statusDict : Dictionary = {} #Stat.T : Stat
 
-var buff : Dictionary = {} #id : StatusEffectTurn
-var debuff : Dictionary = {} #id : StatusEffectTurn
+var buff : Dictionary = {} #id : Effect
+var debuff : Dictionary = {} #id : Effect
 
 func _ready():
 	initStatus()
-	healthBar.max_value = statusDict[Stat.T.hp].max
-	healthBar.value = statusDict[Stat.T.hp].cur
+	healthBar.max_value = statusDict[Stat.T.hp].getValue()
+	healthBar.value = statusDict[Stat.T.hp].currentValue
 
 func initStatus():
 	for t in stat.statDict.keys():
-		statusDict[t] = MaxStat.new(stat.getStatValue(t))
+		statusDict[t] = Stat.new(stat.getStatValue(t))
 
 func updateHealth(value):
-	if(statusDict[Stat.T.hp].cur + value > statusDict[Stat.T.hp].max):
-		statusDict[Stat.T.hp].cur = statusDict[Stat.T.hp].max
-	elif (statusDict[Stat.T.hp].cur + value <= 0):
-		statusDict[Stat.T.hp].cur = 0
+	if(statusDict[Stat.T.hp].currentValue + value > statusDict[Stat.T.hp].getValue()):
+		statusDict[Stat.T.hp].currentValue = statusDict[Stat.T.hp].getValue()
+	elif (statusDict[Stat.T.hp].currentValue + value <= 0):
+		statusDict[Stat.T.hp].currentValue = 0
 		get_parent().destorySelf()
 	else:
-		statusDict[Stat.T.hp].cur += value
-	healthBar.max_value = statusDict[Stat.T.hp].max
-	healthBar.value = statusDict[Stat.T.hp].cur
+		statusDict[Stat.T.hp].currentValue += value
+	healthBar.max_value = statusDict[Stat.T.hp].getValue()
+	healthBar.value = statusDict[Stat.T.hp].currentValue
 
 func _on_card_turn():
 	for b in buff.keys():
@@ -40,19 +40,23 @@ func _on_card_turn():
 			debuff.erase(d)
 
 func addBuff(e : StatusEffect, tier : int, turns : int):
-	buff[e.id] = StatusEffectTurn.new(e,tier,turns)
+	statusDict[e.type].addModifier(e.id,e.statModArr[tier])
+	buff[e.id] = Effect.new(e,tier,turns)
 
 func addDebuff(e : StatusEffect, tier : int, turns : int):
-	debuff[e.id] = StatusEffectTurn.new(e,tier,turns)
+	statusDict[e.type].addModifier(e.id,e.statModArr[tier])
+	debuff[e.id] = Effect.new(e,tier,turns)
 
 func removeRanDebuff(num : int):
 	for n in range(num):
 		var i = debuff.keys().pick_random()
+		statusDict[debuff[i].statusEft.type].removeModifier(i)
 		debuff.erase(i)
 
 func removeRanBuff(num : int):
 	for n in range(num):
 		var i = buff.keys().pick_random()
+		statusDict[buff[i].statusEft.type].removeModifier(i)
 		buff.erase(i)
 
 func removeAllDebuff():
@@ -62,9 +66,9 @@ func removeAllBuff():
 	buff.clear()
 
 func getCurrentValue(type : Stat.T) -> int:
-	return statusDict[type].cur
+	return statusDict[type].currentValue
 
-class StatusEffectTurn:
+class Effect:
 	var statusEft : StatusEffect
 	var tier : int
 	var turns : int
@@ -72,10 +76,3 @@ class StatusEffectTurn:
 		statusEft = e
 		tier = t
 		turns = turn
-
-class MaxStat:
-	var max : int
-	var cur : int
-	func _init(m : int):
-		max = m
-		cur = m

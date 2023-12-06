@@ -9,7 +9,6 @@ var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 const ski : ActiveSkill = preload("res://resources/new_resource.tres")
 
 func _ready():
-	addSkill(ski)
 	initSkillQueue()
 
 func attackTarget(target : Card):
