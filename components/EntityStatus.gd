@@ -19,6 +19,7 @@ func initStatus():
 		statusDict[t] = Stat.new(stat.getStatValue(t))
 
 func updateHealth(value : int):
+	if value == 0: return
 	var calValue = value
 	if value < 0:
 		calValue = calculateDamage(abs(value)) * -1
