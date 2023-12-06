@@ -39,11 +39,11 @@ func _on_card_turn():
 		if debuff[d].turns <= 0:
 			debuff.erase(d)
 
-func addBuff(e : StatusEffect, turns : int):
-	buff[e.id] = StatusEffectTurn.new(e,turns)
+func addBuff(e : StatusEffect, tier : int, turns : int):
+	buff[e.id] = StatusEffectTurn.new(e,tier,turns)
 
-func addDebuff(e : StatusEffect, turns : int):
-	debuff[e.id] = StatusEffectTurn.new(e,turns)
+func addDebuff(e : StatusEffect, tier : int, turns : int):
+	debuff[e.id] = StatusEffectTurn.new(e,tier,turns)
 
 func removeRanDebuff(num : int):
 	for n in range(num):
@@ -66,9 +66,11 @@ func getCurrentValue(type : Stat.T) -> int:
 
 class StatusEffectTurn:
 	var statusEft : StatusEffect
+	var tier : int
 	var turns : int
-	func _init(e : StatusEffect, turn : int):
+	func _init(e : StatusEffect,t : int, turn : int):
 		statusEft = e
+		tier = t
 		turns = turn
 
 class MaxStat:
