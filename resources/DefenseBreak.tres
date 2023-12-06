@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=5 format=3 uid="uid://judkpy2h82tc"]
+
+[ext_resource type="Script" path="res://resourceScripts/statusEffect.gd" id="1_wi46x"]
+[ext_resource type="Script" path="res://resourceScripts/statModifier.gd" id="2_ybqi5"]
+
+[sub_resource type="Resource" id="Resource_fxnf4"]
+script = ExtResource("2_ybqi5")
+value = 20
+stype = 2
+mtype = 1
+
+[sub_resource type="Resource" id="Resource_8wc5s"]
+script = ExtResource("2_ybqi5")
+value = 30
+stype = 2
+mtype = 1
+
+[resource]
+script = ExtResource("1_wi46x")
+statModArr = Array[ExtResource("2_ybqi5")]([SubResource("Resource_fxnf4"), SubResource("Resource_8wc5s")])
+type = 2
+buff = false
+id = 3

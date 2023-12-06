@@ -18,5 +18,6 @@ mtype = 1
 [resource]
 script = ExtResource("1_gf32g")
 statModArr = Array[ExtResource("1_vfeml")]([SubResource("Resource_7q2rb"), SubResource("Resource_0rbof")])
+type = 2
 buff = false
 id = 6
