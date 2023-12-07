@@ -72,7 +72,7 @@ func setDestination():
 func spawnPlayer():
 	for i in range(playernum):
 		var pos : Vector2i = ter.map_to_local(Vector2i(randi_range(-3,3),randi_range(-3,3)))
-		while spawnpos.has(pos):
+		while spawnpos.has(pos) and ter.get_cell_source_id(0,ter.local_to_map(pos)) != -1:
 			pos = ter.map_to_local(Vector2i(randi_range(-3,3),randi_range(-3,3)))
 		spawnpos.append(pos)
 		var newCard = initilizeCard(pos, Card.types.player)
@@ -85,7 +85,7 @@ func spawnEnemy():
 		var playerpos : Vector2i = ter.local_to_map(players.get_child(0).global_position)
 		var pos: Vector2i = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
 				randi_range(-5,5)+ playerpos.y))
-		while spawnpos.has(pos) and ter.astargrid.is_in_boundsv(ter.local_to_map(pos)):
+		while spawnpos.has(pos) and ter.get_cell_source_id(0,ter.local_to_map(pos)) != -1:
 			pos = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
 				randi_range(-5,5)+ playerpos.y))
 		spawnpos.append(pos)
