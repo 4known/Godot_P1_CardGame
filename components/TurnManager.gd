@@ -60,7 +60,7 @@ func firstFindTarget():
 	reqPath.target = target
 	var damage = 21 * -1
 	reqPath.damage = damage
-	opponent[target] -= reqPath.target.getStatus().calculateDamage(damage)
+	opponent[target] -= reqPath.target.getStatus().calculateDamage(damage*-1)
 	if opponent[target] <= 0:
 		opponent.erase(reqPath.target)
 	secondFindPath()
