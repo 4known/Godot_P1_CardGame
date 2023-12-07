@@ -12,3 +12,5 @@ res://resources/vampire.tres
 res://resources/DefenseBreak.tres
 res://scene/terrain.tscn
 res://scene/terrain.gd
+res://components/TurnManager.gd
+res://components/GameState.gd

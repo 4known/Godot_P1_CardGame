@@ -18,6 +18,7 @@ func generateTerrain():
 	clear_layer(0)
 	noise = FastNoiseLite.new()
 	noise.seed = randi()
+	noise.frequency *= 20
 	for x in range(-size,size):
 		for y in range(-size,size):
 			var noiseValue = noise.get_noise_2d(x,y)
