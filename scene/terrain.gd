@@ -1,18 +1,17 @@
 extends TileMap
 class_name Terrain
 
-var astargrid : AStarGrid2D
-var destinations : Array[Vector2i] = []
+var astar : AStar2D
+var destinations : PackedInt64Array = []
 
 var size : int = 20
 var noise
 
 func _ready():
 #	generateTerrain()
-	astargrid = AStarGrid2D.new()
-	astargrid.region = get_used_rect()
-	astargrid.cell_size = Vector2i(32,16)
-	astargrid.update()
+	astar = AStar2D.new()
+	for t in get_used_cells(0):
+		astar.add_point(getID(t),t)
 
 func generateTerrain():
 	clear_layer(0)
@@ -24,21 +23,22 @@ func generateTerrain():
 			var noiseValue = noise.get_noise_2d(x,y)
 			set_cell(0, Vector2i(x,y),1,Vector2i(ceil(noiseValue),0))
 
-func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
+func getID(tilepos : Vector2i) -> int:
+	return int(tilepos.y+tilepos.x*self.get_used_rect().size.y)
+
+func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> PackedInt64Array:
 	var myTilepos = local_to_map(myposition)
 	var targetTilepos = local_to_map(targetpos)
-	var path : Array[Vector2i] = [myTilepos]
+	var path : PackedInt64Array
 	path = findPath(myTilepos,targetTilepos, range_, border)
 	if path.is_empty(): 
-		path = [myTilepos]
-	for p in path:
-		if get_cell_source_id(0,p) == -1:
-			print("void")
-	addDestination(path.back(),true)
+		path.append(getID(myTilepos))
+	addDestination(path[path.size()-1],true)
 	return path
 
 func findPath(myTilepos : Vector2i, targetTilepos : Vector2i, range_ : int, border : bool):
-	var path : Array[Vector2i] = [myTilepos]
+	var path : PackedInt64Array
+	path.append(getID(myTilepos))
 	var tileDistance = getTileDistance(myTilepos,targetTilepos)
 	if  tileDistance < range_ if !border else tileDistance == range_:
 		return path
@@ -47,11 +47,11 @@ func findPath(myTilepos : Vector2i, targetTilepos : Vector2i, range_ : int, bord
 	keys.sort()
 	for key in keys:
 		for pos in dict[key]:
-			path = astargrid.get_id_path(myTilepos,pos)
+			path = astar.get_id_path(getID(myTilepos),getID(pos))
 			if !path.is_empty():
 				break
 		break
-	path.pop_front()
+	path.remove_at(0)
 	return path
 
 func getDistance(myposition : Vector2i, targetpos : Vector2i) ->int:
@@ -75,7 +75,7 @@ func getPossibleTiles(myTilepos: Vector2i, targetTilepos : Vector2i, range_ : in
 			if i == 0 and j == 0:
 				continue  
 			var pos = Vector2i(targetTilepos.x + i, targetTilepos.y + j)
-			if get_cell_source_id(0,pos) != -1 and !astargrid.is_point_solid(pos) :
+			if get_cell_source_id(0,pos) != -1 and !astar.is_point_disabled(getID(pos)) :
 				var x = abs(pos.x - myTilepos.x)
 				var y = abs(pos.y - myTilepos.y)
 				var key = max(x,y)
@@ -85,16 +85,16 @@ func getPossibleTiles(myTilepos: Vector2i, targetTilepos : Vector2i, range_ : in
 					dict[key].append(pos)
 	return dict
 
-func addDestination(pos : Vector2i, tiled : bool):
+func addDestination(pos : int, tiled : bool):
 	var p = pos
 	if !tiled:
-		p = local_to_map(pos)
-	destinations.append(p)
-	astargrid.set_point_solid(p,true)
+		p = local_to_map(astar.get_point_position(pos))
+	destinations.append(getID(p))
+	astar.set_point_disabled(getID(p),true)
 
 func clearDestination():
 	for d in destinations:
-		astargrid.set_point_solid(d,false)
+		astar.set_point_disabled(d,false)
 	destinations.clear()
 
 func nearestTilepos(pos : Vector2i) -> Vector2i:
