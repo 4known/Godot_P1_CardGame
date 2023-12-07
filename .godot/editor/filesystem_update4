@@ -10,3 +10,4 @@ res://resourceScripts/statusEffect.gd
 res://scene/world.gd
 res://resources/vampire.tres
 res://resources/DefenseBreak.tres
+res://scene/terrain.tscn
