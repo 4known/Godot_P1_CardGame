@@ -72,7 +72,7 @@ func getPossibleTiles(myTilepos: Vector2i, targetTilepos : Vector2i, range_ : in
 			if i == 0 and j == 0:
 				continue  
 			var pos = Vector2i(targetTilepos.x + i, targetTilepos.y + j)
-			if astargrid.is_in_boundsv(pos) and !astargrid.is_point_solid(pos) :
+			if get_cell_source_id(0,pos) != -1 and !astargrid.is_point_solid(pos) :
 				var x = abs(pos.x - myTilepos.x)
 				var y = abs(pos.y - myTilepos.y)
 				var key = max(x,y)

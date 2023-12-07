@@ -66,7 +66,7 @@ func firstFindTarget():
 	secondFindPath()
 
 func secondFindPath():
-	var range_ = 6
+	var range_ = 11
 	var cardp = reqPath.card.global_position
 	var targetp = reqPath.target.global_position
 	var path = ter.getPath(cardp,targetp,range_,true)
