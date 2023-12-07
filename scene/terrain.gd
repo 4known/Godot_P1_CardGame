@@ -8,7 +8,7 @@ var size : int = 20
 var noise
 
 func _ready():
-	generateTerrain()
+#	generateTerrain()
 	astargrid = AStarGrid2D.new()
 	astargrid.region = get_used_rect()
 	astargrid.cell_size = Vector2i(32,16)
