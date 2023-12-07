@@ -31,6 +31,9 @@ func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border :
 	path = findPath(myTilepos,targetTilepos, range_, border)
 	if path.is_empty(): 
 		path = [myTilepos]
+	for p in path:
+		if get_cell_source_id(0,p) == -1:
+			print("void")
 	addDestination(path.back(),true)
 	return path
 
