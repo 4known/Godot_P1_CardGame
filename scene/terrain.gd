@@ -24,7 +24,8 @@ func generateTerrain():
 			set_cell(0, Vector2i(x,y),1,Vector2i(ceil(noiseValue),0))
 
 func getID(tilepos : Vector2i) -> int:
-	return int(tilepos.y+tilepos.x*self.get_used_rect().size.y)
+	tilepos -= get_used_rect().position
+	return tilepos.y*get_used_rect().size.x + tilepos.x
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> PackedInt64Array:
 	var myTilepos = local_to_map(myposition)
@@ -89,8 +90,11 @@ func addDestination(pos : int, tiled : bool):
 	var p = pos
 	if !tiled:
 		p = local_to_map(astar.get_point_position(pos))
-	destinations.append(getID(p))
-	astar.set_point_disabled(getID(p),true)
+		destinations.append(getID(p))
+		astar.set_point_disabled(getID(p),true)
+	else:
+		destinations.append(p)
+		astar.set_point_disabled(p,true)
 
 func clearDestination():
 	for d in destinations:

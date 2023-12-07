@@ -65,9 +65,9 @@ func entityTurn():
 
 func setDestination():
 	for p in players.get_children():
-		ter.addDestination(p.global_position, false)
+		ter.addDestination(ter.getID(p.global_position), false)
 	for e in enemies.get_children():
-		ter.addDestination(e.global_position, false)
+		ter.addDestination(ter.getID(e.global_position), false)
 
 func spawnPlayer():
 	for i in range(playernum):
