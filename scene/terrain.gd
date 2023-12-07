@@ -4,11 +4,24 @@ class_name Terrain
 var astargrid : AStarGrid2D
 var destinations : Array[Vector2i] = []
 
+var size : int = 20
+var noise
+
 func _ready():
+	generateTerrain()
 	astargrid = AStarGrid2D.new()
 	astargrid.region = get_used_rect()
 	astargrid.cell_size = Vector2i(32,16)
 	astargrid.update()
+
+func generateTerrain():
+	clear_layer(0)
+	noise = FastNoiseLite.new()
+	noise.seed = randi()
+	for x in range(-size,size):
+		for y in range(-size,size):
+			var noiseValue = noise.get_noise_2d(x,y)
+			set_cell(0, Vector2i(x,y),1,Vector2i(ceil(noiseValue),0))
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)

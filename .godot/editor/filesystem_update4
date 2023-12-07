@@ -11,3 +11,4 @@ res://scene/world.gd
 res://resources/vampire.tres
 res://resources/DefenseBreak.tres
 res://scene/terrain.tscn
+res://scene/terrain.gd
