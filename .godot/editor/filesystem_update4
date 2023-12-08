@@ -2,4 +2,5 @@ res://scene/world.tscn
 res://resources/DefenseBreak.tres
 res://resources/new_resource.tres
 res://scene/water.gdshader
-res://new_script.cs
+res://scene/card.tscn
+res://scene/terrain.tscn
