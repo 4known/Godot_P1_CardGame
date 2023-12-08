@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "jtSX/OOk6FAYJNRBo2Ds7hHOAWahjZTerHP3Nb3s6XErKKQD916RFaWSMbJlNEsZM7CG8M+sPH/7Ouz6gH13DA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kewen\\.nuget\\packages\\godot.sourcegenerators\\4.2.0\\godot.sourcegenerators.4.2.0.nupkg.sha512",
+    "C:\\Users\\Kewen\\.nuget\\packages\\godotsharp\\4.2.0\\godotsharp.4.2.0.nupkg.sha512",
+    "C:\\Users\\Kewen\\.nuget\\packages\\godotsharpeditor\\4.2.0\\godotsharpeditor.4.2.0.nupkg.sha512",
+    "C:\\Users\\Kewen\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\Kewen\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\Kewen\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
