@@ -90,10 +90,12 @@ func addDestination(pos : Vector2i, tiled : bool):
 	if !tiled:
 		pos = local_to_map(pos)
 		destinations.append(pos)
-		astar.set_point_disabled(getID(pos),true)
+		if get_cell_source_id(0,pos) != -1:
+			astar.set_point_disabled(getID(pos),true)
 	else:
 		destinations.append(pos)
-		astar.set_point_disabled(getID(pos),true)
+		if get_cell_source_id(0,pos) != -1:
+			astar.set_point_disabled(getID(pos),true)
 
 func clearDestination():
 	for d in destinations:
