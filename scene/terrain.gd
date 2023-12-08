@@ -2,7 +2,7 @@ extends TileMap
 class_name Terrain
 
 var astar : AStar2D
-var destinations : PackedInt64Array = []
+var destinations : PackedVector2Array = []
 
 var size : int = 20
 var noise
@@ -27,19 +27,19 @@ func getID(tilepos : Vector2i) -> int:
 	tilepos -= get_used_rect().position
 	return tilepos.y*get_used_rect().size.x + tilepos.x
 
-func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> PackedInt64Array:
+func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> PackedVector2Array:
 	var myTilepos = local_to_map(myposition)
 	var targetTilepos = local_to_map(targetpos)
-	var path : PackedInt64Array
+	var path : PackedVector2Array
 	path = findPath(myTilepos,targetTilepos, range_, border)
 	if path.is_empty(): 
-		path.append(getID(myTilepos))
+		path.append(myTilepos)
 	addDestination(path[path.size()-1],true)
 	return path
 
 func findPath(myTilepos : Vector2i, targetTilepos : Vector2i, range_ : int, border : bool):
-	var path : PackedInt64Array
-	path.append(getID(myTilepos))
+	var path : PackedVector2Array
+	path.append(myTilepos)
 	var tileDistance = getTileDistance(myTilepos,targetTilepos)
 	if  tileDistance < range_ if !border else tileDistance == range_:
 		return path
@@ -48,7 +48,7 @@ func findPath(myTilepos : Vector2i, targetTilepos : Vector2i, range_ : int, bord
 	keys.sort()
 	for key in keys:
 		for pos in dict[key]:
-			path = astar.get_id_path(getID(myTilepos),getID(pos))
+			path = astar.get_point_path(getID(myTilepos),getID(pos))
 			if !path.is_empty():
 				break
 		break
@@ -86,19 +86,18 @@ func getPossibleTiles(myTilepos: Vector2i, targetTilepos : Vector2i, range_ : in
 					dict[key].append(pos)
 	return dict
 
-func addDestination(pos : int, tiled : bool):
-	var p = pos
+func addDestination(pos : Vector2i, tiled : bool):
 	if !tiled:
-		p = local_to_map(astar.get_point_position(pos))
-		destinations.append(getID(p))
-		astar.set_point_disabled(getID(p),true)
+		pos = local_to_map(pos)
+		destinations.append(pos)
+		astar.set_point_disabled(getID(pos),true)
 	else:
-		destinations.append(p)
-		astar.set_point_disabled(p,true)
+		destinations.append(pos)
+		astar.set_point_disabled(getID(pos),true)
 
 func clearDestination():
 	for d in destinations:
-		astar.set_point_disabled(d,false)
+		astar.set_point_disabled(getID(d),false)
 	destinations.clear()
 
 func nearestTilepos(pos : Vector2i) -> Vector2i:
