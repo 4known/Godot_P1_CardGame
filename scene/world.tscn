@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://components/GameState.gd" id="3_4kxfv"]
 [ext_resource type="Shader" path="res://scene/water.gdshader" id="3_8bht5"]
 [ext_resource type="Script" path="res://components/TurnManager.gd" id="4_8kbl4"]
-[ext_resource type="Texture2D" uid="uid://bs2lup5b7fcrv" path="res://icon.svg" id="4_vxdp2"]
+[ext_resource type="Texture2D" uid="uid://dmjp305rmsfkr" path="res://imports/Frames.png" id="4_nwyl2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_glfbe"]
 frequency = 0.0282
@@ -73,10 +73,11 @@ drag_and_drop_selection_enabled = false
 [node name="Terrain" parent="." instance=ExtResource("2_5fmie")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Terrain"]
+visible = false
 z_index = -1
 material = SubResource("ShaderMaterial_vsxuy")
-scale = Vector2(5, 5)
-texture = ExtResource("4_vxdp2")
+scale = Vector2(50, 50)
+texture = ExtResource("4_nwyl2")
 
 [node name="GameState" type="Node" parent="."]
 script = ExtResource("3_4kxfv")
