@@ -2,18 +2,18 @@ using Godot;
 using System.Collections.Generic;
 
 public partial class Heap : GodotObject{
-    List<Tile_PF> items;
+    List<Node_PF> items;
 	int currentItemCount;
 	
-	public void Add(Tile_PF item) {
+	public void Add(Node_PF item) {
 		item.HeapIndex = currentItemCount;
 		items[currentItemCount] = item;
 		SortUp(item);
 		currentItemCount++;
 	}
 
-	public Tile_PF RemoveFirst() {
-		Tile_PF firstItem = items[0];
+	public Node_PF RemoveFirst() {
+		Node_PF firstItem = items[0];
 		currentItemCount--;
 		items[0] = items[currentItemCount];
 		items[0].HeapIndex = 0;
@@ -21,7 +21,7 @@ public partial class Heap : GodotObject{
 		return firstItem;
 	}
 
-	public void UpdateItem(Tile_PF item) {
+	public void UpdateItem(Node_PF item) {
 		SortUp(item);
 	}
 
@@ -31,11 +31,11 @@ public partial class Heap : GodotObject{
 		}
 	}
 
-	public bool Contains(Tile_PF item) {
+	public bool Contains(Node_PF item) {
 		return Equals(items[item.HeapIndex], item);
 	}
 
-	void SortDown(Tile_PF item) {
+	void SortDown(Node_PF item) {
 		while (true) {
 			int childIndexLeft = item.HeapIndex * 2 + 1;
 			int childIndexRight = item.HeapIndex * 2 + 2;
@@ -56,32 +56,28 @@ public partial class Heap : GodotObject{
 				else {
 					return;
 				}
-
 			}
 			else {
 				return;
 			}
-
 		}
 	}
 	
-	void SortUp(Tile_PF item) {
+	void SortUp(Node_PF item) {
 		int parentIndex = (item.HeapIndex-1)/2;
-		
 		while (true) {
-			Tile_PF parentItem = items[parentIndex];
+			Node_PF parentItem = items[parentIndex];
 			if (item.CompareTo(parentItem) > 0) {
 				Swap (item,parentItem);
 			}
 			else {
 				break;
 			}
-
 			parentIndex = (item.HeapIndex-1)/2;
 		}
 	}
 	
-	void Swap(Tile_PF itemA, Tile_PF itemB) {
+	void Swap(Node_PF itemA, Node_PF itemB) {
 		items[itemA.HeapIndex] = itemB;
 		items[itemB.HeapIndex] = itemA;
 		int itemAIndex = itemA.HeapIndex;

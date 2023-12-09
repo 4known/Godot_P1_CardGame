@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class Tile_PF : Node
+public partial class Node_PF : Node
 {
     public bool walkable;
 	public Vector2I tileposition;
@@ -11,31 +10,22 @@ public partial class Tile_PF : Node
 	public int gCost;
 	public int hCost;
 	public int fCost { get { return gCost + hCost; } }
-	public Tile_PF parent;
-	public Node grid;
-
-	public Tile_PF(bool walkable, Vector2I tilePosition, int gridX, int gridY, Node grid)
+	public Node_PF parent;
+	public Node_PF(bool walkable, Vector2I tileposition, int gridX, int gridY)
 	{
 		this.walkable = walkable;
-		this.tileposition = tilePosition;
+		this.tileposition = tileposition;
 		this.gridX = gridX;
 		this.gridY = gridY;
-		this.grid = grid;
 	}
 
 	int heapIndex;
 	public int HeapIndex
 	{
-		get
-		{
-			return heapIndex;
-		}
-		set
-		{
-			heapIndex = value;
-		}
+		get { return heapIndex; }
+		set { heapIndex = value; }
 	}
-	public int CompareTo(Tile_PF nodeToCompare)
+	public int CompareTo(Node_PF nodeToCompare)
 	{
 		int compare = fCost.CompareTo(nodeToCompare.fCost);
 		if (compare == 0)

@@ -1,29 +1,58 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [GlobalClass]
 public partial class Pathfinding : Node{
-    Variant terrain;
-    Dictionary<Vector2I,Tile_PF> grid;
+    Dictionary<Vector2I,Node_PF> grid;
+    Godot.Collections.Array<Vector2I> getpath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
+        var path = new Godot.Collections.Array<Vector2I>();
+        
+        int tileDistance = GetTileDistance(myTilepos,targetTilepos);
+        if ((tileDistance < range) ? !border : (tileDistance == range))
+            return path;
 
-    public override void _Ready(){
-        terrain = GetParent();
+        Dictionary<int, List<Vector2I>> possibleTiles = GetPossibleTiles(myTilepos,targetTilepos,range,border);
+        int[] sortedKeys = possibleTiles.Keys.ToArray();
+        Array.Sort(sortedKeys);
+
+        Vector2I[] p = new Vector2I[0];
+        bool pathfound = false;
+        foreach (int key in sortedKeys){
+            foreach (Vector2I position in possibleTiles[key]){
+                p = FindPath(myTilepos,targetTilepos);
+                if (p.Length > 0){
+                    pathfound = true;
+                    break;
+                }
+            }
+            if(pathfound)
+                break;
+        }
+        foreach (Vector2I position in p){
+            path.Add(position);
+        }
+        
+        if (path.Count == 0){
+            path.Add(myTilepos);
+        }
+        return path;
     }
     Vector2I[] FindPath(Vector2I startPos, Vector2I targetPos){
         Vector2I[] waypoints = new Vector2I[0];
 		bool pathSuccess = false;
 		
-		Tile_PF startNode = grid[startPos];
-		Tile_PF targetNode = grid[targetPos];
+		Node_PF startNode = grid[startPos];
+		Node_PF targetNode = grid[targetPos];
 
 		if (startNode.walkable && targetNode.walkable) {
             Heap openSet = new Heap();
-		    HashSet<Tile_PF> closedSet = new HashSet<Tile_PF>();
+		    HashSet<Node_PF> closedSet = new HashSet<Node_PF>();
 		    openSet.Add(startNode);
 			
 			while (openSet.Count > 0) {
-				Tile_PF currentNode = openSet.RemoveFirst();
+				Node_PF currentNode = openSet.RemoveFirst();
 				closedSet.Add(currentNode);
 				
 				if (currentNode == targetNode) {
@@ -31,15 +60,15 @@ public partial class Pathfinding : Node{
 					break;
 				}
 				
-				foreach (Tile_PF neighbour in GetNeighbours(currentNode)) {
+				foreach (Node_PF neighbour in GetNeighbours(currentNode)) {
 					if (!neighbour.walkable || closedSet.Contains(neighbour)) {
 						continue;
 					}
 					
-					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+					int newMovementCostToNeighbour = currentNode.gCost + GetNodeDistance(currentNode, neighbour);
 					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
 						neighbour.gCost = newMovementCostToNeighbour;
-						neighbour.hCost = GetDistance(neighbour, targetNode);
+						neighbour.hCost = GetNodeDistance(neighbour, targetNode);
 						neighbour.parent = currentNode;
 						
 						if (!openSet.Contains(neighbour))
@@ -54,9 +83,9 @@ public partial class Pathfinding : Node{
 		return waypoints;
 	}
 
-    Vector2I[] RetracePath(Tile_PF startNode, Tile_PF endNode) {
-		List<Tile_PF> path = new List<Tile_PF>();
-		Tile_PF currentNode = endNode;
+    Vector2I[] RetracePath(Node_PF startNode, Node_PF endNode) {
+		List<Node_PF> path = new List<Node_PF>();
+		Node_PF currentNode = endNode;
 		
 		while (currentNode != startNode) {
 			path.Add(currentNode);
@@ -66,7 +95,7 @@ public partial class Pathfinding : Node{
 		Array.Reverse(waypoints);
 		return waypoints;
 	}
-    Vector2I[] SimplifyPath(List<Tile_PF> path) {
+    Vector2I[] SimplifyPath(List<Node_PF> path) {
 		List<Vector2I> waypoints = new List<Vector2I>();
 		Vector2I directionOld = Vector2I.Zero;
 		
@@ -80,7 +109,7 @@ public partial class Pathfinding : Node{
 		return waypoints.ToArray();
 	}
 
-	int GetDistance(Tile_PF nodeA, Tile_PF nodeB) {
+	int GetNodeDistance(Node_PF nodeA, Node_PF nodeB) {
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
@@ -88,9 +117,13 @@ public partial class Pathfinding : Node{
 			return 14*dstY + 10* (dstX-dstY);
 		return 14*dstX + 10 * (dstY-dstX);
 	}
-
-    public List<Tile_PF> GetNeighbours(Tile_PF node) {
-		List<Tile_PF> neighbours = new List<Tile_PF>();
+    int GetTileDistance(Vector2I myTilepos, Vector2I targetTilepos){
+        int x = Mathf.Abs(targetTilepos.X - myTilepos.X);
+        int y = Mathf.Abs(targetTilepos.Y - myTilepos.Y);
+        return Mathf.Max(x,y);
+    }
+    public List<Node_PF> GetNeighbours(Node_PF node) {
+		List<Node_PF> neighbours = new List<Node_PF>();
 
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
@@ -105,7 +138,26 @@ public partial class Pathfinding : Node{
                 }
 			}
 		}
-
 		return neighbours;
 	}
+
+    Dictionary<int, List<Vector2I>> GetPossibleTiles(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
+        Dictionary<int, List<Vector2I>> dict = new Dictionary<int, List<Vector2I>>();
+        for (int i = -range; i <= range; i++){
+            for (int j = -range; j <= range; j++){
+                if (border && i != -range && i != range && j != -range && j != range)
+                    continue;
+                if(i == 0 && j == 0)
+                    continue;
+                Vector2I position = new Vector2I(targetTilepos.X + i, targetTilepos.Y + j);
+                if(grid.ContainsKey(position)){
+                    int distance = GetTileDistance(myTilepos,position);
+                    if (!dict.ContainsKey(distance))
+					    dict[distance] = new List<Vector2I>();
+					dict[distance].Add(position);
+                }
+            }
+        }
+        return dict;
+    }
 }
