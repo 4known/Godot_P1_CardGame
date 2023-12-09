@@ -52,14 +52,14 @@ func loadGame():
 	updateState()
 
 func playerTurn():
-	ter.clearDestination()
-	setDestination()
+	#ter.clearDestination()
+	#setDestination()
 	for p in players.get_children():
 		p.myTurn()
 
 func entityTurn():
-	ter.clearDestination()
-	setDestination()
+	#ter.clearDestination()
+	#setDestination()
 	for e in enemies.get_children():
 		e.myTurn()
 

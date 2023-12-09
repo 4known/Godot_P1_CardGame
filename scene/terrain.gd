@@ -22,15 +22,17 @@ func generateTerrain():
 			set_cell(0, Vector2i(x,y),1,Vector2i(ceil(noiseValue),0))
 
 
-#func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> PackedVector2Array:
-	#var myTilepos = local_to_map(myposition)
-	#var targetTilepos = local_to_map(targetpos)
-	#var path : PackedVector2Array
-	#path = findPath(myTilepos,targetTilepos, range_, border)
-	#if path.is_empty(): 
-		#path.append(myTilepos)
-	#addDestination(path[path.size()-1],true)
-	#return path
+func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
+	var myTilepos = local_to_map(myposition)
+	var targetTilepos = local_to_map(targetpos)
+	var path : Array[Vector2i]
+	path = pf.GetPath(myTilepos,targetTilepos, range_, border)
+	return path
+
+func getDistance(myposition : Vector2i, targetpos : Vector2i) -> int:
+	var myTilepos = local_to_map(myposition)
+	var targetTilepos = local_to_map(targetpos)
+	return pf.GetTileDistance(myTilepos,targetTilepos)
 
 #func findPath(myTilepos : Vector2i, targetTilepos : Vector2i, range_ : int, border : bool):
 	#var path : PackedVector2Array
