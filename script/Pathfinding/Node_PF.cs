@@ -3,7 +3,6 @@ using Godot;
 public partial class Node_PF : Node
 {
     public bool walkable;
-	public Vector2I tileposition;
 	public int gridX;
 	public int gridY;
 
@@ -11,10 +10,9 @@ public partial class Node_PF : Node
 	public int hCost;
 	public int fCost { get { return gCost + hCost; } }
 	public Node_PF parent;
-	public Node_PF(bool walkable, Vector2I tileposition, int gridX, int gridY)
+	public Node_PF(bool walkable, int gridX, int gridY)
 	{
 		this.walkable = walkable;
-		this.tileposition = tileposition;
 		this.gridX = gridX;
 		this.gridY = gridY;
 	}

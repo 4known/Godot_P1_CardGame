@@ -8,7 +8,8 @@ var size : int = 20
 var noise
 
 func _ready():
-	pass
+	for t in get_used_cells(0):
+		pf.AddToGrid(t);
 #	generateTerrain()
 
 func generateTerrain():
@@ -26,7 +27,7 @@ func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border :
 	var myTilepos = local_to_map(myposition)
 	var targetTilepos = local_to_map(targetpos)
 	var path : Array[Vector2i]
-	path = pf.GetPath(myTilepos,targetTilepos, range_, border)
+	path.append_array(pf.GetPath(myTilepos,targetTilepos, range_, border))
 	return path
 
 func getDistance(myposition : Vector2i, targetpos : Vector2i) -> int:

@@ -1,5 +1,4 @@
 using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +6,10 @@ using System.Linq;
 [GlobalClass]
 public partial class Pathfinding : Node
 {
+    Dictionary<Vector2I,Node_PF> grid = new Dictionary<Vector2I, Node_PF>();
+    Godot.Collections.Array<Vector2I> GetPath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
+        Godot.Collections.Array<Vector2I> path = new Godot.Collections.Array<Vector2I>{myTilepos};
 
-    Dictionary<Vector2I,Node_PF> grid;
-
-    Array<Vector2I> GetPath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
-        var path = new Godot.Collections.Array<Vector2I>();
-        path.Add(myTilepos);
         int tileDistance = GetTileDistance(myTilepos,targetTilepos);
         if ((tileDistance < range) ? !border : (tileDistance == range))
             return path;
@@ -106,11 +103,15 @@ public partial class Pathfinding : Node
 		for (int i = 1; i < path.Count; i ++) {
 			Vector2I directionNew = new Vector2I(path[i-1].gridX - path[i].gridX,path[i-1].gridY - path[i].gridY);
 			if (directionNew != directionOld) {
-				waypoints.Add(path[i].tileposition);
+				waypoints.Add(new Vector2I(path[i].gridX,path[i].gridY));
 			}
 			directionOld = directionNew;
 		}
 		return waypoints.ToArray();
+	}
+
+	public void AddToGrid(Vector2I position){
+		grid.Add(position, new Node_PF(true, position.X, position.Y));
 	}
 
 	int GetNodeDistance(Node_PF nodeA, Node_PF nodeB) {

@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 
 public partial class Heap : GodotObject{
-    List<Node_PF> items;
+    List<Node_PF> items = new List<Node_PF>();
 	int currentItemCount;
 	
 	public void Add(Node_PF item) {
