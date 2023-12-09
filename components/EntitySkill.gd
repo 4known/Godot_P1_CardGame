@@ -50,10 +50,10 @@ func resetSkill(s : ActiveSkill):
 		if i == s:
 			skillQueue[0].erase(s)
 			var turn = s.coolDown
-			if skillQueue.has(s.coolDown):
-				skillQueue[s.coolDown].append(s)
+			if skillQueue.has(turn):
+				skillQueue[turn].append(s)
 			else:
-				skillQueue[s.coolDown] = [s] 
+				skillQueue[turn] = [s] 
 
 func addSkill(s : ActiveSkill):
 	skillDict[s.id] = s

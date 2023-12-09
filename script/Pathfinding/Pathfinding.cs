@@ -8,12 +8,18 @@ public partial class Pathfinding : Node
 {
     Dictionary<Vector2I,Node_PF> grid = new Dictionary<Vector2I, Node_PF>();
     Godot.Collections.Array<Vector2I> GetPath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
-        Godot.Collections.Array<Vector2I> path = new Godot.Collections.Array<Vector2I>{myTilepos};
+        var path = new Godot.Collections.Array<Vector2I>{myTilepos};
 
         int tileDistance = GetTileDistance(myTilepos,targetTilepos);
-        if ((tileDistance < range) ? !border : (tileDistance == range))
-            return path;
-
+        if ((tileDistance < range) ? !border : (tileDistance == range)){
+			GD.Print("error");
+			return path;
+		}
+		if(!grid.ContainsKey(myTilepos) || !grid.ContainsKey(targetTilepos)){
+			GD.Print("error");
+			return path;
+		}
+			
         Dictionary<int, List<Vector2I>> possibleTiles = GetPossibleTiles(myTilepos,targetTilepos,range,border);
         int[] sortedKeys = possibleTiles.Keys.ToArray();
         Array.Sort(sortedKeys);
@@ -22,7 +28,8 @@ public partial class Pathfinding : Node
         bool pathfound = false;
         foreach (int key in sortedKeys){
             foreach (Vector2I position in possibleTiles[key]){
-                p = FindPath(myTilepos,targetTilepos);
+                p = FindPath(myTilepos,position);
+				GD.Print(p.Length);				
                 if (p.Length > 0){
                     pathfound = true;
                     break;
@@ -34,7 +41,6 @@ public partial class Pathfinding : Node
         foreach (Vector2I position in p){
             path.Add(position);
         }
-        
         if (path.Count == 0){
             path.Add(myTilepos);
         }
@@ -100,7 +106,7 @@ public partial class Pathfinding : Node
 		List<Vector2I> waypoints = new List<Vector2I>();
 		Vector2I directionOld = Vector2I.Zero;
 		
-		for (int i = 1; i < path.Count; i ++) {
+		for (int i = 1; i < path.Count; i++) {
 			Vector2I directionNew = new Vector2I(path[i-1].gridX - path[i].gridX,path[i-1].gridY - path[i].gridY);
 			if (directionNew != directionOld) {
 				waypoints.Add(new Vector2I(path[i].gridX,path[i].gridY));
@@ -112,6 +118,9 @@ public partial class Pathfinding : Node
 
 	public void AddToGrid(Vector2I position){
 		grid.Add(position, new Node_PF(true, position.X, position.Y));
+	}
+	public bool GridContain(Vector2I position){
+		return grid.ContainsKey(position);
 	}
 
 	int GetNodeDistance(Node_PF nodeA, Node_PF nodeB) {

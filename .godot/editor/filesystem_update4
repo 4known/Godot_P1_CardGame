@@ -10,3 +10,5 @@ res://script/Pathfinding/Pathfinding.cs
 res://scene/world.tscn
 res://scene/card.tscn
 res://script/Pathfinding/Node_PF.cs
+res://components/TurnManager.gd
+res://components/EntitySkill.gd

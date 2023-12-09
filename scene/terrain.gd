@@ -26,8 +26,9 @@ func generateTerrain():
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)
 	var targetTilepos = local_to_map(targetpos)
-	var path : Array[Vector2i]
-	path.append_array(pf.GetPath(myTilepos,targetTilepos, range_, border))
+	var path : Array[Vector2i] = []
+	for p in pf.GetPath(myTilepos,targetTilepos, range_, border):
+		path.append(p)
 	return path
 
 func getDistance(myposition : Vector2i, targetpos : Vector2i) -> int:

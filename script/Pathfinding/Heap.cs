@@ -3,19 +3,15 @@ using System.Collections.Generic;
 
 public partial class Heap : GodotObject{
     List<Node_PF> items = new List<Node_PF>();
-	int currentItemCount;
 	
 	public void Add(Node_PF item) {
-		item.HeapIndex = currentItemCount;
-		items[currentItemCount] = item;
+		items.Add(item);
 		SortUp(item);
-		currentItemCount++;
 	}
 
 	public Node_PF RemoveFirst() {
 		Node_PF firstItem = items[0];
-		currentItemCount--;
-		items[0] = items[currentItemCount];
+		items[0] = items[Count];
 		items[0].HeapIndex = 0;
 		SortDown(items[0]);
 		return firstItem;
@@ -27,7 +23,7 @@ public partial class Heap : GodotObject{
 
 	public int Count {
 		get {
-			return currentItemCount;
+			return items.Count-1;
 		}
 	}
 
@@ -41,10 +37,10 @@ public partial class Heap : GodotObject{
 			int childIndexRight = item.HeapIndex * 2 + 2;
 			int swapIndex = 0;
 
-			if (childIndexLeft < currentItemCount) {
+			if (childIndexLeft < Count) {
 				swapIndex = childIndexLeft;
 
-				if (childIndexRight < currentItemCount) {
+				if (childIndexRight < Count) {
 					if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0) {
 						swapIndex = childIndexRight;
 					}
