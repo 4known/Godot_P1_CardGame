@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ public partial class Pathfinding : Node
 
     Dictionary<Vector2I,Node_PF> grid;
 
-    Godot.Collections.Array<Vector2I> GetPath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
-        Godot.Collections.Array<Vector2I> path = new Godot.Collections.Array<Vector2I>();
-        
+    Array<Vector2I> GetPath(Vector2I myTilepos, Vector2I targetTilepos, int range, bool border){
+        var path = new Godot.Collections.Array<Vector2I>();
+        path.Add(myTilepos);
         int tileDistance = GetTileDistance(myTilepos,targetTilepos);
         if ((tileDistance < range) ? !border : (tileDistance == range))
             return path;
