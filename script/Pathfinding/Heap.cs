@@ -2,22 +2,22 @@ using Godot;
 using System.Collections.Generic;
 
 public partial class Heap : GodotObject{
-    var[] items;
+    Tile_PF[] items;
 	int currentItemCount;
 	
 	public Heap(int maxHeapSize) {
-		items = new Variant[maxHeapSize];
+		items = new Tile_PF[maxHeapSize];
 	}
 	
-	public void Add(Variant item) {
+	public void Add(Tile_PF item) {
 		item.HeapIndex = currentItemCount;
 		items[currentItemCount] = item;
 		SortUp(item);
 		currentItemCount++;
 	}
 
-	public Variant RemoveFirst() {
-		Variant firstItem = items[0];
+	public Tile_PF RemoveFirst() {
+		Tile_PF firstItem = items[0];
 		currentItemCount--;
 		items[0] = items[currentItemCount];
 		items[0].HeapIndex = 0;
@@ -25,7 +25,7 @@ public partial class Heap : GodotObject{
 		return firstItem;
 	}
 
-	public void UpdateItem(T item) {
+	public void UpdateItem(Tile_PF item) {
 		SortUp(item);
 	}
 
@@ -35,11 +35,11 @@ public partial class Heap : GodotObject{
 		}
 	}
 
-	public bool Contains(Variant item) {
+	public bool Contains(Tile_PF item) {
 		return Equals(items[item.HeapIndex], item);
 	}
 
-	void SortDown(Variant item) {
+	void SortDown(Tile_PF item) {
 		while (true) {
 			int childIndexLeft = item.HeapIndex * 2 + 1;
 			int childIndexRight = item.HeapIndex * 2 + 2;
@@ -69,11 +69,11 @@ public partial class Heap : GodotObject{
 		}
 	}
 	
-	void SortUp(Variant item) {
+	void SortUp(Tile_PF item) {
 		int parentIndex = (item.HeapIndex-1)/2;
 		
 		while (true) {
-			Variant parentItem = items[parentIndex];
+			Tile_PF parentItem = items[parentIndex];
 			if (item.CompareTo(parentItem) > 0) {
 				Swap (item,parentItem);
 			}
@@ -85,7 +85,7 @@ public partial class Heap : GodotObject{
 		}
 	}
 	
-	void Swap(Variant itemA, Variant itemB) {
+	void Swap(Tile_PF itemA, Tile_PF itemB) {
 		items[itemA.HeapIndex] = itemB;
 		items[itemB.HeapIndex] = itemA;
 		int itemAIndex = itemA.HeapIndex;
