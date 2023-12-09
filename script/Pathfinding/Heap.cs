@@ -2,12 +2,8 @@ using Godot;
 using System.Collections.Generic;
 
 public partial class Heap : GodotObject{
-    Tile_PF[] items;
+    List<Tile_PF> items;
 	int currentItemCount;
-	
-	public Heap(int maxHeapSize) {
-		items = new Tile_PF[maxHeapSize];
-	}
 	
 	public void Add(Tile_PF item) {
 		item.HeapIndex = currentItemCount;

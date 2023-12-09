@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public partial class Pathfinding : Node{
     Dictionary<Vector2I,Tile_PF> grid;
-    void FindPath(Vector3 startPos, Vector3 targetPos){
+    void FindPath(Vector2I startPos, Vector2I targetPos){
 
-		Tile_PF startNode = grid.NodeFromWorldPoint(startPos);
-		Tile_PF targetNode = grid.NodeFromWorldPoint(targetPos);
+		Tile_PF startNode = grid[startPos];
+		Tile_PF targetNode = grid[targetPos];
 
-		Heap<Tile_PF> openSet = new Heap<Tile_PF>(grid.MaxSize);
+		Heap openSet = new Heap(grid.MaxSize);
 		HashSet<Tile_PF> closedSet = new HashSet<Tile_PF>();
 		openSet.Add(startNode);
 
@@ -43,7 +43,7 @@ public partial class Pathfinding : Node{
 		}
 	}
 
-	void RetracePath(Tile_PF startNode, Tile_PF endNode) {
+	List<Tile_PF> RetracePath(Tile_PF startNode, Tile_PF endNode) {
 		List<Tile_PF> path = new List<Tile_PF>();
 		Tile_PF currentNode = endNode;
 
@@ -53,8 +53,7 @@ public partial class Pathfinding : Node{
 		}
 		path.Reverse();
 
-		grid.path = path;
-
+		return path;
 	}
 
 	int GetDistance(Tile_PF nodeA, Tile_PF nodeB) {
@@ -64,5 +63,25 @@ public partial class Pathfinding : Node{
 		if (dstX > dstY)
 			return 14*dstY + 10* (dstX-dstY);
 		return 14*dstX + 10 * (dstY-dstX);
+	}
+
+    public List<Tile_PF> GetNeighbours(Tile_PF node) {
+		List<Tile_PF> neighbours = new List<Tile_PF>();
+
+		for (int x = -1; x <= 1; x++) {
+			for (int y = -1; y <= 1; y++) {
+				if (x == 0 && y == 0)
+					continue;
+
+				int checkX = node.gridX + x;
+				int checkY = node.gridY + y;
+
+				if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY) {
+					neighbours.Add(grid[checkX,checkY]);
+				}
+			}
+		}
+
+		return neighbours;
 	}
 }

@@ -4,7 +4,7 @@ using System;
 public partial class Tile_PF : Node
 {
     public bool walkable;
-	public Vector2I worldPosition;
+	public Vector2I tileposition;
 	public int gridX;
 	public int gridY;
 
@@ -14,10 +14,10 @@ public partial class Tile_PF : Node
 	public Tile_PF parent;
 	public Node grid;
 
-	public Tile_PF(bool walkable, Vector2I worldPosition, int gridX, int gridY, Node grid)
+	public Tile_PF(bool walkable, Vector2I tilePosition, int gridX, int gridY, Node grid)
 	{
 		this.walkable = walkable;
-		this.worldPosition = worldPosition;
+		this.tileposition = tilePosition;
 		this.gridX = gridX;
 		this.gridY = gridY;
 		this.grid = grid;
@@ -44,5 +44,4 @@ public partial class Tile_PF : Node
 		}
 		return -compare;
 	}
-
 }
