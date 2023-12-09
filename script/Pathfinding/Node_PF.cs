@@ -1,8 +1,9 @@
 using Godot;
 
-public partial class Node_PF : Node
+public partial class Node_PF : IHeapItem<Node_PF>
 {
     public bool walkable;
+	public bool occupied;
 	public int gridX;
 	public int gridY;
 
@@ -13,6 +14,7 @@ public partial class Node_PF : Node
 	public Node_PF(bool walkable, int gridX, int gridY)
 	{
 		this.walkable = walkable;
+		occupied = false;
 		this.gridX = gridX;
 		this.gridY = gridY;
 	}

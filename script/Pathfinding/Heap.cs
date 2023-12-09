@@ -1,46 +1,57 @@
-using Godot;
+using System;
 using System.Collections.Generic;
 
-public partial class Heap : GodotObject{
-    List<Node_PF> items = new List<Node_PF>();
+public class Heap<T> where T : IHeapItem<T>{
+   	List<T> items = new List<T>();
 	
-	public void Add(Node_PF item) {
-		items.Add(item);
+	public void Add(T item) {
+		item.HeapIndex = Count;
+		items.Add(item);;
 		SortUp(item);
 	}
 
-	public Node_PF RemoveFirst() {
-		Node_PF firstItem = items[0];
-		items[0] = items[Count];
+	public T RemoveFirst() {
+		T firstItem = items[0];
+		int lastIndex = items.Count - 1;
+		items[0] = items[lastIndex];
 		items[0].HeapIndex = 0;
-		SortDown(items[0]);
+		items.RemoveAt(lastIndex);
+		if(items.Count > 0){
+			SortDown(items[0]);
+		}
 		return firstItem;
 	}
 
-	public void UpdateItem(Node_PF item) {
+	public void UpdateItem(T item) {
+		SortDown(item);
 		SortUp(item);
 	}
 
 	public int Count {
 		get {
-			return items.Count-1;
+			return items.Count;
 		}
 	}
 
-	public bool Contains(Node_PF item) {
-		return Equals(items[item.HeapIndex], item);
+	public bool Contains(T item) {
+		if (item.HeapIndex < items.Count)
+		{
+			return Equals(items[item.HeapIndex], item);
+		}
+
+		return false;
 	}
 
-	void SortDown(Node_PF item) {
+	void SortDown(T item) {
 		while (true) {
 			int childIndexLeft = item.HeapIndex * 2 + 1;
 			int childIndexRight = item.HeapIndex * 2 + 2;
 			int swapIndex = 0;
 
-			if (childIndexLeft < Count) {
+			if (childIndexLeft < items.Count) {
 				swapIndex = childIndexLeft;
 
-				if (childIndexRight < Count) {
+				if (childIndexRight < items.Count) {
 					if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0) {
 						swapIndex = childIndexRight;
 					}
@@ -52,6 +63,7 @@ public partial class Heap : GodotObject{
 				else {
 					return;
 				}
+
 			}
 			else {
 				return;
@@ -59,25 +71,34 @@ public partial class Heap : GodotObject{
 		}
 	}
 	
-	void SortUp(Node_PF item) {
+	void SortUp(T item) {
 		int parentIndex = (item.HeapIndex-1)/2;
-		while (true) {
-			Node_PF parentItem = items[parentIndex];
+		
+		while (parentIndex >= 0) {
+			T parentItem = items[parentIndex];
 			if (item.CompareTo(parentItem) > 0) {
 				Swap (item,parentItem);
 			}
 			else {
 				break;
 			}
+
 			parentIndex = (item.HeapIndex-1)/2;
 		}
 	}
 	
-	void Swap(Node_PF itemA, Node_PF itemB) {
+	void Swap(T itemA, T itemB) {
 		items[itemA.HeapIndex] = itemB;
 		items[itemB.HeapIndex] = itemA;
 		int itemAIndex = itemA.HeapIndex;
 		itemA.HeapIndex = itemB.HeapIndex;
 		itemB.HeapIndex = itemAIndex;
+	}
+}
+
+public interface IHeapItem<T> : IComparable<T> {
+	int HeapIndex {
+		get;
+		set;
 	}
 }

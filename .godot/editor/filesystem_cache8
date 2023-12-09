@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702137027
+::res://::1702156289
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ::res://addons/::1701141244
@@ -12,12 +12,12 @@ plugin.cfg::TextFile::-1::1701134126::0::1::::<><>::
 ::res://addons/CardEditor/PropertyBoxes/::1701231432
 EnumValue.tscn::PackedScene::7120601239683299765::1701230410::0::1::::<><>::
 StatMod.tscn::PackedScene::4403098978061613926::1701231432::0::1::::<><>::
-::res://components/::1702090372
-EntitySkill.gd::GDScript::-1::1701887663::0::1::::EntitySkill<>Node<>::
+::res://components/::1702153659
+EntitySkill.gd::GDScript::-1::1702149922::0::1::::EntitySkill<>Node<>::
 EntityStat.gd::GDScript::-1::1701891527::0::1::::EntityStat<>Node<>::
 EntityStatus.gd::GDScript::-1::1701899180::0::1::::EntityStatus<>Node<>::
-GameState.gd::GDScript::-1::1702090372::0::1::::GameState<>Node<>::
-TurnManager.gd::GDScript::-1::1701914694::0::1::::TurnManager<>Node<>::
+GameState.gd::GDScript::-1::1702147921::0::1::::GameState<>Node<>::
+TurnManager.gd::GDScript::-1::1702153659::0::1::::TurnManager<>Node<>::
 ::res://global/::1701743240
 globalSignals.gd::GDScript::-1::1701743240::0::1::::<>Node<>::
 ::res://imports/::1701908438
@@ -26,11 +26,11 @@ Frame - Copy.png::CompressedTexture2D::4664009251824944535::1701908229::17019083
 Frames.png::CompressedTexture2D::8021069691860101737::1701908420::1701908438::1::::<><>::
 iso dirt.png::CompressedTexture2D::5612398424688804908::1701907891::1701908295::1::::<><>::
 Isometric test.png::CompressedTexture2D::5181482608142643367::1699232116::1701141252::1::::<><>::
-::res://resources/::1702089526
+::res://resources/::1702137582
 -9223366492102267250.tres::Resource/Resource::-1::1701400124::0::1::::<><>::
 defDown.tres::Resource/Resource::6281228586320132487::1701894368::0::1::::<><>::res://resourceScripts/statModifier.gd
-DefenseBreak.tres::Resource/StatusEffect::673187982903833164::1702089526::0::1::::<><>::res://resourceScripts/statusEffect.gd<>res://resourceScripts/statModifier.gd
-new_resource.tres::Resource/ActiveSkill::3370449005481319531::1702089526::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd<>res://resourceScripts/skillEffect.gd<>uid://judkpy2h82tc::::res://resources/DefenseBreak.tres
+DefenseBreak.tres::Resource/StatusEffect::673187982903833164::1702137582::0::1::::<><>::res://resourceScripts/statusEffect.gd<>res://resourceScripts/statModifier.gd
+new_resource.tres::Resource/ActiveSkill::3370449005481319531::1702137582::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd<>res://resourceScripts/skillEffect.gd<>uid://judkpy2h82tc::::res://resources/DefenseBreak.tres
 vampire.tres::Resource/Resource::6434347976513540085::1701894535::0::1::::<><>::res://resourceScripts/statusEffect.gd
 ::res://resourceScripts/::1701908351
 activeSkill.gd::GDScript::-1::1701833129::0::1::::ActiveSkill<>Skill<>::
@@ -45,21 +45,20 @@ skillEffect.gd::GDScript::-1::1701832119::0::1::::SkillEffect<>Resource<>::
 stat.gd::GDScript::-1::1701897080::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701480434::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1701892789::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1702098007
+::res://scene/::1702155008
 card.gd::GDScript::-1::1701834646::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1702073149::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
+card.tscn::PackedScene::3437437748356488327::1702153660::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
 projectile.gd::GDScript::-1::1700966099::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl
-terrain.gd::GDScript::-1::1702097951::0::1::::Terrain<>TileMap<>::
-terrain.tscn::PackedScene::5610510281185814687::1702097954::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs
-water.gdshader::Shader::-1::1702098007::0::1::::<><>::
+terrain.gd::GDScript::-1::1702148130::0::1::::Terrain<>TileMap<>::
+terrain.tscn::PackedScene::5610510281185814687::1702153660::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs
+water.gdshader::Shader::-1::1702155008::0::1::::<><>::
 world.gd::GDScript::-1::1701897277::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1702078979::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
+world.tscn::PackedScene::1142251505819120208::1702153660::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
 ::res://script/::1702079018
-::res://script/Pathfinding/::1702085948
-Grid.cs::CSharpScript::-1::1702086279::0::1::::<>Node<>::
-Heap.cs::CSharpScript::-1::1702093275::0::1::::<>Object<>::
-Pathfinding.cs::CSharpScript::-1::1702097892::0::1::::Pathfinding<>Node<>::
-Tile_PF.cs::CSharpScript::-1::1702093278::0::1::::<>Node<>::
+::res://script/Pathfinding/::1702140917
+Heap.cs::CSharpScript::-1::1702146987::0::1::::<>Object<>::
+Node_PF.cs::CSharpScript::-1::1702141065::0::1::::<>Node<>::
+Pathfinding.cs::CSharpScript::-1::1702152866::0::1::::Pathfinding<>Node<>::
 ::res://ui/::1701141244
 healthbar.tscn::PackedScene::1004608634430367477::1701029205::0::1::::<><>::

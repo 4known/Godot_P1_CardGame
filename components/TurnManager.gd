@@ -58,7 +58,7 @@ func firstFindTarget():
 		requestProcessed()
 		return
 	reqPath.target = target
-	var damage = 21 * -1
+	var damage = 15 * -1
 	reqPath.damage = damage
 	opponent[target] -= reqPath.target.getStatus().calculateDamage(damage*-1)
 	if opponent[target] <= 0:

@@ -12,11 +12,9 @@ public partial class Pathfinding : Node
 
         int tileDistance = GetTileDistance(myTilepos,targetTilepos);
         if ((tileDistance < range) ? !border : (tileDistance == range)){
-			GD.Print("error");
 			return path;
 		}
 		if(!grid.ContainsKey(myTilepos) || !grid.ContainsKey(targetTilepos)){
-			GD.Print("error");
 			return path;
 		}
 			
@@ -24,13 +22,12 @@ public partial class Pathfinding : Node
         int[] sortedKeys = possibleTiles.Keys.ToArray();
         Array.Sort(sortedKeys);
 
-        Vector2I[] p = new Vector2I[0];
         bool pathfound = false;
         foreach (int key in sortedKeys){
             foreach (Vector2I position in possibleTiles[key]){
-                p = FindPath(myTilepos,position);
-				GD.Print(p.Length);				
-                if (p.Length > 0){
+                var p = FindPath(myTilepos,position);
+                if (p.Count > 0){
+					path = p;
                     pathfound = true;
                     break;
                 }
@@ -38,23 +35,20 @@ public partial class Pathfinding : Node
             if(pathfound)
                 break;
         }
-        foreach (Vector2I position in p){
-            path.Add(position);
-        }
         if (path.Count == 0){
             path.Add(myTilepos);
         }
         return path;
     }
-    Vector2I[] FindPath(Vector2I startPos, Vector2I targetPos){
-        Vector2I[] waypoints = new Vector2I[0];
+    Godot.Collections.Array<Vector2I> FindPath(Vector2I startPos, Vector2I targetPos){
+        var waypoints = new Godot.Collections.Array<Vector2I>();
 		bool pathSuccess = false;
 		
 		Node_PF startNode = grid[startPos];
 		Node_PF targetNode = grid[targetPos];
 
 		if (startNode.walkable && targetNode.walkable) {
-            Heap openSet = new Heap();
+            Heap<Node_PF> openSet = new Heap<Node_PF>();
 		    HashSet<Node_PF> closedSet = new HashSet<Node_PF>();
 		    openSet.Add(startNode);
 			
@@ -90,7 +84,7 @@ public partial class Pathfinding : Node
 		return waypoints;
 	}
 
-    Vector2I[] RetracePath(Node_PF startNode, Node_PF endNode) {
+    Godot.Collections.Array<Vector2I> RetracePath(Node_PF startNode, Node_PF endNode) {
 		List<Node_PF> path = new List<Node_PF>();
 		Node_PF currentNode = endNode;
 		
@@ -98,22 +92,11 @@ public partial class Pathfinding : Node
 			path.Add(currentNode);
 			currentNode = currentNode.parent;
 		}
-		Vector2I[] waypoints = SimplifyPath(path);
-		Array.Reverse(waypoints);
-		return waypoints;
-	}
-    Vector2I[] SimplifyPath(List<Node_PF> path) {
-		List<Vector2I> waypoints = new List<Vector2I>();
-		Vector2I directionOld = Vector2I.Zero;
-		
-		for (int i = 1; i < path.Count; i++) {
-			Vector2I directionNew = new Vector2I(path[i-1].gridX - path[i].gridX,path[i-1].gridY - path[i].gridY);
-			if (directionNew != directionOld) {
-				waypoints.Add(new Vector2I(path[i].gridX,path[i].gridY));
-			}
-			directionOld = directionNew;
+		var waypoints = new Godot.Collections.Array<Vector2I>();
+		for (int i = path.Count-1; i >= 0; i--) {
+			waypoints.Add(new Vector2I(path[i].gridX,path[i].gridY));
 		}
-		return waypoints.ToArray();
+		return waypoints;
 	}
 
 	public void AddToGrid(Vector2I position){
