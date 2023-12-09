@@ -2,9 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+[GlobalClass]
 public partial class Pathfinding : Node{
+    Variant terrain;
     Dictionary<Vector2I,Tile_PF> grid;
 
+    public override void _Ready(){
+        terrain = GetParent();
+    }
     Vector2I[] FindPath(Vector2I startPos, Vector2I targetPos){
         Vector2I[] waypoints = new Vector2I[0];
 		bool pathSuccess = false;

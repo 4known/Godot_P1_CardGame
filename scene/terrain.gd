@@ -101,9 +101,3 @@ func clearDestination():
 	for d in destinations:
 		astar.set_point_disabled(getID(d),false)
 	destinations.clear()
-
-func nearestTilepos(pos : Vector2i) -> Vector2i:
-	var x = round(float(pos.x) / 8) * 8
-	var y = round(float(pos.y) / 8) * 8
-	var tilepos : Vector2i = Vector2i(x,y)
-	return tilepos
