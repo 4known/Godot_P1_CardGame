@@ -12,15 +12,15 @@ public partial class Tile_PF : Node
 	public int hCost;
 	public int fCost { get { return gCost + hCost; } }
 	public Tile_PF parent;
-	public Node ngrid;
+	public Node grid;
 
-	public Tile_PF(bool walkable, Vector2I worldPosition, int gridX, int gridY, Node ngrid)
+	public Tile_PF(bool walkable, Vector2I worldPosition, int gridX, int gridY, Node grid)
 	{
 		this.walkable = walkable;
 		this.worldPosition = worldPosition;
 		this.gridX = gridX;
 		this.gridY = gridY;
-		this.ngrid = ngrid;
+		this.grid = grid;
 	}
 
 	int heapIndex;
