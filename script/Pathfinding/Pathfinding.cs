@@ -9,7 +9,7 @@ public partial class Pathfinding : Node{
 		Tile_PF startNode = grid[startPos];
 		Tile_PF targetNode = grid[targetPos];
 
-		Heap openSet = new Heap(grid.MaxSize);
+		Heap openSet = new Heap();
 		HashSet<Tile_PF> closedSet = new HashSet<Tile_PF>();
 		openSet.Add(startNode);
 
@@ -22,7 +22,7 @@ public partial class Pathfinding : Node{
 				return;
 			}
 
-			foreach (Tile_PF neighbour in grid.GetNeighbours(currentNode)) {
+			foreach (Tile_PF neighbour in GetNeighbours(currentNode)) {
 				if (!neighbour.walkable || closedSet.Contains(neighbour)) {
 					continue;
 				}
@@ -75,10 +75,10 @@ public partial class Pathfinding : Node{
 
 				int checkX = node.gridX + x;
 				int checkY = node.gridY + y;
-
-				if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY) {
-					neighbours.Add(grid[checkX,checkY]);
-				}
+                Vector2I key = new Vector2I(checkX,checkY);
+                if (grid.ContainsKey(key)){
+                    neighbours.Add(grid[key]);
+                }
 			}
 		}
 
