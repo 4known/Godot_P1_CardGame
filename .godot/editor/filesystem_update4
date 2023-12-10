@@ -4,10 +4,5 @@ res://resources/new_resource.tres
 res://scene/water.gdshader
 res://scene/card.tscn
 res://scene/terrain.tscn
-res://script/Pathfinding/Heap.cs
-res://script/Pathfinding/Node_PF.cs
 res://script/Pathfinding/Pathfinding.cs
-res://components/TurnManager.gd
-res://components/GameState.gd
-res://scene/terrain.gd
 res://script/TerrainGeneration/TerrainGeneration.cs
