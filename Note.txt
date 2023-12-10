@@ -1,0 +1,8 @@
+spawn set occupied
+getPath
+    getPossibleTiles
+        filterout occupied
+set destination occupied
+set start not occupied
+
+Did not work
