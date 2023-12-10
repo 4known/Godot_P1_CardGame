@@ -10,13 +10,14 @@ var noise
 
 func _ready():
 	generateTerrain()
-	for t in get_used_cells(0):
-		pf.AddToGrid(t);
 
 func generateTerrain():
 	clear_layer(0)
+	pf.ClearGrid()
 	for p in gen.CreateGrid(13,Vector2i.ZERO):
 		set_cell(0,p,1,Vector2i(1,0))
+	for t in get_used_cells(0):
+		pf.AddToGrid(t);
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)

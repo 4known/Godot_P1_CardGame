@@ -8,6 +8,8 @@ public partial class TerrainGeneration : Node
     
     public Godot.Collections.Array<Vector2I> CreateGrid(int radius, Vector2I position){
         var grid = new Godot.Collections.Array<Vector2I>();
+        List<Vector2I> outer = new List<Vector2I>();
+
         int radiusSquaredOuter = radius * radius;
         int radiusSquaredInner = (radius - 5) * (radius - 5);
 
@@ -27,11 +29,8 @@ public partial class TerrainGeneration : Node
                 int vector = x * x + y * y;
                 if (radiusSquaredInner < vector && vector < radiusSquaredOuter)
                 {
-                    int dstX = Mathf.Abs(x/radius+1);
-                    int dstY = Mathf.Abs(y/radius+1);
-                    int falloff = Mathf.Max(dstX,dstY);
-                    value += falloff;
-                    if(value >= 1){
+                    if(value >= 0){
+                        outer.Add(new Vector2I(x,y));
                         grid.Add(new Vector2I(x,y));
                     }
                 }
@@ -40,17 +39,25 @@ public partial class TerrainGeneration : Node
                 }
             }
         }
+        UpdateGrid(outer,grid);
         return grid;
     }
     public void UpdateGrid(List<Vector2I> outer, Godot.Collections.Array<Vector2I> grid){
-        
+        foreach(Vector2I position in outer){
+            int neighbors = 0;
+            for (int x = -1; x <= 1; x++){
+                for (int y = -1; y <= 1; y++){
+                    if (x == 0 && y == 0)
+					    continue;
+                    
+                    if(grid.Contains(new Vector2I(x + position.X,y + position.Y))){
+                        neighbors++;
+                    }
+                }
+            }
+            if(neighbors <= 3){
+                grid.Remove(position);
+            }
+        }
     }
 }
-// if (grid[i, j] == 1)
-                // {
-                //     newGrid[i, j] = neighbors == 2 || neighbors == 3 ? 1 : 0;
-                // }
-                // else
-                // {
-                //     newGrid[i, j] = neighbors == 3 ? 1 : 0;
-                // }

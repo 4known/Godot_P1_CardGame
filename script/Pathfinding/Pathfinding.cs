@@ -102,6 +102,9 @@ public partial class Pathfinding : Node
 	public bool GridContains(Vector2I position){
 		return grid.ContainsKey(position);
 	}
+	public void ClearGrid(){
+		grid.Clear();
+	}
 	public void SetNodeOccupied(Vector2I position, bool occupied){
 		if (grid.ContainsKey(position)){
 			grid[position].occupied = occupied;

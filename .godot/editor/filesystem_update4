@@ -7,3 +7,4 @@ res://scene/card.tscn
 res://scene/terrain.tscn
 res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
+res://components/GameState.gd
