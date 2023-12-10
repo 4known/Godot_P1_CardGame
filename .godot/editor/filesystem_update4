@@ -2,6 +2,7 @@ res://scene/world.tscn
 res://resources/DefenseBreak.tres
 res://resources/new_resource.tres
 res://scene/water.gdshader
+res://scene/terrain.gd
 res://scene/card.tscn
 res://scene/terrain.tscn
 res://script/Pathfinding/Pathfinding.cs
