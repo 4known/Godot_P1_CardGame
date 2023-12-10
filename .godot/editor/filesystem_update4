@@ -10,3 +10,4 @@ res://script/Pathfinding/Pathfinding.cs
 res://components/TurnManager.gd
 res://components/GameState.gd
 res://scene/terrain.gd
+res://script/TerrainGeneration/TerrainGeneration.cs

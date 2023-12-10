@@ -35,9 +35,6 @@ public partial class Pathfinding : Node
             if(pathfound)
                 break;
         }
-        if (path.Count == 0){
-            path.Add(myTilepos);
-        }
         return path;
     }
     Godot.Collections.Array<Vector2I> FindPath(Vector2I startPos, Vector2I targetPos){
@@ -109,6 +106,9 @@ public partial class Pathfinding : Node
 		if (grid.ContainsKey(position)){
 			grid[position].occupied = occupied;
 		}
+	}
+	public bool IsOccupied(Vector2I position){
+		return grid[position].occupied;
 	}
 
 	int GetNodeDistance(Node_PF nodeA, Node_PF nodeB) {

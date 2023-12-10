@@ -6,3 +6,19 @@ set destination occupied
 set start not occupied
 
 Did not work
+
+Todo: there may be unneccesary SetNodeOccupied
+func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
+	var myTilepos = local_to_map(myposition)
+	var targetTilepos = local_to_map(targetpos)
+	var path : Array[Vector2i] = []
+	for p in pf.GetPath(myTilepos,targetTilepos, range_, border):
+		path.append(p)
+	if path.size() > 1:
+		pf.SetNodeOccupied(myTilepos,false)
+		pf.SetNodeOccupied(path.back(),true)
+	elif path.size() == 1:
+		print(path)
+		print(pf.IsOccupied(path.back()))
+
+	return path
