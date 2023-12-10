@@ -29,6 +29,9 @@ func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border :
 	var path : Array[Vector2i] = []
 	for p in pf.GetPath(myTilepos,targetTilepos, range_, border):
 		path.append(p)
+	if path.size() > 1:
+		pf.SetNodeOccupied(myTilepos,false)
+		pf.SetNodeOccupied(path.back(),true)
 	return path
 
 func getDistance(myposition : Vector2i, targetpos : Vector2i) -> int:

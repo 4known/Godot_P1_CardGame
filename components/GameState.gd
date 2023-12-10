@@ -52,22 +52,12 @@ func loadGame():
 	updateState()
 
 func playerTurn():
-	#ter.clearDestination()
-	#setDestination()
 	for p in players.get_children():
 		p.myTurn()
 
 func entityTurn():
-	#ter.clearDestination()
-	#setDestination()
 	for e in enemies.get_children():
 		e.myTurn()
-
-func setDestination():
-	for p in players.get_children():
-		ter.addDestination(ter.local_to_map(p.global_position), false)
-	for e in enemies.get_children():
-		ter.addDestination(ter.local_to_map(e.global_position), false)
 
 func spawnPlayer():
 	for i in range(playernum):
@@ -75,6 +65,7 @@ func spawnPlayer():
 		while spawnpos.has(pos) or ter.get_cell_source_id(0,ter.local_to_map(pos)) == -1:
 			pos = ter.map_to_local(Vector2i(randi_range(-3,3),randi_range(-3,3)))
 		spawnpos.append(pos)
+		ter.pf.SetNodeOccupied(ter.local_to_map(pos),true)
 		var newCard = initilizeCard(pos, Card.types.player)
 		newCard.name = "Player" + str(i)
 		players.add_child(newCard)
@@ -89,6 +80,7 @@ func spawnEnemy():
 			pos = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
 				randi_range(-5,5)+ playerpos.y))
 		spawnpos.append(pos)
+		ter.pf.SetNodeOccupied(ter.local_to_map(pos),true)
 		var newCard = initilizeCard(pos, Card.types.enemy)
 		newCard.name = "Enemy" + str(i)
 		enemies.add_child(newCard)

@@ -9,3 +9,4 @@ res://script/Pathfinding/Node_PF.cs
 res://script/Pathfinding/Pathfinding.cs
 res://components/TurnManager.gd
 res://components/GameState.gd
+res://scene/terrain.gd

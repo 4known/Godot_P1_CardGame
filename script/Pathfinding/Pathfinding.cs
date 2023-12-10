@@ -62,7 +62,7 @@ public partial class Pathfinding : Node
 				}
 				
 				foreach (Node_PF neighbour in GetNeighbours(currentNode)) {
-					if (!neighbour.walkable || closedSet.Contains(neighbour)) {
+					if (closedSet.Contains(neighbour)) {
 						continue;
 					}
 					
@@ -102,8 +102,13 @@ public partial class Pathfinding : Node
 	public void AddToGrid(Vector2I position){
 		grid.Add(position, new Node_PF(true, position.X, position.Y));
 	}
-	public bool GridContain(Vector2I position){
+	public bool GridContains(Vector2I position){
 		return grid.ContainsKey(position);
+	}
+	public void SetNodeOccupied(Vector2I position, bool occupied){
+		if (grid.ContainsKey(position)){
+			grid[position].occupied = occupied;
+		}
 	}
 
 	int GetNodeDistance(Node_PF nodeA, Node_PF nodeB) {
@@ -131,6 +136,9 @@ public partial class Pathfinding : Node
 				int checkY = node.gridY + y;
                 Vector2I key = new Vector2I(checkX,checkY);
                 if (grid.ContainsKey(key)){
+					if (!grid[key].walkable){
+						continue;
+					}
                     neighbours.Add(grid[key]);
                 }
 			}
@@ -148,6 +156,9 @@ public partial class Pathfinding : Node
                     continue;
                 Vector2I position = new Vector2I(targetTilepos.X + i, targetTilepos.Y + j);
                 if(grid.ContainsKey(position)){
+					if (!grid[position].walkable || grid[position].occupied){
+						continue;
+					}
                     int distance = GetTileDistance(myTilepos,position);
                     if (!dict.ContainsKey(distance))
 					    dict[distance] = new List<Vector2I>();
