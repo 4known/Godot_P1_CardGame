@@ -9,7 +9,7 @@ class_name GameState
 const card = preload("res://Scene/card.tscn")
 
 var enemynum : int = 1
-var playernum : int = 5
+var playernum : int = 10
 var spawnpos : Array[Vector2i] = []
 
 enum states{GameLoad, PlayerTurn, EntityTurn}
@@ -61,9 +61,9 @@ func entityTurn():
 
 func spawnPlayer():
 	for i in range(playernum):
-		var pos : Vector2i = ter.map_to_local(Vector2i(randi_range(-3,3),randi_range(-3,3)))
+		var pos : Vector2i
 		while spawnpos.has(pos) or ter.get_cell_source_id(0,ter.local_to_map(pos)) == -1:
-			pos = ter.map_to_local(Vector2i(randi_range(-3,3),randi_range(-3,3)))
+			pos = ter.map_to_local(Vector2i(randi_range(-5,5),randi_range(-5,5)))
 		spawnpos.append(pos)
 		ter.pf.SetNodeOccupied(ter.local_to_map(pos),true)
 		var newCard = initilizeCard(pos, Card.types.player)
@@ -74,8 +74,7 @@ func spawnEnemy():
 	if players.get_child_count() == 0: return
 	for i in range(enemynum):
 		var playerpos : Vector2i = ter.local_to_map(players.get_child(0).global_position)
-		var pos: Vector2i = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
-				randi_range(-5,5)+ playerpos.y))
+		var pos: Vector2i
 		while spawnpos.has(pos) or ter.get_cell_source_id(0,ter.local_to_map(pos)) == -1:
 			pos = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
 				randi_range(-5,5)+ playerpos.y))
