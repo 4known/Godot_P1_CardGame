@@ -14,7 +14,7 @@ func _ready():
 func generateTerrain():
 	clear_layer(0)
 	pf.ClearGrid()
-	for p in gen.CreateGrid(13,Vector2i.ZERO):
+	for p in gen.GenerateWorld(2, 15):
 		set_cell(0,p,1,Vector2i(1,0))
 	for t in get_used_cells(0):
 		pf.AddToGrid(t);

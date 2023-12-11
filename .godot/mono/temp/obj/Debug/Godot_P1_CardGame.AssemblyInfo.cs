@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Godot_P1_CardGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c00d538d8016c584657bc1b2c407c67b67c87796")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7835db3c3db63d89694094d149b802ae20deca1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Godot_P1_CardGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Godot_P1_CardGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

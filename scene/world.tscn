@@ -38,6 +38,7 @@ y_sort_enabled = true
 script = ExtResource("1_4eabr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="Control" type="Control" parent="Camera2D"]
 z_index = 1
