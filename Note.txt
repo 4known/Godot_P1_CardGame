@@ -22,13 +22,3 @@ func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border :
 		print(pf.IsOccupied(path.back()))
 
 	return path
-
-func generateTerrain():
-	clear_layer(0)
-	noise = FastNoiseLite.new()
-	noise.seed = randi()
-	noise.frequency *= 5
-	for x in range(-size,size):
-		for y in range(-size,size):
-			var noiseValue = noise.get_noise_2d(x,y)
-			set_cell(0, Vector2i(x,y),1,Vector2i(ceil(noiseValue),0))
