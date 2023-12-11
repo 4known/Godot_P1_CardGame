@@ -9,15 +9,20 @@ var size : int = 20
 var noise
 
 func _ready():
+	clear_layer(0)
+	pf.ClearGrid()
 	generateTerrain()
 
 func generateTerrain():
-	clear_layer(0)
-	pf.ClearGrid()
-	for p in gen.GenerateWorld(2, 15):
+	var grid = gen.GenerateWorld(1, 15)
+	for p in grid:
+		if get_cell_source_id(0,p) != -1:
+			continue
 		set_cell(0,p,1,Vector2i(1,0))
-	for t in get_used_cells(0):
-		pf.AddToGrid(t);
+	for t in grid:
+		if pf.GridContains(t):
+			continue
+		pf.AddToGrid(t)
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)
