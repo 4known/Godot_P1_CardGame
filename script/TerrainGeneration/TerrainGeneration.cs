@@ -122,3 +122,8 @@ public partial class TerrainGeneration : Node
         return passage;
     }
 }
+
+public class Room{
+    public Vector2I center;
+    public Godot.Collections.Array<Vector2I> grid;
+}
