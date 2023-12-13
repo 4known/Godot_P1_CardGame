@@ -5,6 +5,7 @@ class_name Terrain
 @onready var gen = $TerrainGeneration
 
 var world : Array[Room] = []
+var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
 var radius = 15
 
@@ -14,11 +15,7 @@ func _ready():
 	generateTerrain()
 
 func generateTerrain():
-	var excludemin = -1.5
-	var excludemax = 1.5
-	var offset = Vector2.ZERO
-	while offset.x < excludemax && offset.x > excludemin || offset.y < excludemax && offset.y > excludemin:
-		offset = Vector2(randf_range(-3,3),randf_range(-3,3))
+	var offset = getOffset(Vector2i.DOWN)
 	currentCenter.x += offset.x*radius;
 	currentCenter.y += offset.y*radius;
 	
@@ -29,17 +26,27 @@ func generateTerrain():
 	var grid : Array[Vector2i] = []
 	for p in gen.GenerateWorld(radius,currentCenter,preCenter):
 		grid.push_back(p)
-		
-	world.append(Room.new(currentCenter,grid))
+	
+	world.push_back(Room.new(currentCenter,grid))
+	if world.size()> roomMax:
+		for p in world.front().grid:
+			erase_cell(0,p)
+			pf.RemoveFromGrid(p)
+		world.pop_front()
 	
 	for p in grid:
-		if get_cell_source_id(0,p) != -1:
+		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
 			continue
 		set_cell(0,p,1,Vector2i(1,0))
-	for t in grid:
-		if pf.GridContains(t):
-			continue
-		pf.AddToGrid(t)
+		pf.AddToGrid(p)
+
+func getOffset(direction : Vector2i) -> Vector2:
+	var excludemin = -1.2
+	var excludemax = 1.2
+	var offset = Vector2.ZERO
+	while offset.x < excludemax && offset.x > excludemin || offset.y < excludemax && offset.y > excludemin:
+		offset = Vector2(randf_range(-2,2),randf_range(-2,2))
+	return offset
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)

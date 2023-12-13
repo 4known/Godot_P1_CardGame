@@ -99,6 +99,9 @@ public partial class Pathfinding : Node
 	public void AddToGrid(Vector2I position){
 		grid.Add(position, new Node_PF(true, position.X, position.Y));
 	}
+	public void RemoveFromGrid(Vector2I position){
+		grid.Remove(position);
+	}
 	public bool GridContains(Vector2I position){
 		return grid.ContainsKey(position);
 	}

@@ -7,3 +7,4 @@ res://scene/terrain.tscn
 res://scene/terrain.gd
 res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
+res://resourceScripts/skill.gd
