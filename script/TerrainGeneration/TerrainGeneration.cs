@@ -3,25 +3,14 @@ using System.Collections.Generic;
 
 [GlobalClass]
 public partial class TerrainGeneration : Node
-{
-    Vector2I position = Vector2I.Zero;
-    public Godot.Collections.Array<Vector2I> GenerateWorld(int grids, int radius){
-        var grid = new Godot.Collections.Array<Vector2I>();
-        for (int i = 0; i < grids; i++){
-            grid += CreateGrid(radius, position);
+{   
+    public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position, Vector2I previousposition){
 
-            RandomNumberGenerator ran = new RandomNumberGenerator();
-            Vector2I offset = new Vector2I(ran.RandiRange(-3,3)*radius,ran.RandiRange(-3,3)*radius);
-            if(offset.X == 0 || offset.X == radius || offset.X == -radius){
-                offset.X = radius*2;
-            }
-            else if(offset.Y == 0 || offset.Y == radius || offset.Y == -radius){
-                offset.Y = radius*2;
-            }
-            Vector2I previousposition = position;
-            position += offset;
+        var grid = new Godot.Collections.Array<Vector2I>(CreateGrid(radius, position));
+        if(previousposition != position){
             grid += CreatePassage(grid,previousposition,position);
         }
+        
         return grid;
     }
 
@@ -126,4 +115,6 @@ public partial class TerrainGeneration : Node
 public class Room{
     public Vector2I center;
     public Godot.Collections.Array<Vector2I> grid;
+    public Godot.Collections.Array<Node> enemy;
+
 }
