@@ -41,12 +41,19 @@ func generateTerrain():
 		pf.AddToGrid(p)
 
 func getOffset(direction : Vector2i) -> Vector2:
-	var excludemin = -1.2
-	var excludemax = 1.2
-	var offset = Vector2.ZERO
-	while offset.x < excludemax && offset.x > excludemin || offset.y < excludemax && offset.y > excludemin:
-		offset = Vector2(randf_range(-2,2),randf_range(-2,2))
-	return offset
+	var directions = getDirections()
+	var dir = directions.pick_random()
+	var length = Vector2(randf_range(1.3,2),randf_range(1.3,2))
+	return Vector2(dir.x * length.x,dir.y*length.y)
+
+func getDirections() -> Array[Vector2i]:
+	var directions : Array[Vector2i] = []
+	for x in range(-1,2):
+		for y in range(-1,2):
+			if x == 0 and y == 0:
+				continue
+			directions.push_back(Vector2i(x,y))
+	return directions
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)
