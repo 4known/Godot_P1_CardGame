@@ -50,7 +50,10 @@ func generateTerrain():
 		pf.AddToGrid(p)
 
 func getNewPosition(current : Vector2i, previous : Vector2i) -> Vector2:
+	print(previous)
+	print(current)
 	var previousDir : Vector2i = Vector2i(current.x - previous.x,current.y-previous.y)
+	print(previousDir)
 	var directions = getDirections(previousDir)
 	var dir = directions.pick_random()
 	var length = Vector2(randf_range(1.3,1.4),randf_range(1.3,1.4))
