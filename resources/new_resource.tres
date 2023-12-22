@@ -24,6 +24,6 @@ skillEftArr = Array[ExtResource("2_x182e")]([SubResource("Resource_wqg62")])
 projectile = true
 statModArr = Array[ExtResource("2_wqj8g")]([SubResource("Resource_dndor")])
 coolDown = 0
-range = 0
+range_ = 0
 type = 1
 id = 1

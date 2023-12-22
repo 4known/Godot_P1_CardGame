@@ -6,6 +6,7 @@ class_name Terrain
 
 var world : Array[Room] = []
 var roomMax : int = 5
+var preCenter : Vector2i = Vector2i.ZERO
 var currentCenter : Vector2i = Vector2i.ZERO
 var radius = 15
 
@@ -15,13 +16,18 @@ func _ready():
 	generateTerrain()
 
 func generateTerrain():
-	var offset = getOffset(Vector2i.DOWN)
-	currentCenter.x += offset.x*radius;
-	currentCenter.y += offset.y*radius;
-	
-	var preCenter : Vector2i = currentCenter
-	if !world.is_empty():
-		preCenter = world.back().center
+	var newPos = getNewPosition(currentCenter,preCenter)
+	var collision = true
+	while collision:
+		collision = false
+		for room in world:
+			if pf.GetTileDistance(room.center, newPos) < radius + 2:
+				collision = true
+				break
+		if collision:
+			newPos = getNewPosition(currentCenter,preCenter)
+	preCenter = currentCenter
+	currentCenter = newPos
 	
 	var grid : Array[Vector2i] = []
 	for p in gen.GenerateWorld(radius,currentCenter,preCenter):
@@ -37,23 +43,44 @@ func generateTerrain():
 	for p in grid:
 		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
 			continue
-		set_cell(0,p,1,Vector2i(1,0))
+		if p == currentCenter:
+			set_cell(0,p,1,Vector2i(0,0))
+		else:
+			set_cell(0,p,1,Vector2i(1,0))
 		pf.AddToGrid(p)
 
-func getOffset(direction : Vector2i) -> Vector2:
-	var directions = getDirections()
+func getNewPosition(current : Vector2i, previous : Vector2i) -> Vector2:
+	var previousDir : Vector2i = Vector2i(current.x - previous.x,current.y-previous.y)
+	var directions = getDirections(previousDir)
 	var dir = directions.pick_random()
-	var length = Vector2(randf_range(1.3,2),randf_range(1.3,2))
-	return Vector2(dir.x * length.x,dir.y*length.y)
+	var length = Vector2(randf_range(1.3,1.4),randf_range(1.3,1.4))
+	return Vector2(current.x + dir.x * length.x * radius, current.y + dir.y*length.y * radius)
 
-func getDirections() -> Array[Vector2i]:
-	var directions : Array[Vector2i] = []
-	for x in range(-1,2):
-		for y in range(-1,2):
-			if x == 0 and y == 0:
-				continue
-			directions.push_back(Vector2i(x,y))
-	return directions
+func getDirections(dir : Vector2i) -> Array[Vector2i]:
+	var dirs : Array[Vector2i] = []
+	if dir.x == 0 and dir.y > 0:
+		dirs = [Vector2i(-1,0),Vector2i(1,0),Vector2i(-1,-1),Vector2i(0,-1),Vector2i(1,-1)]
+	elif dir.x > 0 and dir.y == 0:
+		dirs = [Vector2i(0,1),Vector2i(0,-1),Vector2i(-1,-1),Vector2i(-1,1),Vector2i(-1,0)]
+	elif dir.x == 0 and dir.y < 0:
+		dirs = [Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(-1,0),Vector2i(-1,1)]
+	elif dir.x < 0 and dir.y == 0:
+		dirs = [Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(0,-1),Vector2i(1,-1)]
+	elif dir.x < 0 and dir.y > 0:
+		dirs = [Vector2i(1,0),Vector2i(1,1),Vector2i(0,-1),Vector2i(1,-1),Vector2i(-1,-1)]
+	elif dir.x > 0 and dir.y > 0:
+		dirs = [Vector2i(-1,0),Vector2i(-1,-1),Vector2i(0,-1),Vector2i(1,-1),Vector2i(-1,1)]
+	elif dir.x < 0 and dir.y < 0:
+		dirs = [Vector2i(1,-1),Vector2i(-1,1),Vector2i(0,1),Vector2i(1,0),Vector2i(1,1)]
+	elif dir.x > 0 and dir.y < 0:
+		dirs = [Vector2i(-1,0),Vector2i(-1,-1),Vector2i(-1,1),Vector2i(0,1),Vector2i(1,1)]
+	else:
+		for i in range(-1,2):
+			for j in range(-1,2):
+				if i == 0 and j == 0:
+					continue;
+				dirs.push_back(Vector2i(i,j))
+	return dirs
 
 func getPath(myposition : Vector2i, targetpos : Vector2i, range_ : int, border : bool) -> Array[Vector2i]:
 	var myTilepos = local_to_map(myposition)

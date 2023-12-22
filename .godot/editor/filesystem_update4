@@ -4,7 +4,7 @@ res://resources/new_resource.tres
 res://scene/water.gdshader
 res://scene/card.tscn
 res://scene/terrain.tscn
-res://scene/terrain.gd
 res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
-res://resourceScripts/skill.gd
+res://scene/terrain.gd
+res://script/MoveCamera.gd

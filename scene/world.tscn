@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://qjkylax5spu3"]
+[gd_scene load_steps=13 format=3 uid="uid://qjkylax5spu3"]
 
 [ext_resource type="Script" path="res://scene/world.gd" id="1_4eabr"]
 [ext_resource type="PackedScene" uid="uid://cl61jxa6ccyuh" path="res://scene/terrain.tscn" id="2_5fmie"]
+[ext_resource type="Script" path="res://script/MoveCamera.gd" id="2_1251s"]
 [ext_resource type="Script" path="res://components/GameState.gd" id="3_4kxfv"]
 [ext_resource type="Shader" path="res://scene/water.gdshader" id="3_8bht5"]
 [ext_resource type="Script" path="res://components/TurnManager.gd" id="4_8kbl4"]
@@ -38,9 +39,11 @@ y_sort_enabled = true
 script = ExtResource("1_4eabr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.51, 0.51)
+script = ExtResource("2_1251s")
 
 [node name="Control" type="Control" parent="Camera2D"]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
