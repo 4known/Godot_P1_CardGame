@@ -45,7 +45,7 @@ public partial class TerrainGeneration : Node
             int x = tile.X - position.X;
             int y = tile.Y - position.Y;
             int diameter = x*x + y*y;
-            if(diameter > radiusSquaredOuter){
+            if(diameter >= radiusSquaredOuter){
                 grid.Remove(tile);
             }
         }
