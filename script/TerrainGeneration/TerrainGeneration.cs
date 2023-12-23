@@ -7,9 +7,9 @@ public partial class TerrainGeneration : Node
     public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position, Vector2I previousposition){
 
         var grid = new Godot.Collections.Array<Vector2I>(CreateGrid(radius, position));
-        if(previousposition != position){
-            grid += CreatePassage(grid,previousposition,position);
-        }
+        // if(previousposition != position){
+        //     grid += CreatePassage(grid,previousposition,position);
+        // }
         
         return grid;
     }
@@ -22,9 +22,8 @@ public partial class TerrainGeneration : Node
         int radiusSquaredOuter = radius * radius;
         int radiusSquaredInner = (radius - inner) * (radius - inner);
 
-        FastNoiseLite noise = new FastNoiseLite();
-        noise.Seed = (int)GD.Randi();
-	    noise.Frequency *= 50;
+        FastNoiseLite noise = new FastNoiseLite{Seed = (int)GD.Randi()};
+        noise.Frequency *= 10;
 
         for (int x = -radius; x <= radius; x++)
         {
@@ -32,22 +31,29 @@ public partial class TerrainGeneration : Node
             {
                 int positionx = x + position.X;
                 int positiony = y + position.Y;
-
-                int diameter = x * x + y * y;
-                if (radiusSquaredInner < diameter && diameter < radiusSquaredOuter)
-                {
+                int diameter = x*x + y*y;
+                if(diameter < radiusSquaredInner){
+                    grid.Add(new Vector2I(positionx,positiony));
+                }
+                else{
                     float value = noise.GetNoise2D(positionx,positiony);
                     if(value >= 0){
                         outer.Add(new Vector2I(positionx,positiony));
                         grid.Add(new Vector2I(positionx,positiony));
                     }
                 }
-                else if(diameter < radiusSquaredInner){
-                    grid.Add(new Vector2I(positionx,positiony));
-                }
             }
         }
         CellularAutomata(outer,grid,2);
+
+        foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(grid)){
+            int x = tile.X - position.X;
+            int y = tile.Y - position.Y;
+            int diameter = x*x + y*y;
+            if(diameter > radiusSquaredOuter){
+                grid.Remove(tile);
+            }
+        }
         return grid;
     }
     private void CellularAutomata(List<Vector2I> outer, Godot.Collections.Array<Vector2I> grid, int iterations){
@@ -110,11 +116,4 @@ public partial class TerrainGeneration : Node
         }
         return passage;
     }
-}
-
-public class Room{
-    public Vector2I center;
-    public Godot.Collections.Array<Vector2I> grid;
-    public Godot.Collections.Array<Node> enemy;
-
 }

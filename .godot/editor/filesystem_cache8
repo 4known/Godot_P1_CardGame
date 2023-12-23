@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703180508
+::res://::1703355795
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
-Note.txt::TextFile::-1::1702260482::0::1::::<><>::
+Note.txt::TextFile::-1::1703205958::0::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ::res://addons/::1701141244
 ::res://addons/CardEditor/::1701400184
@@ -46,18 +46,18 @@ skillEffect.gd::GDScript::-1::1701832119::0::1::::SkillEffect<>Resource<>::
 stat.gd::GDScript::-1::1701897080::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701480434::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1701892789::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1703189443
+::res://scene/::1703207820
 card.gd::GDScript::-1::1701834646::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1703189442::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
+card.tscn::PackedScene::3437437748356488327::1703207725::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
 projectile.gd::GDScript::-1::1700966099::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl
-MoveCamera.gd::GDScript::-1::1703189847::0::1::::<>Camera2D<>::
-terrain.gd::GDScript::-1::1703189388::0::1::::Terrain<>TileMap<>::
-terrain.tscn::PackedScene::5610510281185814687::1703189443::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
-water.gdshader::Shader::-1::1703189868::0::1::::<><>::
+terrain.gd::GDScript::-1::1703207724::0::1::::Terrain<>TileMap<>::
+terrain.tscn::PackedScene::5610510281185814687::1703207725::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
+water.gdshader::Shader::-1::1703207820::0::1::::<><>::
 world.gd::GDScript::-1::1701897277::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1703189868::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://scene/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
-::res://script/::1702174540
+world.tscn::PackedScene::1142251505819120208::1703207725::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
+::res://script/::1703192384
+MoveCamera.gd::GDScript::-1::1703192384::0::1::::<>Camera2D<>::
 ::res://script/Pathfinding/::1702174540
 Heap.cs::CSharpScript::-1::1702162584::0::1::::<><>::
 Node_PF.cs::CSharpScript::-1::1702228682::0::1::::<><>::
