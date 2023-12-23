@@ -5,9 +5,7 @@ using System.Collections.Generic;
 public partial class TerrainGeneration : Node
 {   
     public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position){
-
         var grid = new Godot.Collections.Array<Vector2I>(CreateGrid(radius, position));
-        
         return grid;
     }
 
