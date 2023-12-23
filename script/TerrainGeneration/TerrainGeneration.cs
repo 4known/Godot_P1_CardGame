@@ -4,12 +4,9 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class TerrainGeneration : Node
 {   
-    public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position, Vector2I previousposition){
+    public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position){
 
         var grid = new Godot.Collections.Array<Vector2I>(CreateGrid(radius, position));
-        // if(previousposition != position){
-        //     grid += CreatePassage(grid,previousposition,position);
-        // }
         
         return grid;
     }
