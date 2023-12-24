@@ -5,8 +5,6 @@ class_name Terrain
 @onready var gen = $TerrainGeneration
 
 var world : Array[Room] = []
-var passages : Array[Vector2i] = []
-
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
 var radius = 15
@@ -23,7 +21,7 @@ func generateTerrain():
 	while collision:
 		collision = false
 		for room in world:
-			if pf.GetTileDistance(room.center, newPos) < radius:
+			if pf.GetTileDistance(room.center, newPos) < radius*2:
 				collision = true
 				break
 		if collision:
@@ -39,10 +37,23 @@ func generateTerrain():
 	if world.size()> roomMax:
 		for p in world.front().grid:
 			erase_cell(0,p)
-			pf.RemoveFromGrid(p)
+		for p in world.front().passageToNext:
+			erase_cell(0,p)
 		world.pop_front()
+		
+	#Generate Passage
+	var passage : Array[Vector2i] = []
+	if world.size() > 1:
+		for p in gen.CreatePassage(world.back().grid + world[world.size() - 2].grid, world.back().center, world[world.size()-2].center):
+			passage.push_back(p)
+	#Add Passage
+	world[world.size()-2].passageToNext = passage
 	
-	#Add to world and to pathfinding grid
+	#Add to world
+	for p in passage:
+		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
+			continue
+		set_cell(0,p,1,Vector2i(0,0))
 	for p in grid:
 		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
 			continue
@@ -50,7 +61,6 @@ func generateTerrain():
 			set_cell(0,p,1,Vector2i(0,0))
 		else:
 			set_cell(0,p,1,Vector2i(1,0))
-		pf.AddToGrid(p)
 
 func getNewPosition() -> Vector2:
 	var current : Vector2i
@@ -112,6 +122,7 @@ func getDistance(myposition : Vector2i, targetpos : Vector2i) -> int:
 class Room:
 	var center : Vector2i
 	var grid : Array[Vector2i]
+	var passageToNext : Array[Vector2i]
 	var enemies : Array[Card]
 	func _init(center_ : Vector2i, grid_ : Array[Vector2i]):
 		center = center_
