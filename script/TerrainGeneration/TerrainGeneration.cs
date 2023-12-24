@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class TerrainGeneration : Node
 {   
-    private Godot.Collections.Array<Vector2I> CreateGrid(int radius, Vector2I position){
+    public Godot.Collections.Array<Vector2I> CreateGrid(int radius, Vector2I position){
         var grid = new Godot.Collections.Array<Vector2I>();
         List<Vector2I> outer = new List<Vector2I>();
 
@@ -14,7 +14,8 @@ public partial class TerrainGeneration : Node
         int innerDistance = (radius - inner) * (radius - inner);
 
         FastNoiseLite noise = new FastNoiseLite{Seed = (int)GD.Randi()};
-        noise.Frequency *= 5;
+        int ranFrequencyValue = GD.RandRange(5,12);
+        noise.Frequency *= ranFrequencyValue;
 
         for (int x = -radius; x <= radius; x++)
         {
@@ -63,7 +64,7 @@ public partial class TerrainGeneration : Node
             }
         }
     }
-    private Godot.Collections.Array<Vector2I> CreatePassage(Godot.Collections.Array<Vector2I> grid, Vector2I gridA, Vector2I gridB){
+    public Godot.Collections.Array<Vector2I> CreatePassage(Godot.Collections.Array<Vector2I> grid, Vector2I gridA, Vector2I gridB){
         var passage = new Godot.Collections.Array<Vector2I>();
         int x = gridA.X;
         int y = gridA.Y;
@@ -97,6 +98,31 @@ public partial class TerrainGeneration : Node
                 Vector2I position = new Vector2I(x,y);
                 if(!grid.Contains(position)){
                     passage.Add(position);
+                }
+            }
+        }
+        foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(passage)){
+            for(int i = -1; i <= 1; i++){
+                for(int j = -1; j <= 1; j++){
+                    if(i == 0 && j == 0){
+                        continue;
+                    }
+                    else if(i == -1 && j == -1){
+                        continue;
+                    }
+                    else if(i == -1 && j == 1){
+                        continue;
+                    }
+                    else if(i == 1 && j == 1){
+                        continue;
+                    }
+                    else if(i == 1 && j == -1){
+                        continue;
+                    }
+                    Vector2I newTile = new Vector2I(tile.X + i, tile.Y + j);
+                    if(!passage.Contains(newTile) && !grid.Contains(newTile)){
+                        passage.Add(newTile);
+                    }
                 }
             }
         }
