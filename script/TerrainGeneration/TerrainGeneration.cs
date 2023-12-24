@@ -4,21 +4,16 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class TerrainGeneration : Node
 {   
-    public Godot.Collections.Array<Vector2I> GenerateWorld(int radius, Vector2I position){
-        var grid = new Godot.Collections.Array<Vector2I>(CreateGrid(radius, position));
-        return grid;
-    }
-
     private Godot.Collections.Array<Vector2I> CreateGrid(int radius, Vector2I position){
         var grid = new Godot.Collections.Array<Vector2I>();
         List<Vector2I> outer = new List<Vector2I>();
 
         int inner = Mathf.FloorToInt(radius * .5f);
-        int radiusSquaredOuter = radius * radius;
-        int radiusSquaredInner = (radius - inner) * (radius - inner);
+        int outerDistance = radius * radius;
+        int innerDistance = (radius - inner) * (radius - inner);
 
         FastNoiseLite noise = new FastNoiseLite{Seed = (int)GD.Randi()};
-        noise.Frequency *= 10;
+        noise.Frequency *= 100;
 
         for (int x = -radius; x <= radius; x++)
         {
@@ -26,12 +21,15 @@ public partial class TerrainGeneration : Node
             {
                 int positionx = x + position.X;
                 int positiony = y + position.Y;
-                int diameter = x*x + y*y;
-                if(diameter < radiusSquaredInner){
+                int distance = x*x + y*y;
+                if(distance < innerDistance){
                     grid.Add(new Vector2I(positionx,positiony));
                 }
                 else{
                     float value = noise.GetNoise2D(positionx,positiony);
+                    float falloffValue = 0.5f * Evaluate(distance);
+                    GD.Print(falloffValue);
+                    value += falloffValue;
                     if(value >= 0){
                         outer.Add(new Vector2I(positionx,positiony));
                         grid.Add(new Vector2I(positionx,positiony));
@@ -39,17 +37,33 @@ public partial class TerrainGeneration : Node
                 }
             }
         }
-        CellularAutomata(outer,grid,2);
+        // CellularAutomata(outer,grid,1);
 
-        foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(grid)){
-            int x = tile.X - position.X;
-            int y = tile.Y - position.Y;
-            int diameter = x*x + y*y;
-            if(diameter >= radiusSquaredOuter){
-                grid.Remove(tile);
-            }
-        }
+        // foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(grid)){
+        //     int x = tile.X - position.X;
+        //     int y = tile.Y - position.Y;
+        //     int distance = x*x + y*y;
+        //     if(distance >= outerDistance){
+        //         grid.Remove(tile);
+        //     }
+        // }
         return grid;
+    }
+    static float Evaluate(float value)
+    {
+        float a = 3;
+        float b = 2.2f;
+
+        float powValue = value;
+        float powBValue = b - b * value;
+
+        for (int i = 1; i < a; i++)
+        {
+            powValue *= value;
+            powBValue *= b - b * value;
+        }
+
+        return powValue / (powValue + powBValue);
     }
     private void CellularAutomata(List<Vector2I> outer, Godot.Collections.Array<Vector2I> grid, int iterations){
         for (int i = 0; i < iterations; i++){

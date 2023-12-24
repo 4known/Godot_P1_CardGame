@@ -14,7 +14,8 @@ func _input(event):
 		else:
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
-		global_position = 2 * (mouse_start_pos - event.position) + screen_start_position
+		var speed = Vector2(1/zoom.x,1/zoom.y)
+		global_position = speed * (mouse_start_pos - event.position) + screen_start_position
 
 func _process(delta):
 	if Input.is_action_just_released("zoom+"):

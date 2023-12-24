@@ -7,7 +7,7 @@ class_name Terrain
 var world : Array[Room] = []
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
-var radius = 15
+var radius = 20
 
 func _ready():
 	clear_layer(0)
@@ -27,9 +27,10 @@ func generateTerrain():
 		if collision:
 			newPos = getNewPosition()
 	currentCenter = newPos
-	#Generate World
+	
+	#Generate Room
 	var grid : Array[Vector2i] = []
-	for p in gen.GenerateWorld(radius,currentCenter):
+	for p in gen.CreateGrid(radius,currentCenter):
 		grid.push_back(p)
 	
 	#Add room
@@ -81,21 +82,21 @@ func getNewPosition() -> Vector2:
 func getDirections(dir : Vector2i) -> Array[Vector2i]:
 	var dirs : Array[Vector2i] = []
 	if dir.x == 0 and dir.y > 0:
-		dirs = [Vector2i(-1,0),Vector2i(1,0),Vector2i(-1,-1),Vector2i(0,-1),Vector2i(1,-1)]
+		dirs = [Vector2i(-1,-1),Vector2i(0,-1),Vector2i(1,-1)]
 	elif dir.x > 0 and dir.y == 0:
-		dirs = [Vector2i(0,1),Vector2i(0,-1),Vector2i(-1,-1),Vector2i(-1,1),Vector2i(-1,0)]
+		dirs = [Vector2i(-1,-1),Vector2i(-1,1),Vector2i(-1,0)]
 	elif dir.x == 0 and dir.y < 0:
-		dirs = [Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(-1,0),Vector2i(-1,1)]
+		dirs = [Vector2i(0,1),Vector2i(1,1),Vector2i(-1,1)]
 	elif dir.x < 0 and dir.y == 0:
-		dirs = [Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(0,-1),Vector2i(1,-1)]
+		dirs = [Vector2i(1,0),Vector2i(1,1),Vector2i(1,-1)]
 	elif dir.x < 0 and dir.y > 0:
-		dirs = [Vector2i(1,0),Vector2i(1,1),Vector2i(0,-1),Vector2i(1,-1),Vector2i(-1,-1)]
+		dirs = [Vector2i(1,0),Vector2i(0,-1),Vector2i(1,-1)]
 	elif dir.x > 0 and dir.y > 0:
-		dirs = [Vector2i(-1,0),Vector2i(-1,-1),Vector2i(0,-1),Vector2i(1,-1),Vector2i(-1,1)]
+		dirs = [Vector2i(-1,0),Vector2i(-1,-1),Vector2i(0,-1)]
 	elif dir.x < 0 and dir.y < 0:
-		dirs = [Vector2i(1,-1),Vector2i(-1,1),Vector2i(0,1),Vector2i(1,0),Vector2i(1,1)]
+		dirs = [Vector2i(0,1),Vector2i(1,0),Vector2i(1,1)]
 	elif dir.x > 0 and dir.y < 0:
-		dirs = [Vector2i(-1,0),Vector2i(-1,-1),Vector2i(-1,1),Vector2i(0,1),Vector2i(1,1)]
+		dirs = [Vector2i(-1,0),Vector2i(-1,1),Vector2i(0,1)]
 	else:
 		for i in range(-1,2):
 			for j in range(-1,2):
