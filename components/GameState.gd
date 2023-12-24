@@ -11,7 +11,7 @@ const card = preload("res://Scene/card.tscn")
 var enemynum : int = 1
 var playernum : int = 10
 
-enum states{GameLoad, PlayerTurn, EntityTurn}
+enum states{GameLoad, PlayerTurn, EntityTurn, NextRoom}
 var currentState : states = states.GameLoad
 var turnNum: int = 0
 signal newTurn
@@ -35,16 +35,23 @@ func updateState():
 			loadGame()
 		states.PlayerTurn:
 			print("PlayerTurn")
+			if players.get_child_count() == 0:
+				print("Game Over")
 			emit_signal("newTurn", currentState)
 			playerTurn()
 			next = false
 			currentState = states.EntityTurn
 		states.EntityTurn:
 			print("EntityTurn")
+			if enemies.get_child_count() == 0:
+				currentState = states.NextRoom
+				return
 			emit_signal("newTurn", currentState)
 			entityTurn()
 			next = false
 			currentState = states.PlayerTurn
+		states.NextRoom:
+			ter.nextRoom()
 
 func loadGame():
 	#Terrain Generation

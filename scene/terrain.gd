@@ -5,10 +5,12 @@ class_name Terrain
 @onready var gen = $TerrainGeneration
 
 var world : Array[Room] = []
-var currentRoom : Room 
+var currentRoom : Room
+var currentRoomIndex : int
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
 var radius : int
+var totalRooms : int = 0
 
 func _ready():
 	clear_layer(0)
@@ -19,10 +21,23 @@ func initGeneration():
 		generateTerrain()
 	if !world.is_empty():
 		currentRoom = world.front()
+		currentRoomIndex = 0
 		for tile in currentRoom.grid:
 			pf.AddToGrid(tile)
 			if currentRoom.enemiesPosition.has(tile):
 				pf.SetNodeOccupied(tile,true)
+
+func nextRoom():
+	for pos in currentRoom.passageToNext:
+		pf.AddToGrid(pos)
+		pf.SetNodeOccupied(pos,true)
+	currentRoomIndex += 1
+	currentRoom = world[currentRoomIndex]
+	for tile in currentRoom.grid:
+			pf.AddToGrid(tile)
+			if currentRoom.enemiesPosition.has(tile):
+				pf.SetNodeOccupied(tile,true)
+	generateTerrain()
 
 func generateTerrain():
 	radius = randi_range(12,20)
@@ -45,16 +60,18 @@ func generateTerrain():
 		grid.push_back(p)
 	
 	#Add room
-	world.push_back(Room.new(currentCenter,grid, radius))
+	world.push_back(Room.new(currentCenter,grid, radius,totalRooms))
+	totalRooms += 1
 	if world.size()> roomMax:
 		for p in world.front().grid:
 			erase_cell(0,p)
 		for p in world.front().passageToNext:
 			erase_cell(0,p)
 		world.pop_front()
+		currentRoomIndex -= 1
 	
 	#Generate Enemy Position
-	for i in range(5):
+	for i in range(3):
 		var p = grid.pick_random()
 		while world.back().enemiesPosition.has(p):
 			p = grid.pick_random()
@@ -149,7 +166,9 @@ class Room:
 	var passageToNext : Array[Vector2i]
 	var enemiesPosition : Array[Vector2i]
 	var radius : int
-	func _init(center_ : Vector2i, grid_ : Array[Vector2i], radius_ : int):
+	var id : int
+	func _init(center_ : Vector2i, grid_ : Array[Vector2i], radius_ : int, id_ : int):
 		center = center_
 		grid = grid_
 		radius = radius_
+		id = id_
