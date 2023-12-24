@@ -22,7 +22,7 @@ public partial class TerrainGeneration : Node
                 int positionx = x + position.X;
                 int positiony = y + position.Y;
                 int distance = x*x + y*y;
-                if(distance < innerDistance){
+                if(distance < innerDistance+2){
                     grid.Add(new Vector2I(positionx,positiony));
                 }
                 else{

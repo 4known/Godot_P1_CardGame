@@ -15,13 +15,14 @@ func _ready():
 	generateTerrain()
 
 func generateTerrain():
+	radius = randi_range(12,20)
 	#GetPosition
 	var newPos = getNewPosition()
 	var collision = true
 	while collision:
 		collision = false
 		for room in world:
-			if pf.GetTileDistance(room.center, newPos) < radius*2:
+			if pf.GetTileDistance(room.center, newPos) < room.radius + radius:
 				collision = true
 				break
 		if collision:
@@ -53,10 +54,12 @@ func generateTerrain():
 	#Add to world
 	for p in passage:
 		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
+			print("collision passage")
 			continue
 		set_cell(0,p,1,Vector2i(0,0))
 	for p in grid:
 		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
+			print("collision grid")
 			continue
 		if p == currentCenter:
 			set_cell(0,p,1,Vector2i(0,0))
@@ -66,18 +69,21 @@ func generateTerrain():
 func getNewPosition() -> Vector2:
 	var current : Vector2i
 	var previous : Vector2i
+	var offsetDistance = radius * 2 +1
 	if world.size() > 1:
 		current = world.back().center
 		previous = world[world.size()-2].center
+		offsetDistance = world.back().radius + radius + 1
 	else:
+		if world.size() == 1:
+			offsetDistance = world.front().radius + radius + 1
 		current = currentCenter
 		previous = Vector2i.ZERO
 
 	var previousDir : Vector2i = Vector2i(previous.x - current.x,previous.y - current.y)
 	var directions = getDirections(previousDir)
 	var dir = directions.pick_random()
-	var length = Vector2(randf_range(1.1,1.25),randf_range(1.1,1.25))
-	return Vector2(current.x + dir.x * length.x * radius * 2, current.y + dir.y*length.y * radius * 2)
+	return Vector2(current.x + dir.x * offsetDistance, current.y + dir.y * offsetDistance)
 
 func getDirections(dir : Vector2i) -> Array[Vector2i]:
 	var dirs : Array[Vector2i] = []
