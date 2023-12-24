@@ -13,7 +13,7 @@ public partial class TerrainGeneration : Node
         int innerDistance = (radius - inner) * (radius - inner);
 
         FastNoiseLite noise = new FastNoiseLite{Seed = (int)GD.Randi()};
-        noise.Frequency *= 100;
+        noise.Frequency *= 6;
 
         for (int x = -radius; x <= radius; x++)
         {
@@ -26,44 +26,25 @@ public partial class TerrainGeneration : Node
                     grid.Add(new Vector2I(positionx,positiony));
                 }
                 else{
-                    float value = noise.GetNoise2D(positionx,positiony);
-                    float falloffValue = 0.5f * Evaluate(distance);
-                    GD.Print(falloffValue);
-                    value += falloffValue;
-                    if(value >= 0){
+                    float noisevalue = noise.GetNoise2D(positionx,positiony);
+                    if(noisevalue >= 0){
                         outer.Add(new Vector2I(positionx,positiony));
                         grid.Add(new Vector2I(positionx,positiony));
                     }
                 }
             }
         }
-        // CellularAutomata(outer,grid,1);
+        CellularAutomata(outer,grid,1);
 
-        // foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(grid)){
-        //     int x = tile.X - position.X;
-        //     int y = tile.Y - position.Y;
-        //     int distance = x*x + y*y;
-        //     if(distance >= outerDistance){
-        //         grid.Remove(tile);
-        //     }
-        // }
-        return grid;
-    }
-    static float Evaluate(float value)
-    {
-        float a = 3;
-        float b = 2.2f;
-
-        float powValue = value;
-        float powBValue = b - b * value;
-
-        for (int i = 1; i < a; i++)
-        {
-            powValue *= value;
-            powBValue *= b - b * value;
+        foreach(Vector2I tile in new Godot.Collections.Array<Vector2I>(grid)){
+            int x = tile.X - position.X;
+            int y = tile.Y - position.Y;
+            int distance = x*x + y*y;
+            if(distance > outerDistance){
+                grid.Remove(tile);
+            }
         }
-
-        return powValue / (powValue + powBValue);
+        return grid;
     }
     private void CellularAutomata(List<Vector2I> outer, Godot.Collections.Array<Vector2I> grid, int iterations){
         for (int i = 0; i < iterations; i++){

@@ -7,7 +7,7 @@ class_name Terrain
 var world : Array[Room] = []
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
-var radius = 20
+var radius = 15
 
 func _ready():
 	clear_layer(0)
@@ -34,7 +34,7 @@ func generateTerrain():
 		grid.push_back(p)
 	
 	#Add room
-	world.push_back(Room.new(currentCenter,grid))
+	world.push_back(Room.new(currentCenter,grid, radius))
 	if world.size()> roomMax:
 		for p in world.front().grid:
 			erase_cell(0,p)
@@ -125,6 +125,8 @@ class Room:
 	var grid : Array[Vector2i]
 	var passageToNext : Array[Vector2i]
 	var enemies : Array[Card]
-	func _init(center_ : Vector2i, grid_ : Array[Vector2i]):
+	var radius : int
+	func _init(center_ : Vector2i, grid_ : Array[Vector2i], radius_ : int):
 		center = center_
 		grid = grid_
+		radius = radius_
