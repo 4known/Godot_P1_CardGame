@@ -5,14 +5,24 @@ class_name Terrain
 @onready var gen = $TerrainGeneration
 
 var world : Array[Room] = []
+var currentRoom : Room 
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
-var radius = 15
+var radius : int
 
 func _ready():
 	clear_layer(0)
 	pf.ClearGrid()
-	generateTerrain()
+
+func initGeneration():
+	for i in range(ceil(roomMax/2.0)):
+		generateTerrain()
+	if !world.is_empty():
+		currentRoom = world.front()
+		for tile in currentRoom.grid:
+			pf.AddToGrid(tile)
+			if currentRoom.enemiesPosition.has(tile):
+				pf.SetNodeOccupied(tile,true)
 
 func generateTerrain():
 	radius = randi_range(12,20)
@@ -42,7 +52,14 @@ func generateTerrain():
 		for p in world.front().passageToNext:
 			erase_cell(0,p)
 		world.pop_front()
-		
+	
+	#Generate Enemy Position
+	for i in range(5):
+		var p = grid.pick_random()
+		while world.back().enemiesPosition.has(p):
+			p = grid.pick_random()
+		world.back().enemiesPosition.push_back(p)
+	
 	#Generate Passage
 	var passage : Array[Vector2i] = []
 	if world.size() > 1:
@@ -53,12 +70,12 @@ func generateTerrain():
 	
 	#Add to world
 	for p in passage:
-		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
+		if get_cell_source_id(0,p) != -1:
 			print("collision passage")
 			continue
 		set_cell(0,p,1,Vector2i(0,0))
 	for p in grid:
-		if get_cell_source_id(0,p) != -1 || pf.GridContains(p):
+		if get_cell_source_id(0,p) != -1:
 			print("collision grid")
 			continue
 		if p == currentCenter:
@@ -130,7 +147,7 @@ class Room:
 	var center : Vector2i
 	var grid : Array[Vector2i]
 	var passageToNext : Array[Vector2i]
-	var enemies : Array[Card]
+	var enemiesPosition : Array[Vector2i]
 	var radius : int
 	func _init(center_ : Vector2i, grid_ : Array[Vector2i], radius_ : int):
 		center = center_

@@ -1,3 +1,9 @@
+Generate 3 room
+determine enemy position
+first room became the currentRoom
+add to pathfinding grid 
+
+
 spawn set occupied
 getPath
     getPossibleTiles

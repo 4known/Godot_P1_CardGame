@@ -32,8 +32,8 @@ func updateState():
 	print("Turn: " + str(turnNum))
 	match currentState:
 		states.GameLoad:
-			currentState = states.PlayerTurn
 			loadGame()
+			currentState = states.PlayerTurn
 		states.PlayerTurn:
 			print("PlayerTurn")
 			emit_signal("newTurn", currentState)
@@ -49,9 +49,10 @@ func updateState():
 
 func loadGame():
 	#Terrain Generation
-	spawnPlayer()
+	ter.initGeneration()
 	spawnEnemy()
-	updateState()
+	#spawnPlayer()
+	#updateState()
 
 func playerTurn():
 	for p in players.get_children():
@@ -73,18 +74,12 @@ func spawnPlayer():
 		players.add_child(newCard)
 
 func spawnEnemy():
-	if players.get_child_count() == 0: return
-	for i in range(enemynum):
-		var playerpos : Vector2i = ter.local_to_map(players.get_child(0).global_position)
-		var pos: Vector2i
-		while spawnpos.has(pos) or ter.get_cell_source_id(0,ter.local_to_map(pos)) == -1:
-			pos = ter.map_to_local(Vector2i(randi_range(-5,5) + playerpos.x,
-				randi_range(-5,5)+ playerpos.y))
-		spawnpos.append(pos)
-		ter.pf.SetNodeOccupied(ter.local_to_map(pos),true)
-		var newCard = initilizeCard(pos, Card.types.enemy)
+	var i = 0
+	for pos in ter.currentRoom.enemiesPosition:
+		var newCard = initilizeCard(ter.map_to_local(pos), Card.types.enemy)
 		newCard.name = "Enemy" + str(i)
 		enemies.add_child(newCard)
+		i += 1
 
 func initilizeCard(pos : Vector2i, type : Card.types) -> Card:
 	var newCard = card.instantiate()
