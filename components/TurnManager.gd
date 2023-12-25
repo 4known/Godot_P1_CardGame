@@ -31,7 +31,9 @@ func nextRequestPath():
 	if !processingPath and !requestQueuePath.is_empty():
 		reqPath = requestQueuePath.pop_front()
 		processingPath = true
-		firstFindPath()
+		findPath()
+	else:
+		pathRequestProcessed()
 
 func findTarget():
 	if opponent.is_empty():
@@ -54,24 +56,37 @@ func findTarget():
 	if opponent[target] <= 0:
 		opponent.erase(reqPath.target)
 
-func firstFindPath():
+func findPath():
 	findTarget()
 	var range_ = 4
 	var cardpos = reqPath.card.global_position
 	var targetp = reqPath.target.global_position
 	var path = ter.getPath(cardpos,targetp,range_,true)
 	reqPath.card.setPath(path)
-	if reqPath.card.onlyPath:
-		processingPath = false
+	processingPath = false
+	pathRequestProcessed()
+
+func pathRequestProcessed():
+	if requestQueuePath.is_empty():
+		nextRequestAttack()
+	else:
 		nextRequestPath()
 
 func requestAttack():
-	pass
+	requestQueueAtk.append(reqPath)
 
 func nextRequestAttack():
-	pass
+	if !processingAtk and !requestQueueAtk.is_empty():
+		reqAtk = requestQueueAtk.pop_front()
+		if is_instance_valid(reqAtk.card) and is_instance_valid(reqAtk.target):
+			processingAtk = true
+			attackTarget()
+		else:
+			turnRequestProcessed()
+	else:
+		turnRequestProcessed()
 
-func thirdAttack():
+func attackTarget():
 	reqAtk.card.getSkill().attackTarget(reqAtk.target)
 	shootProjectile()
 
@@ -83,9 +98,9 @@ func shootProjectile():
 
 func attackedTarget():
 	processingAtk = false
-	requestProcessed()
+	turnRequestProcessed()
 
-func requestProcessed():
+func turnRequestProcessed():
 	if requestQueueAtk.is_empty() and requestQueuePath.is_empty():
 		print("r")
 		gState.n()

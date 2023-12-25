@@ -20,8 +20,8 @@ var next : bool = false
 func _input(event):
 	if event.is_action_pressed("1") and next:
 		updateState()
-	#if event.is_action_pressed("2"):
-		#ter.generateTerrain()
+	if event.is_action_pressed("2"):
+		turnM.requestTurn()
 
 func n():
 	next = true
