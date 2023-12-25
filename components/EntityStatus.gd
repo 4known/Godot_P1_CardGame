@@ -20,9 +20,7 @@ func initStatus():
 
 func updateHealth(value : int):
 	if value == 0: return
-	var calValue = value
-	if value < 0:
-		calValue = calculateDamage(abs(value)) * -1
+	var calValue = value if value > 0 else calculateDamage(value) * -1
 	if(statusDict[Stat.T.hp].currentValue + calValue > statusDict[Stat.T.hp].getValue()):
 		statusDict[Stat.T.hp].currentValue = statusDict[Stat.T.hp].getValue()
 	elif (statusDict[Stat.T.hp].currentValue + calValue <= 0):
@@ -70,7 +68,7 @@ func removeAllBuff():
 	buff.clear()
 
 func calculateDamage(damage : int) -> int:
-	var d = damage - statusDict[Stat.T.def].getValue()
+	var d = damage*-1 - statusDict[Stat.T.def].getValue()
 	if d < 0:
 		return 0
 	return d

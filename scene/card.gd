@@ -16,6 +16,10 @@ var move : bool = false
 signal turn
 var onlyPath : bool = false
 
+#Skill
+var target : Card
+var damage : int = -30
+
 #func _ready():
 #	$Label.text = name
 
@@ -28,9 +32,9 @@ func myTurn():
 
 func followPath():
 	if !move: return
-	print("Start follow Path: " + name)
+	#print(name + " Moving Toward Target")
 	if currentPath.is_empty():
-		print(name + " arrived")
+		#print(name + " arrived")
 		if !onlyPath:
 			Signals.emit_signal("arrivedNowAttack", self)
 		move = false
@@ -52,6 +56,8 @@ func _on_input_event(_viewport, _event, _shape_idx):
 		_viewport.set_input_as_handled()
 
 #Setter/Getter
+func setTarget(card : Card):
+	target = card
 func setTerrain(t : Terrain):
 	ter = t
 func setPath(paths : Array[Vector2i]):
