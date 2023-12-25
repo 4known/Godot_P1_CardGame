@@ -16,12 +16,12 @@ var currentState : states = states.GameLoad
 var turnNum: int = 0
 signal newTurn
 
-var next : bool = false
+var next : bool = true
 func _input(event):
 	if event.is_action_pressed("1") and next:
 		updateState()
 	if event.is_action_pressed("2"):
-		turnM.requestTurn()
+		pass
 
 func n():
 	next = true
@@ -31,6 +31,7 @@ func updateState():
 	print("Turn: " + str(turnNum))
 	match currentState:
 		states.GameLoad:
+			print("LoadGame")
 			currentState = states.PlayerTurn
 			loadGame()
 		states.PlayerTurn:
@@ -68,22 +69,22 @@ func updateState():
 			currentState = states.PlayerTurn
 
 func loadGame():
-	pass
 	#Terrain Generation
-	#ter.initGeneration()
-	#spawnEnemy()
-	#spawnPlayer()
-	#updateState()
+	ter.initGeneration()
+	spawnEnemy()
+	spawnPlayer()
 
 func playerTurn(onlyPath : bool):
 	for p in players.get_children():
 		p.onlyPath = onlyPath
 		p.myTurn()
+	turnM.processPathRequest()
 
 func entityTurn():
 	for e in enemies.get_children():
 		e.onlyPath = false
 		e.myTurn()
+	turnM.processPathRequest()
 
 func spawnPlayer():
 	for i in range(playernum):

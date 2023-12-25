@@ -28,9 +28,11 @@ func myTurn():
 
 func followPath():
 	if !move: return
+	print("Start follow Path: " + name)
 	if currentPath.is_empty():
+		print(name + " arrived")
 		if !onlyPath:
-			Signals.emit_signal("arrivedNowAttack")
+			Signals.emit_signal("arrivedNowAttack", self)
 		move = false
 		return
 	var movepos = ter.map_to_local(currentPath.front())
@@ -55,6 +57,7 @@ func setTerrain(t : Terrain):
 func setPath(paths : Array[Vector2i]):
 	currentPath = paths
 	move = true
+	print("Path set for " + name)
 func setType(type_ : types):
 	type = type_
 func getStat() -> EntityStat:

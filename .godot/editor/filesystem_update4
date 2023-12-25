@@ -10,3 +10,4 @@ res://components/TurnManager.gd
 res://scene/card.gd
 res://components/GameState.gd
 res://script/MoveCamera.gd
+res://components/EntitySkill.gd
