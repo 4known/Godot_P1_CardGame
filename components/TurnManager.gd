@@ -12,7 +12,7 @@ var processingPath : bool = false
 var processingAtk : bool = false
 
 #Turn
-var opponent : Dictionary = {}
+var opponent : Dictionary = {} #Card : supposeHealthAfterDamage
 var team : Array[Card] = []
 #Projectile
 const proj = preload("res://Scene/projectile.tscn")
@@ -20,7 +20,7 @@ const proj = preload("res://Scene/projectile.tscn")
 func _ready():
 	Signals.connect("requestTurn",requestTurn)
 	Signals.connect("arrivedNowAttack", requestAttack)
-	Signals.connect("projectileHitTarget", requestProcessed)
+	Signals.connect("projectileHitTarget", attackedTarget)
 
 func requestTurn(card : Card):
 	if card.getStatus().getCurrentValue(Stat.T.hp) > 0:
@@ -30,41 +30,32 @@ func requestTurn(card : Card):
 func nextRequestPath():
 	if !processingPath and !requestQueuePath.is_empty():
 		reqPath = requestQueuePath.pop_front()
-		if is_instance_valid(reqPath.card):
-			processingPath = true
-			firstFindTarget()
-		else:
-			requestProcessed()
+		processingPath = true
+		firstFindPath()
 
-func firstFindTarget():
+func findTarget():
 	if opponent.is_empty():
-		requestProcessed()
-		processingPath = false
 		return
-	var target = null
-	var cardpos = reqPath.card.global_position
-	var currentdis = null
-	for o in opponent:
-		if is_instance_valid(o):
-			if target == null:
-				target = o
-				currentdis = ter.getDistance(cardpos,target.global_position)
-			var distance = ter.getDistance(cardpos,o.global_position)
-			if distance < currentdis:
-				target = o
-				currentdis = distance
-	if target == null:
-		requestProcessed()
-		return
+	var target : Card = null
+	var minDistance : int
+	for enemy in opponent:
+		if target == null:
+			target = enemy
+			minDistance = ter.getDistance(reqPath.card.global_position,target.global_position)
+			continue
+		var distance = ter.getDistance(reqPath.card.global_position,enemy.global_position)
+		if distance < minDistance:
+			target = enemy
+			minDistance = distance
 	reqPath.target = target
 	var damage = 30 * -1
 	reqPath.damage = damage
 	opponent[target] -= reqPath.target.getStatus().calculateDamage(damage*-1)
 	if opponent[target] <= 0:
 		opponent.erase(reqPath.target)
-	secondFindPath()
 
-func secondFindPath():
+func firstFindPath():
+	findTarget()
 	var range_ = 4
 	var cardpos = reqPath.card.global_position
 	var targetp = reqPath.target.global_position
@@ -75,19 +66,10 @@ func secondFindPath():
 		nextRequestPath()
 
 func requestAttack():
-	requestQueueAtk.append(reqPath)
-	processingPath = false
-	nextRequestPath()
-	nextRequestAttack()
+	pass
 
 func nextRequestAttack():
-	if !processingAtk and !requestQueueAtk.is_empty():
-		reqAtk = requestQueueAtk.pop_front()
-		if is_instance_valid(reqAtk.card) and is_instance_valid(reqAtk.target):
-			processingAtk = true
-			thirdAttack()
-		else:
-			requestProcessed()
+	pass
 
 func thirdAttack():
 	reqAtk.card.getSkill().attackTarget(reqAtk.target)
@@ -99,16 +81,17 @@ func shootProjectile():
 	newproj.setProjectile(reqAtk.card,reqAtk.target,reqAtk.damage)
 	call_deferred("add_child", newproj)
 
-func requestProcessed():
+func attackedTarget():
 	processingAtk = false
+	requestProcessed()
+
+func requestProcessed():
 	if requestQueueAtk.is_empty() and requestQueuePath.is_empty():
 		print("r")
 		gState.n()
 	else:
-		if !requestQueueAtk.is_empty():
-			nextRequestAttack()
-		if !processingPath:
-			nextRequestPath()
+		nextRequestPath()
+		nextRequestAttack()
 
 func _on_game_state_new_turn(currentState):
 	requestQueuePath.clear()

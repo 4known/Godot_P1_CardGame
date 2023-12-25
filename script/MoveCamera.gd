@@ -17,7 +17,7 @@ func _input(event):
 		var speed = Vector2(1/zoom.x,1/zoom.y)
 		global_position = speed * (mouse_start_pos - event.position) + screen_start_position
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_released("zoom+"):
 		zoom.x += 0.1
 		zoom.y += 0.1

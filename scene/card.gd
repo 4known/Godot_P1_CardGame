@@ -65,7 +65,3 @@ func getSkill() -> EntitySkill:
 	return skill
 func getSpritePos()-> Vector2:
 	return get_child(0).global_position
-
-
-
-
