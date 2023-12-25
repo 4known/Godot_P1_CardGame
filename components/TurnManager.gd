@@ -71,6 +71,8 @@ func secondFindPath():
 	var targetp = reqPath.target.global_position
 	var path = ter.getPath(cardp,targetp,range_,true)
 	reqPath.card.setPath(path)
+	if reqPath.card.onlyPath:
+		nextRequestPath()
 
 func requestAttack():
 	requestQueueAtk.append(reqPath)
@@ -115,7 +117,7 @@ func _on_game_state_new_turn(currentState):
 	processingAtk = false
 	opponent.clear()
 	team.clear()
-	if currentState == gState.states.PlayerTurn:
+	if currentState == gState.states.PlayerTurn || currentState == gState.states.GoToRoom:
 		for p in gState.players.get_children():
 			team.append(p)
 		for e in gState.enemies.get_children():

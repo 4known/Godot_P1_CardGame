@@ -45,6 +45,20 @@ func removePreviousRoomPF():
 	for tile in world[currentRoomIndex -1].passageToNext:
 		pf.RemoveFromGrid(tile)
 
+func pickInsideRadius(room : Room) -> Vector2i:
+	var pos : Vector2i = room.grid.pick_random()
+	var inner : int = floori(room.radius * .5)
+	var innerDistance = (room.radius - inner) *  (room.radius - inner)
+	var x = room.center.x - pos.x
+	var y = room.center.y - pos.y
+	var distance = x*x + y*y
+	while distance > innerDistance:
+		pos = room.grid.pick_random()
+		x = room.center.x - pos.x
+		y = room.center.y - pos.y
+		distance = x*x + y*y
+	return pos
+
 func generateTerrain():
 	radius = randi_range(12,20)
 	#GetPosition
@@ -78,9 +92,9 @@ func generateTerrain():
 	
 	#Generate Enemy Position
 	for i in range(3):
-		var p = grid.pick_random()
+		var p = pickInsideRadius(world.back())
 		while world.back().enemiesPosition.has(p):
-			p = grid.pick_random()
+			p = pickInsideRadius(world.back())
 		world.back().enemiesPosition.push_back(p)
 	
 	#Generate Passage

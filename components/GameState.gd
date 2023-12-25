@@ -58,6 +58,7 @@ func updateState():
 			currentState = states.GoToRoom
 		states.GoToRoom:
 			print("GoToRoom")
+			emit_signal("newTurn", currentState)
 			for p in players.get_children():
 				p.onlyPath = true
 				p.myTurn()
@@ -76,17 +77,19 @@ func loadGame():
 
 func playerTurn():
 	for p in players.get_children():
+		p.onlyPath = false
 		p.myTurn()
 
 func entityTurn():
 	for e in enemies.get_children():
+		e.onlyPath = false
 		e.myTurn()
 
 func spawnPlayer():
 	for i in range(playernum):
-		var pos : Vector2i = ter.currentRoom.grid.pick_random()
+		var pos : Vector2i = ter.pickInsideRadius(ter.currentRoom)
 		while ter.pf.IsOccupied(pos):
-			pos = ter.currentRoom.grid.pick_random()
+			pos = ter.pickInsideRadius(ter.currentRoom)
 		var newCard = initilizeCard(ter.map_to_local(pos), Card.types.player)
 		newCard.name = "Player" + str(i)
 		players.add_child(newCard)
