@@ -9,3 +9,4 @@ res://script/TerrainGeneration/TerrainGeneration.cs
 res://scene/terrain.gd
 res://components/GameState.gd
 res://components/TurnManager.gd
+res://scene/card.gd

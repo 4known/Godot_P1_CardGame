@@ -6,7 +6,7 @@ class_name Terrain
 
 var world : Array[Room] = []
 var currentRoom : Room
-var currentRoomIndex : int
+var currentRoomIndex : int = 0
 var roomMax : int = 5
 var currentCenter : Vector2i = Vector2i.ZERO
 var radius : int
@@ -38,6 +38,12 @@ func nextRoom():
 			if currentRoom.enemiesPosition.has(tile):
 				pf.SetNodeOccupied(tile,true)
 	generateTerrain()
+
+func removePreviousRoomPF():
+	for tile in world[currentRoomIndex -1].grid:
+		pf.RemoveFromGrid(tile)
+	for tile in world[currentRoomIndex -1].passageToNext:
+		pf.RemoveFromGrid(tile)
 
 func generateTerrain():
 	radius = randi_range(12,20)

@@ -14,6 +14,7 @@ var ter : Terrain
 var move : bool = false
 #Turn
 signal turn
+var onlyPath : bool = false
 
 #func _ready():
 #	$Label.text = name
@@ -28,7 +29,8 @@ func myTurn():
 func followPath():
 	if !move: return
 	if currentPath.is_empty():
-		Signals.emit_signal("arrivedNowAttack")
+		if !onlyPath:
+			Signals.emit_signal("arrivedNowAttack")
 		move = false
 		return
 	var movepos = ter.map_to_local(currentPath.front())
