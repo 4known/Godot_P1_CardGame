@@ -36,6 +36,8 @@ func nextRequestPath():
 			firstFindTarget()
 		else:
 			requestProcessed()
+	elif requestQueuePath.is_empty():
+		requestProcessed()
 
 func firstFindTarget():
 	if opponent.is_empty():
@@ -72,6 +74,7 @@ func secondFindPath():
 	var path = ter.getPath(cardp,targetp,range_,true)
 	reqPath.card.setPath(path)
 	if reqPath.card.onlyPath:
+		processingPath = false
 		nextRequestPath()
 
 func requestAttack():

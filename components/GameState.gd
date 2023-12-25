@@ -39,7 +39,7 @@ func updateState():
 				print("Game Over")
 				return
 			emit_signal("newTurn", currentState)
-			playerTurn()
+			playerTurn(false)
 			next = false
 			currentState = states.EntityTurn
 		states.EntityTurn:
@@ -59,9 +59,8 @@ func updateState():
 		states.GoToRoom:
 			print("GoToRoom")
 			emit_signal("newTurn", currentState)
-			for p in players.get_children():
-				p.onlyPath = true
-				p.myTurn()
+			playerTurn(true)
+			next = false
 			currentState = states.ArrivedAtRoom
 		states.ArrivedAtRoom:
 			print("ArrivedAtRoom")
@@ -75,9 +74,9 @@ func loadGame():
 	spawnPlayer()
 	updateState()
 
-func playerTurn():
+func playerTurn(onlyPath : bool):
 	for p in players.get_children():
-		p.onlyPath = false
+		p.onlyPath = onlyPath
 		p.myTurn()
 
 func entityTurn():

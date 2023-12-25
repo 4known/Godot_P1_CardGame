@@ -35,7 +35,7 @@ func followPath():
 		return
 	var movepos = ter.map_to_local(currentPath.front())
 	if global_position != movepos:
-		global_position = global_position.move_toward(movepos,2)
+		global_position = global_position.move_toward(movepos,5)
 		if global_position == movepos:
 			currentPath.pop_front()
 	else:
