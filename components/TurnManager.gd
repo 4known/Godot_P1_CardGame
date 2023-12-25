@@ -24,8 +24,7 @@ func _ready():
 
 func requestTurn(card : Card):
 	if card.getStatus().getCurrentValue(Stat.T.hp) > 0:
-		var newRequest = Turn.new(card)
-		requestQueuePath.append(newRequest)
+		requestQueuePath.append(Turn.new(card))
 		nextRequestPath()
 
 func nextRequestPath():
@@ -43,14 +42,14 @@ func firstFindTarget():
 		processingPath = false
 		return
 	var target = null
-	var cardp = reqPath.card.global_position
+	var cardpos = reqPath.card.global_position
 	var currentdis = null
 	for o in opponent:
 		if is_instance_valid(o):
 			if target == null:
 				target = o
-				currentdis = ter.getDistance(cardp,target.global_position)
-			var distance = ter.getDistance(cardp,o.global_position)
+				currentdis = ter.getDistance(cardpos,target.global_position)
+			var distance = ter.getDistance(cardpos,o.global_position)
 			if distance < currentdis:
 				target = o
 				currentdis = distance
@@ -67,9 +66,9 @@ func firstFindTarget():
 
 func secondFindPath():
 	var range_ = 4
-	var cardp = reqPath.card.global_position
+	var cardpos = reqPath.card.global_position
 	var targetp = reqPath.target.global_position
-	var path = ter.getPath(cardp,targetp,range_,true)
+	var path = ter.getPath(cardpos,targetp,range_,true)
 	reqPath.card.setPath(path)
 	if reqPath.card.onlyPath:
 		processingPath = false
@@ -106,7 +105,8 @@ func requestProcessed():
 		print("r")
 		gState.n()
 	else:
-		nextRequestAttack()
+		if !requestQueueAtk.is_empty():
+			nextRequestAttack()
 		if !processingPath:
 			nextRequestPath()
 

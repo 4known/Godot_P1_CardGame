@@ -20,8 +20,8 @@ var next : bool = true
 func _input(event):
 	if event.is_action_pressed("1") and next:
 		updateState()
-	if event.is_action_pressed("2"):
-		ter.generateTerrain()
+	#if event.is_action_pressed("2"):
+		#ter.generateTerrain()
 
 func n():
 	next = true
