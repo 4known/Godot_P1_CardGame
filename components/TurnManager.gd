@@ -36,8 +36,6 @@ func nextRequestPath():
 			firstFindTarget()
 		else:
 			requestProcessed()
-	elif requestQueuePath.is_empty():
-		requestProcessed()
 
 func firstFindTarget():
 	if opponent.is_empty():
@@ -105,6 +103,7 @@ func shootProjectile():
 func requestProcessed():
 	processingAtk = false
 	if requestQueueAtk.is_empty() and requestQueuePath.is_empty():
+		print("r")
 		gState.n()
 	else:
 		nextRequestAttack()
