@@ -35,6 +35,8 @@ func processPathRequest():
 
 func findTarget():
 	if opponent.is_empty():
+		print("No enemy")
+		pathRequestProcessed()
 		return
 	var target : Card = null
 	var minDistance : int
@@ -51,7 +53,7 @@ func findTarget():
 	reqPath.setTarget(target)
 	print("Damage is " + str(reqPath.damage))
 	print("Target currentHP is " + str(opponent[target]))
-	opponent[target] -= reqPath.target.getStatus().calculateDamage(reqPath.damage)
+	opponent[target] += reqPath.target.getStatus().calculateDamage(reqPath.damage)
 	print("Target supposeHP is " + str(opponent[target]))
 	if opponent[target] <= 0:
 		print("Target hp depleted")
@@ -92,8 +94,6 @@ func processAttackRequest():
 
 func attackTarget():
 	print(reqAtk.name + " Attack " + reqAtk.target.name)
-	reqAtk.getSkill().attackTarget(reqAtk.target)
-	print("Target hp: " + str(reqAtk.target.getStatus().getCurrentValue(Stat.T.hp)))
 	shootProjectile()
 
 func shootProjectile():
@@ -105,6 +105,7 @@ func shootProjectile():
 
 func attackedTarget():
 	print("Target Attacked")
+	print("Target hp: " + str(reqAtk.target.getStatus().getCurrentValue(Stat.T.hp)))
 	processingAtk = false
 	turnRequestProcessed()
 

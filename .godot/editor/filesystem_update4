@@ -12,3 +12,4 @@ res://components/GameState.gd
 res://script/MoveCamera.gd
 res://components/EntitySkill.gd
 res://components/EntityStatus.gd
+res://scene/projectile.gd

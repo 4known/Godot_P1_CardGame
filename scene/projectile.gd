@@ -27,6 +27,7 @@ func _on_area_entered(area):
 	if area == target:
 		queue_free()
 		target.getStatus().updateHealth(damage)
+		shooter.getSkill().attackTarget(target)
 		Signals.emit_signal("projectileHitTarget")
 
 func _on_timer_timeout():
