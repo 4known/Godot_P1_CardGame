@@ -34,8 +34,7 @@ func followPath():
 	if !move: return
 	print(name + " Moving Toward Target")
 	if currentPath.is_empty():
-		if !onlyPath:
-			Signals.emit_signal("arrivedNowAttack", self)
+		Signals.emit_signal("arrivedNowAttack", self)
 		move = false
 		return
 	var movepos = ter.map_to_local(currentPath.front())

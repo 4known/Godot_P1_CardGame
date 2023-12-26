@@ -91,7 +91,7 @@ func generateTerrain():
 		currentRoomIndex -= 1
 	
 	#Generate Enemy Position
-	for i in range(1):
+	for i in range(3):
 		var p = pickInsideRadius(world.back())
 		while world.back().enemiesPosition.has(p):
 			p = pickInsideRadius(world.back())

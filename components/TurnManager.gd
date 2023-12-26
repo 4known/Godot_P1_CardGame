@@ -10,9 +10,11 @@ var reqPath : Card = null
 var reqAtk : Card = null
 var processingPath : bool = false
 var processingAtk : bool = false
-#Turn
+
 var opponent : Dictionary = {} #Card : supposeStat class
 var team : Array[Card] = []
+
+var reqOnlyPath : Array[Card] = []
 #Projectile
 const proj = preload("res://Scene/projectile.tscn")
 
@@ -54,6 +56,8 @@ func findTarget():
 	reqPath.setTarget(target)
 	if !reqPath.onlyPath:
 		calculateDamage(target)
+	else:
+		reqOnlyPath.append(reqPath)
 	findPath()
 
 func calculateDamage(target : Card):
@@ -87,6 +91,11 @@ func pathRequestProcessed():
 		processPathRequest()
 
 func requestAttack(card : Card):
+	if reqOnlyPath.has(card):
+		print("Remove " + card.name + " from reqOnlyPath")
+		reqOnlyPath.erase(card)
+		turnRequestProcessed()
+		return
 	print("Add " + card.name + " to AttackQueue")
 	requestQueueAtk.append(card)
 	if requestQueuePath.is_empty():
@@ -119,11 +128,11 @@ func attackedTarget():
 	turnRequestProcessed()
 
 func turnRequestProcessed():
-	print("Attack processed for " + reqAtk.name)
-	if requestQueueAtk.is_empty():
-		print("r")
+	if requestQueueAtk.is_empty() && reqOnlyPath.is_empty():
+		print("Turn End")
 		gState.n()
-	else:
+	elif !requestQueueAtk.is_empty():
+		print("Attack processed for " + reqAtk.name)
 		print("AttackQueue is not empty, process Attack")
 		processAttackRequest()
 
@@ -136,6 +145,7 @@ func _on_game_state_new_turn(currentState):
 	processingAtk = false
 	opponent.clear()
 	team.clear()
+	reqOnlyPath.clear()
 	if currentState == gState.states.PlayerTurn || currentState == gState.states.GoToRoom:
 		for p in gState.players.get_children():
 			team.append(p)
