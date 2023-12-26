@@ -1,16 +1,7 @@
-[gd_resource type="Resource" script_class="ActiveSkill" load_steps=7 format=3 uid="uid://boaw2j58tk436"]
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=4 format=3 uid="uid://boaw2j58tk436"]
 
 [ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_m881m"]
 [ext_resource type="Script" path="res://resourceScripts/statModifier.gd" id="2_wqj8g"]
-[ext_resource type="Script" path="res://resourceScripts/skillEffect.gd" id="2_x182e"]
-[ext_resource type="Resource" uid="uid://judkpy2h82tc" path="res://resources/DefenseBreak.tres" id="3_7xsxf"]
-
-[sub_resource type="Resource" id="Resource_wqg62"]
-script = ExtResource("2_x182e")
-statusEffect = ExtResource("3_7xsxf")
-tier = 1
-turns = 3
-chance = 0.0
 
 [sub_resource type="Resource" id="Resource_dndor"]
 script = ExtResource("2_wqj8g")
@@ -20,7 +11,7 @@ mtype = 0
 
 [resource]
 script = ExtResource("1_m881m")
-skillEftArr = Array[ExtResource("2_x182e")]([SubResource("Resource_wqg62")])
+skillEftArr = Array[Resource("res://resourceScripts/skillEffect.gd")]([])
 projectile = true
 statModArr = Array[ExtResource("2_wqj8g")]([SubResource("Resource_dndor")])
 coolDown = 0

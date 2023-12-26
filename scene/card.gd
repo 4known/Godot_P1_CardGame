@@ -32,9 +32,8 @@ func myTurn():
 
 func followPath():
 	if !move: return
-	#print(name + " Moving Toward Target")
+	print(name + " Moving Toward Target")
 	if currentPath.is_empty():
-		#print(name + " arrived")
 		if !onlyPath:
 			Signals.emit_signal("arrivedNowAttack", self)
 		move = false
@@ -63,7 +62,6 @@ func setTerrain(t : Terrain):
 func setPath(paths : Array[Vector2i]):
 	currentPath = paths
 	move = true
-	print("Path set for " + name)
 func setType(type_ : types):
 	type = type_
 func getStat() -> EntityStat:

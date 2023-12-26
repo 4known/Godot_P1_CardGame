@@ -31,11 +31,12 @@ func processPathRequest():
 		reqPath = requestQueuePath.pop_front()
 		print("Processing Path for " + reqPath.name)
 		processingPath = true
-		findPath()
+		findTarget()
 
 func findTarget():
 	if opponent.is_empty():
-		print("No enemy")
+		print("No enemy, clear PathQueue")
+		requestQueuePath.clear()
 		pathRequestProcessed()
 		return
 	var target : Card = null
@@ -51,6 +52,11 @@ func findTarget():
 			minDistance = distance
 	print(reqPath.name + " Target is " + target.name)
 	reqPath.setTarget(target)
+	if !reqPath.onlyPath:
+		calculateDamage(target)
+	findPath()
+
+func calculateDamage(target : Card):
 	print("Damage is " + str(reqPath.damage))
 	print("Target currentHP is " + str(opponent[target].hp))
 	opponent[target].hp += reqPath.target.getStatus().calculateDamage(reqPath.damage,opponent[target].def)
@@ -65,7 +71,6 @@ func findTarget():
 
 func findPath():
 	#print("Find Target for " + reqPath.name)
-	findTarget()
 	var range_ = 4
 	var cardpos = reqPath.global_position
 	var targetp = reqPath.target.global_position

@@ -6,12 +6,6 @@ res://scene/card.tscn
 res://scene/terrain.tscn
 res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
+res://scene/terrain.gd
 res://components/TurnManager.gd
 res://scene/card.gd
-res://components/GameState.gd
-res://script/MoveCamera.gd
-res://components/EntitySkill.gd
-res://components/EntityStatus.gd
-res://scene/projectile.gd
-res://resourceScripts/stat.gd
-res://resources/vampire.tres

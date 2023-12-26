@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703524013
+::res://::1703616265
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
-Note.txt::TextFile::-1::1703470239::0::1::::<><>::
+Note.txt::TextFile::-1::1703540394::0::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ::res://addons/::1701141244
 ::res://addons/CardEditor/::1701400184
@@ -13,12 +13,12 @@ plugin.cfg::TextFile::-1::1701134126::0::1::::<><>::
 ::res://addons/CardEditor/PropertyBoxes/::1701231432
 EnumValue.tscn::PackedScene::7120601239683299765::1701230410::0::1::::<><>::
 StatMod.tscn::PackedScene::4403098978061613926::1701231432::0::1::::<><>::
-::res://components/::1703470999
-EntitySkill.gd::GDScript::-1::1702149922::0::1::::EntitySkill<>Node<>::
+::res://components/::1703565367
+EntitySkill.gd::GDScript::-1::1703564169::0::1::::EntitySkill<>Node<>::
 EntityStat.gd::GDScript::-1::1701891527::0::1::::EntityStat<>Node<>::
-EntityStatus.gd::GDScript::-1::1701899180::0::1::::EntityStatus<>Node<>::
-GameState.gd::GDScript::-1::1703470429::0::1::::GameState<>Node<>::
-TurnManager.gd::GDScript::-1::1703470999::0::1::::TurnManager<>Node<>::
+EntityStatus.gd::GDScript::-1::1703563791::0::1::::EntityStatus<>Node<>::
+GameState.gd::GDScript::-1::1703541037::0::1::::GameState<>Node<>::
+TurnManager.gd::GDScript::-1::1703565367::0::1::::TurnManager<>Node<>::
 ::res://global/::1701743240
 globalSignals.gd::GDScript::-1::1701743240::0::1::::<>Node<>::
 ::res://imports/::1701908438
@@ -27,13 +27,13 @@ Frame - Copy.png::CompressedTexture2D::4664009251824944535::1701908229::17019083
 Frames.png::CompressedTexture2D::8021069691860101737::1701908420::1701908438::1::::<><>::
 iso dirt.png::CompressedTexture2D::5612398424688804908::1701907891::1701908295::1::::<><>::
 Isometric test.png::CompressedTexture2D::5181482608142643367::1699232116::1701141252::1::::<><>::
-::res://resources/::1703434452
+::res://resources/::1703565341
 -9223366492102267250.tres::Resource/Resource::-1::1701400124::0::1::::<><>::
 defDown.tres::Resource/Resource::6281228586320132487::1701894368::0::1::::<><>::res://resourceScripts/statModifier.gd
-DefenseBreak.tres::Resource/StatusEffect::673187982903833164::1703434452::0::1::::<><>::res://resourceScripts/statusEffect.gd<>res://resourceScripts/statModifier.gd
-new_resource.tres::Resource/ActiveSkill::3370449005481319531::1703434452::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd<>res://resourceScripts/skillEffect.gd<>uid://judkpy2h82tc::::res://resources/DefenseBreak.tres
-vampire.tres::Resource/Resource::6434347976513540085::1701894535::0::1::::<><>::res://resourceScripts/statusEffect.gd
-::res://resourceScripts/::1702503076
+DefenseBreak.tres::Resource/StatusEffect::673187982903833164::1703565341::0::1::::<><>::res://resourceScripts/statusEffect.gd<>res://resourceScripts/statModifier.gd
+new_resource.tres::Resource/ActiveSkill::3370449005481319531::1703565341::0::1::::<><>::res://resourceScripts/activeSkill.gd<>res://resourceScripts/statModifier.gd<>res://resourceScripts/skillEffect.gd<>uid://judkpy2h82tc::::res://resources/DefenseBreak.tres
+vampire.tres::Resource/StatusEffect::6434347976513540085::1703564168::0::1::::<><>::res://resourceScripts/statusEffect.gd
+::res://resourceScripts/::1703563716
 activeSkill.gd::GDScript::-1::1701833129::0::1::::ActiveSkill<>Skill<>::
 cardBase.gd::GDScript::-1::1701048196::0::1::::CardBase<>Resource<>::
 consumable.gd::GDScript::-1::1701049843::0::1::::Consumable<>ItemBase<>::
@@ -43,26 +43,26 @@ item.gd::GDScript::-1::1701310225::0::1::::ItemBase<>CardBase<>::
 passiveSkill.gd::GDScript::-1::1701224126::0::1::::PassiveSkill<>Skill<>::
 skill.gd::GDScript::-1::1702503076::0::1::::Skill<>CardBase<>::
 skillEffect.gd::GDScript::-1::1701832119::0::1::::SkillEffect<>Resource<>::
-stat.gd::GDScript::-1::1701897080::0::1::::Stat<>Node<>::
+stat.gd::GDScript::-1::1703563716::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701480434::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1701892789::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1703471171
-card.gd::GDScript::-1::1703468877::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1703471022::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
-projectile.gd::GDScript::-1::1700966099::0::1::::Projectile<>Area2D<>::
+::res://scene/::1703565442
+card.gd::GDScript::-1::1703546954::0::1::::Card<>Area2D<>::
+card.tscn::PackedScene::3437437748356488327::1703565368::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
+projectile.gd::GDScript::-1::1703558883::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl
 terrain.gd::GDScript::-1::1703470039::0::1::::Terrain<>TileMap<>::
-terrain.tscn::PackedScene::5610510281185814687::1703471022::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
-water.gdshader::Shader::-1::1703471171::0::1::::<><>::
+terrain.tscn::PackedScene::5610510281185814687::1703565368::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
+water.gdshader::Shader::-1::1703565442::0::1::::<><>::
 world.gd::GDScript::-1::1701897277::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1703471022::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
-::res://script/::1703377990
-MoveCamera.gd::GDScript::-1::1703377990::0::1::::<>Camera2D<>::
+world.tscn::PackedScene::1142251505819120208::1703565428::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png
+::res://script/::1703527830
+MoveCamera.gd::GDScript::-1::1703527830::0::1::::<>Camera2D<>::
 ::res://script/Pathfinding/::1702174540
 Heap.cs::CSharpScript::-1::1702162584::0::1::::<><>::
 Node_PF.cs::CSharpScript::-1::1702228682::0::1::::<><>::
 Pathfinding.cs::CSharpScript::-1::1703470305::0::1::::Pathfinding<>Node<>::
 ::res://script/TerrainGeneration/::1702174560
-TerrainGeneration.cs::CSharpScript::-1::1703440742::0::1::::TerrainGeneration<>Node<>::
+TerrainGeneration.cs::CSharpScript::-1::1703524362::0::1::::TerrainGeneration<>Node<>::
 ::res://ui/::1701141244
 healthbar.tscn::PackedScene::1004608634430367477::1701029205::0::1::::<><>::
