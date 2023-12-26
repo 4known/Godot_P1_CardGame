@@ -21,7 +21,7 @@ func initStatus():
 func updateHealth(value : int):
 	print("Update Health for " + get_parent().name)
 	if value == 0: return
-	var calValue = value if value > 0 else calculateDamage(value)
+	var calValue = value if value > 0 else calculateDamage(value,0)
 	if(statusDict[Stat.T.hp].currentValue + calValue > statusDict[Stat.T.hp].getValue()):
 		statusDict[Stat.T.hp].currentValue = statusDict[Stat.T.hp].getValue()
 	elif (statusDict[Stat.T.hp].currentValue + calValue <= 0):
@@ -68,8 +68,8 @@ func removeAllDebuff():
 func removeAllBuff():
 	buff.clear()
 
-func calculateDamage(damage : int) -> int:
-	var d = damage*-1 - statusDict[Stat.T.def].getValue()
+func calculateDamage(damage : int, supposeMod : int) -> int:
+	var d = damage*-1 - statusDict[Stat.T.def].getValue() + supposeMod
 	if d < 0:
 		return 0
 	return d*-1

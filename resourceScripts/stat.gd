@@ -43,6 +43,12 @@ func modificationValue():
 				finalValue += round(basevalue * mod.value * 0.01)
 	return finalValue
 
+func calModValue(mod : StatMod) -> int:
+	if mod.mtype == StatMod.T.flat:
+		return mod.value
+	else:
+		return round(basevalue * mod.value * 0.01)
+
 func clearModifier():
 	statModDict.clear()
 

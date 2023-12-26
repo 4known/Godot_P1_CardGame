@@ -11,7 +11,7 @@ var reqAtk : Card = null
 var processingPath : bool = false
 var processingAtk : bool = false
 #Turn
-var opponent : Dictionary = {} #Card : supposeHealthAfterDamage
+var opponent : Dictionary = {} #Card : supposeStat class
 var team : Array[Card] = []
 #Projectile
 const proj = preload("res://Scene/projectile.tscn")
@@ -52,10 +52,14 @@ func findTarget():
 	print(reqPath.name + " Target is " + target.name)
 	reqPath.setTarget(target)
 	print("Damage is " + str(reqPath.damage))
-	print("Target currentHP is " + str(opponent[target]))
-	opponent[target] += reqPath.target.getStatus().calculateDamage(reqPath.damage)
-	print("Target supposeHP is " + str(opponent[target]))
-	if opponent[target] <= 0:
+	print("Target currentHP is " + str(opponent[target].hp))
+	opponent[target].hp += reqPath.target.getStatus().calculateDamage(reqPath.damage,opponent[target].def)
+	for effect in reqPath.getSkill().skill.skillEftArr:
+		if effect.statusEffect.type == Stat.T.def:
+			opponent[target].def += target.getStatus().statusDict[Stat.T.def].calModValue(effect.statusEffect.statModArr[effect.tier])
+			continue
+	print("Target supposeHP is " + str(opponent[target].hp))
+	if opponent[target].hp <= 0:
 		print("Target hp depleted")
 		opponent.erase(reqPath.target)
 
@@ -131,9 +135,16 @@ func _on_game_state_new_turn(currentState):
 		for p in gState.players.get_children():
 			team.append(p)
 		for e in gState.enemies.get_children():
-			opponent[e] = e.getStatus().getCurrentValue(Stat.T.hp)
+			opponent[e] = supposeStat.new(e.getStatus().getCurrentValue(Stat.T.hp),0)
 	elif currentState == gState.states.EntityTurn:
 		for e in gState.enemies.get_children():
 			team.append(e)
 		for p in gState.players.get_children():
-			opponent[p] = p.getStatus().getCurrentValue(Stat.T.hp)
+			opponent[p] = supposeStat.new(p.getStatus().getCurrentValue(Stat.T.hp),0)
+
+class supposeStat:
+	var hp : int
+	var def : int
+	func _init(hp_ : int, def_ : int):
+		hp = hp_
+		def = def_

@@ -7,13 +7,12 @@ var skillDict : Dictionary #ID : ActiveSkill
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
 const ski : ActiveSkill = preload("res://resources/new_resource.tres")
-
+var skill = ski
 func _ready():
 	initSkillQueue()
 
 func attackTarget(target : Card):
 	print("Add buff to " + get_parent().name)
-	var skill = ski
 	for eft in skill.skillEftArr:
 		if eft.statusEffect.buff:
 			target.getStatus().addBuff(eft.statusEffect,eft.tier,eft.turns)
