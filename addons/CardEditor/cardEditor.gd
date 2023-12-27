@@ -97,9 +97,9 @@ func refresh():
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		print(file_name)
 		while file_name.ends_with(".tres"):
 			var card = ResourceLoader.load(folder+file_name)
-			print(card)
 			createCardPanel(card)
 			file_name = dir.get_next()
 		dir.list_dir_end()
