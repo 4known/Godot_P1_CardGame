@@ -15,7 +15,7 @@ var folder : String = "res://resources/"
 
 #CardPanel
 const cardPanel = preload("res://addons/CardEditor/cardPanel.tscn")
-var cardDict : Dictionary = {}
+var cardDict : Dictionary = {} #ID:Card
 
 func _enter_tree():
 	screen = Screen.instantiate()
@@ -100,6 +100,7 @@ func refresh():
 		while file_name != "": 
 			if file_name.ends_with(".tres"):
 				var card = ResourceLoader.load(folder+file_name)
+				cardDict[card.id] = card
 				createCardPanel(card)
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -142,6 +143,14 @@ func createActiveSkill(data):
 		statmod.mtype = StatMod.T.get(mod["Mtype"])
 		newCard.statModArr.append(statmod)
 	newCard.projectile = data["Projectile"]
+	for eft in data["SkillEftArray"]:
+		var skilleffect = SkillEffect.new()
+		skilleffect.statusEffect = cardDict[eft["StatusEffect"]]
+		skilleffect.tier = eft["Tier"]
+		skilleffect.turns = eft["Turn"]
+		skilleffect.chance = eft["Chance"]
+		newCard.skillEftArr.append(skilleffect)
+	cardDict[newCard.id] = newCard
 	ResourceSaver.save(newCard, savePath)
 
 func createStatusEffect(data):
@@ -154,9 +163,11 @@ func createStatusEffect(data):
 		statmod.stype = Stat.T.get(mod["Stype"])
 		statmod.mtype = StatMod.T.get(mod["Mtype"])
 		newCard.statModArr.append(statmod)
+	cardDict[newCard.id] = newCard
 	ResourceSaver.save(newCard, savePath)
 
 func clearDirectory():
+	cardDict.clear()
 	var dir = DirAccess.open(folder)
 	if dir:
 		dir.list_dir_begin()

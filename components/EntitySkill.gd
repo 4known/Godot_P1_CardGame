@@ -6,7 +6,7 @@ class_name EntitySkill
 var skillDict : Dictionary #ID : ActiveSkill
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
-const ski : ActiveSkill = preload("res://resources/new_resource.tres")
+const ski : ActiveSkill = preload("res://resources/Shoot Arrow.tres")
 var skill = ski
 func _ready():
 	initSkillQueue()

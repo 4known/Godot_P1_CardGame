@@ -5,3 +5,9 @@ res://ResourceDatas.json
 res://resources/DefenseBreak.tres
 res://addons/CardEditor/cardEditor.gd
 res://resources/Shoot Arrow.tres
+res://scene/world.tscn
+res://scene/card.tscn
+res://scene/terrain.tscn
+res://script/Pathfinding/Pathfinding.cs
+res://script/TerrainGeneration/TerrainGeneration.cs
+res://components/EntitySkill.gd
