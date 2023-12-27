@@ -7,6 +7,7 @@ var screen
 #UI
 var refreshBTN : Button
 var createBTN : Button
+var readBTN : Button
 var type : OptionButton
 var contents : FlowContainer
 #Resources
@@ -45,6 +46,7 @@ func _get_plugin_icon():
 func setButtons():
 	refreshBTN = screen.get_node("Tool/HBoxContainer/Refresh")
 	createBTN = screen.get_node("Tool/HBoxContainer/Create")
+	readBTN = screen.get_node("Tool/HBoxContainer/ReadFile")
 	type = screen.get_node("Tool/HBoxContainer/ResourceType")
 	contents = screen.get_node("ScrollContainer/Content")
 
@@ -53,12 +55,16 @@ func setCallBacks():
 		createBTN.pressed.connect(self.createCard)
 	if refreshBTN:
 		refreshBTN.pressed.connect(self.refresh)
+	if readBTN:
+		readBTN.pressed.connect(self.readFile)
 
 func clearCallBacks():
 	if createBTN: 
 		createBTN.pressed.disconnect(self.createCard)
 	if refreshBTN: 
 		refreshBTN.pressed.disconnect(self.refresh)
+	if readBTN:
+		readBTN.pressed.disconnect(self.readFile)
 
 func createCard():
 	var newCard
@@ -93,10 +99,10 @@ func refresh():
 		var file_name = dir.get_next()
 		while file_name.ends_with(".tres"):
 			var card = ResourceLoader.load(folder+file_name)
+			print(card)
 			createCardPanel(card)
 			file_name = dir.get_next()
 		dir.list_dir_end()
-
 
 func clearContent():
 	for c in contents.get_children():
@@ -106,3 +112,8 @@ func clearContent():
 
 func refreshFiles():
 	get_editor_interface().get_resource_filesystem().scan()
+
+func readFile():
+	var file = FileAccess.open("res://testfile.txt", FileAccess.READ)
+	var content = file.get_as_text()
+	print(content)

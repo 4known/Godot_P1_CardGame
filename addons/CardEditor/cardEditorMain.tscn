@@ -56,6 +56,11 @@ popup/item_2/id = 2
 popup/item_3/text = "StatusEffect"
 popup/item_3/id = 3
 
+[node name="ReadFile" type="Button" parent="Tool/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "         ReadFile          "
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 offset_left = 10.0

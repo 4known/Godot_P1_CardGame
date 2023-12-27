@@ -13,3 +13,7 @@ res://components/GameState.gd
 res://components/EntityStatus.gd
 res://components/EntitySkill.gd
 res://components/Inventory.gd
+res://testfile.txt
+res://readfile.gd
+res://addons/CardEditor/cardEditorMain.tscn
+res://addons/CardEditor/cardEditor.gd

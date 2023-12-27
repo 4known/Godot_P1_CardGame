@@ -16,12 +16,10 @@ var currentState : states = states.GameLoad
 var turnNum: int = 0
 signal newTurn
 
-var next : bool = true
+var next : bool = false
 func _input(event):
 	if event.is_action_pressed("1") and next:
 		updateState()
-	if event.is_action_pressed("2"):
-		pass
 
 func n():
 	next = true
