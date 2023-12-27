@@ -121,28 +121,32 @@ func readFile():
 	var error = json.parse(content)
 	if error != OK:
 		return
+	for data in json.data:
+		if data["CardType"] == "activeSkill":
+			createActiveSkill(data)
+
+func createActiveSkill(data):
 	var newCard
-	if json["CardType"] == "activeSkill":
-		newCard = ActiveSkill.new()
-		var savePath = folder + str(json["name"] + ".tres")
-		newCard.id = json["ID"]
-		match json["Type"]:
-			"Active":
-				newCard.type = Skill.T.Active
-			"Passive":
-				newCard.type = Skill.T.Passive
-		newCard.range_ = json["Range"]
-		newCard.coolDown = json["CD"]
-		for mod in json["StatModeArray"]:
-			var statmod = StatMod.new(mod["Value"])
-			match mod["Stype"]:
-				"Atk":
-					statmod.stype = Stat.T.atk
-				"Def":
-					statmod.stype = Stat.T.def
-			match mod["Mtype"]:
-				"Flat":
-					statmod.mtype = StatMod.T.flat
-			newCard.statModArr.append(statmod)
-		newCard.projectile = json["Projectile"]
-		ResourceSaver.save(newCard, savePath)
+	newCard = ActiveSkill.new()
+	var savePath = folder + str(data["Name"] + ".tres")
+	newCard.id = data["ID"]
+	match data["Type"]:
+		"Active":
+			newCard.type = Skill.T.Active
+		"Passive":
+			newCard.type = Skill.T.Passive
+	newCard.range_ = data["Range"]
+	newCard.coolDown = data["CD"]
+	for mod in data["StatModArray"]:
+		var statmod = StatMod.new(mod["Value"])
+		match mod["Stype"]:
+			"Atk":
+				statmod.stype = Stat.T.atk
+			"Def":
+				statmod.stype = Stat.T.def
+		match mod["Mtype"]:
+			"Flat":
+				statmod.mtype = StatMod.T.flat
+		newCard.statModArr.append(statmod)
+	newCard.projectile = data["Projectile"]
+	ResourceSaver.save(newCard, savePath)
