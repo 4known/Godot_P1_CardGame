@@ -115,5 +115,8 @@ func refreshFiles():
 
 func readFile():
 	var file = FileAccess.open("res://testfile.txt", FileAccess.READ)
-	var content = file.get_as_text()
-	print(content)
+	var content = file.get_as_text().split("\n")
+	for line in content:
+		print(line)
+		if line == "hello":
+			print("ssssss")
