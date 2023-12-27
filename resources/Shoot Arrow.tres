@@ -1,20 +1,20 @@
-[gd_resource type="Resource" script_class="ActiveSkill" load_steps=4 format=3 uid="uid://cqk81pbabakf8"]
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=4 format=3 uid="uid://co7av1ibsw2yq"]
 
-[ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_6csfx"]
-[ext_resource type="Script" path="res://resourceScripts/statModifier.gd" id="2_lpc4j"]
+[ext_resource type="Script" path="res://resourceScripts/activeSkill.gd" id="1_jfii5"]
+[ext_resource type="Script" path="res://resourceScripts/statModifier.gd" id="2_8ew1u"]
 
-[sub_resource type="Resource" id="Resource_ag8fs"]
-script = ExtResource("2_lpc4j")
+[sub_resource type="Resource" id="Resource_dowc0"]
+script = ExtResource("2_8ew1u")
 value = 8
 stype = 1
 mtype = 0
 
 [resource]
-script = ExtResource("1_6csfx")
+script = ExtResource("1_jfii5")
 skillEftArr = Array[Resource("res://resourceScripts/skillEffect.gd")]([])
 projectile = false
-statModArr = Array[ExtResource("2_lpc4j")]([SubResource("Resource_ag8fs")])
+statModArr = Array[ExtResource("2_8ew1u")]([SubResource("Resource_dowc0")])
 coolDown = 0
 range_ = 4
 type = 1
-id = 0
+id = 1

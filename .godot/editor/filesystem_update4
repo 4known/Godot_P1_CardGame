@@ -1,22 +1,7 @@
-res://scene/world.tscn
-res://resources/DefenseBreak.tres
+res://addons/CardEditor/cardEditorMain.tscn
 res://resources/new_resource.tres
 res://scene/water.gdshader
-res://scene/card.tscn
-res://scene/terrain.tscn
-res://script/Pathfinding/Pathfinding.cs
-res://script/TerrainGeneration/TerrainGeneration.cs
-res://scene/terrain.gd
-res://components/TurnManager.gd
-res://scene/card.gd
-res://components/GameState.gd
-res://components/EntityStatus.gd
-res://components/EntitySkill.gd
-res://components/Inventory.gd
-res://testfile.txt
-res://readfile.gd
-res://addons/CardEditor/cardEditorMain.tscn
-res://addons/CardEditor/cardEditor.gd
-res://resources/defDown.tres
-res://resourceScripts/item.gd
 res://ResourceDatas.json
+res://resources/DefenseBreak.tres
+res://addons/CardEditor/cardEditor.gd
+res://resources/Shoot Arrow.tres

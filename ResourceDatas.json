@@ -1,13 +1,24 @@
 [
 	{
-		"CardType": "activeSkill",
-		"Name": "Shoot Arrow",
+		"CardType": "StatusEffect",
+		"Name": "DefenseBreak",
 		"ID": 0,
+		"Buff": false,
+		"Type": "def",
+		"StatModArray": [
+			{"Value": -20,"Stype": "def","Mtype": "percent"},
+			{"Value": -30,"Stype": "def","Mtype": "percent"}
+		]
+	},
+	{
+		"CardType": "ActiveSkill",
+		"Name": "Shoot Arrow",
+		"ID": 1,
 		"Type": "Active",
 		"Range": 4,
 		"CD": 0,
 		"StatModArray": [
-			{"Value": 8,"Stype": "Atk","Mtype": "Flat"}
+			{"Value": 8,"Stype": "atk","Mtype": "flat"}
 		],
 		"Projectile": false,
 		"SkillEftArray": []
