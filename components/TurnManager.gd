@@ -28,7 +28,7 @@ func requestTurn(card : Card):
 	requestQueuePath.append(card)
 
 func processPathRequest():
-	print("Try process Path")
+	#print("Try process Path")
 	if !processingPath and !requestQueuePath.is_empty():
 		reqPath = requestQueuePath.pop_front()
 		print("Processing Path for " + reqPath.name)
@@ -37,7 +37,7 @@ func processPathRequest():
 
 func findTarget():
 	if opponent.is_empty():
-		print("No enemy, clear PathQueue")
+		#print("No enemy, clear PathQueue")
 		requestQueuePath.clear()
 		pathRequestProcessed()
 		return
@@ -52,7 +52,7 @@ func findTarget():
 		if distance < minDistance:
 			target = enemy
 			minDistance = distance
-	print(reqPath.name + " Target is " + target.name)
+	#print(reqPath.name + " Target is " + target.name)
 	reqPath.setTarget(target)
 	if !reqPath.onlyPath:
 		calculateDamage(target)
@@ -61,20 +61,20 @@ func findTarget():
 	findPath()
 
 func calculateDamage(target : Card):
-	print("Damage is " + str(reqPath.damage))
-	print("Target currentHP is " + str(opponent[target].hp))
+	#print("Damage is " + str(reqPath.damage))
+	#print("Target currentHP is " + str(opponent[target].hp))
 	opponent[target].hp += reqPath.target.getStatus().calculateDamage(reqPath.damage,opponent[target].def)
 	for effect in reqPath.getSkill().skill.skillEftArr:
 		if effect.statusEffect.type == Stat.T.def:
 			opponent[target].def += target.getStatus().statusDict[Stat.T.def].calModValue(effect.statusEffect.statModArr[effect.tier])
 			continue
-	print("Target supposeHP is " + str(opponent[target].hp))
+	#print("Target supposeHP is " + str(opponent[target].hp))
 	if opponent[target].hp <= 0:
-		print("Target hp depleted")
+		#print("Target hp depleted")
 		opponent.erase(reqPath.target)
 
 func findPath():
-	#print("Find Target for " + reqPath.name)
+	##print("Find Target for " + reqPath.name)
 	var range_ = 4
 	var cardpos = reqPath.global_position
 	var targetp = reqPath.target.global_position
@@ -85,25 +85,25 @@ func findPath():
 	pathRequestProcessed()
 
 func pathRequestProcessed():
-	print("Path processed for " + reqPath.name)
+	#print("Path processed for " + reqPath.name)
 	if !requestQueuePath.is_empty():
-		#print("PathQueue not empty, process next")
+		##print("PathQueue not empty, process next")
 		processPathRequest()
 
 func requestAttack(card : Card):
 	if reqOnlyPath.has(card):
-		print("Remove " + card.name + " from reqOnlyPath")
+		#print("Remove " + card.name + " from reqOnlyPath")
 		reqOnlyPath.erase(card)
 		turnRequestProcessed()
 		return
 	print("Add " + card.name + " to AttackQueue")
 	requestQueueAtk.append(card)
 	if requestQueuePath.is_empty():
-		#print("PathQueue is empty, process Attack")
+		##print("PathQueue is empty, process Attack")
 		processAttackRequest()
 
 func processAttackRequest():
-	print("Try process Attack")
+	#print("Try process Attack")
 	if !processingAtk and !requestQueueAtk.is_empty():
 		reqAtk = requestQueueAtk.pop_front()
 		print("Processing Attack for " + reqAtk.name)
@@ -115,25 +115,25 @@ func attackTarget():
 	shootProjectile()
 
 func shootProjectile():
-	#print("Shoot projectile")
+	##print("Shoot projectile")
 	var newproj = proj.instantiate()
 	newproj.global_position = reqAtk.getSpritePos()
 	newproj.setProjectile(reqAtk,reqAtk.target,reqAtk.damage)
 	call_deferred("add_child", newproj)
 
 func attackedTarget():
-	print("Target Attacked")
-	print("Target hp: " + str(reqAtk.target.getStatus().getCurrentValue(Stat.T.hp)))
+	#print("Target Attacked")
+	#print("Target hp: " + str(reqAtk.target.getStatus().getCurrentValue(Stat.T.hp)))
 	processingAtk = false
 	turnRequestProcessed()
 
 func turnRequestProcessed():
 	if requestQueueAtk.is_empty() && reqOnlyPath.is_empty():
-		print("Turn End")
+		#print("Turn End")
 		gState.n()
 	elif !requestQueueAtk.is_empty():
-		print("Attack processed for " + reqAtk.name)
-		print("AttackQueue is not empty, process Attack")
+		#print("Attack processed for " + reqAtk.name)
+		#print("AttackQueue is not empty, process Attack")
 		processAttackRequest()
 
 func _on_game_state_new_turn(currentState):

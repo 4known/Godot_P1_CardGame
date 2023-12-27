@@ -32,7 +32,7 @@ func myTurn():
 
 func followPath():
 	if !move: return
-	print(name + " Moving Toward Target")
+	#print(name + " Moving Toward Target")
 	if currentPath.is_empty():
 		Signals.emit_signal("arrivedNowAttack", self)
 		move = false

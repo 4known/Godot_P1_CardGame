@@ -19,7 +19,6 @@ func initStatus():
 		statusDict[t] = Stat.new(stat.getStatValue(t))
 
 func updateHealth(value : int):
-	print("Update Health for " + get_parent().name)
 	if value == 0: return
 	var calValue = value if value > 0 else calculateDamage(value,0)
 	if(statusDict[Stat.T.hp].currentValue + calValue > statusDict[Stat.T.hp].getValue()):

@@ -10,3 +10,6 @@ res://scene/terrain.gd
 res://components/TurnManager.gd
 res://scene/card.gd
 res://components/GameState.gd
+res://components/EntityStatus.gd
+res://components/EntitySkill.gd
+res://components/Inventory.gd

@@ -12,7 +12,6 @@ func _ready():
 	initSkillQueue()
 
 func attackTarget(target : Card):
-	print("Add buff to " + get_parent().name)
 	for eft in skill.skillEftArr:
 		if eft.statusEffect.buff:
 			target.getStatus().addBuff(eft.statusEffect,eft.tier,eft.turns)
