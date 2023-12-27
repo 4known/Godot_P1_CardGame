@@ -9,7 +9,7 @@ class_name GameState
 const card = preload("res://Scene/card.tscn")
 
 var enemynum : int = 1
-var playernum : int = 10
+var playernum : int = 5
 
 enum states{GameLoad, PlayerTurn, EntityTurn, NextRoom, GoToRoom, ArrivedAtRoom}
 var currentState : states = states.GameLoad
