@@ -18,3 +18,5 @@ res://readfile.gd
 res://addons/CardEditor/cardEditorMain.tscn
 res://addons/CardEditor/cardEditor.gd
 res://resources/defDown.tres
+res://resourceScripts/item.gd
+res://ResourceDatas.json

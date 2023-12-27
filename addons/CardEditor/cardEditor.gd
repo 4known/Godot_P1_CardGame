@@ -114,9 +114,35 @@ func refreshFiles():
 	get_editor_interface().get_resource_filesystem().scan()
 
 func readFile():
-	var file = FileAccess.open("res://testfile.txt", FileAccess.READ)
-	var content = file.get_as_text().split("\n")
-	for line in content:
-		print(line)
-		if line == "hello":
-			print("ssssss")
+	var file = FileAccess.open("res://ResourceDatas.json", FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	var json = JSON.new()
+	var error = json.parse(content)
+	if error != OK:
+		return
+	var newCard
+	if json["CardType"] == "activeSkill":
+		newCard = ActiveSkill.new()
+		var savePath = folder + str(json["name"] + ".tres")
+		newCard.id = json["ID"]
+		match json["Type"]:
+			"Active":
+				newCard.type = Skill.T.Active
+			"Passive":
+				newCard.type = Skill.T.Passive
+		newCard.range_ = json["Range"]
+		newCard.coolDown = json["CD"]
+		for mod in json["StatModeArray"]:
+			var statmod = StatMod.new(mod["Value"])
+			match mod["Stype"]:
+				"Atk":
+					statmod.stype = Stat.T.atk
+				"Def":
+					statmod.stype = Stat.T.def
+			match mod["Mtype"]:
+				"Flat":
+					statmod.mtype = StatMod.T.flat
+			newCard.statModArr.append(statmod)
+		newCard.projectile = json["Projectile"]
+		ResourceSaver.save(newCard, savePath)

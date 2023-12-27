@@ -1,0 +1,19 @@
+[
+	{
+		"CardType": "activeSkill",
+		"Name": "Shoot Arrow",
+		"ID": 0,
+		"Type": "Active",
+		"Range": 4,
+		"CD": 0,
+		"StatModArray": [
+			{
+				"Value": 8,
+				"Stype": "Atk",
+				"Mtype": "Flat"
+			}
+		],
+		"Projectile": "false",
+		"SkillEftArray": []
+	}
+]

@@ -1,5 +1,4 @@
 extends CardBase
-
 class_name ItemBase
 
 @export var statModList : StatMod
