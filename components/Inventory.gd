@@ -2,6 +2,7 @@ extends Node
 class_name Inventory
 
 var inventory : Dictionary = {} #id int : amount
+var maxteamsize : int = 5
 var team : Array[Entity] = []
 var entities : Array[Entity] = []
 
@@ -10,7 +11,6 @@ func addToInventory(id : int, amount : int):
 		inventory[id] += amount
 	else:
 		inventory[id] = amount
-
 func removeFromInventory(id : int, amount : int):
 	if inventory.has(id):
 		inventory[id] -= amount
@@ -18,3 +18,14 @@ func removeFromInventory(id : int, amount : int):
 			inventory.erase(id)
 	else:
 		print("No item")
+
+func addToTeam(entity : Entity):
+	if team.size() <= maxteamsize:
+		team.append(entity)
+func removeFromTeam(entity : Entity):
+	team.erase(entity)
+
+func addToEntities(entity : Entity):
+	entities.append(entity)
+func removeFromEntities(entity : Entity):
+	entities.erase(entity)
