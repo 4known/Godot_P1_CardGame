@@ -7,11 +7,7 @@
 		"Range": 4,
 		"CD": 0,
 		"StatModArray": [
-			{
-				"Value": 8,
-				"Stype": "Atk",
-				"Mtype": "Flat"
-			}
+			{"Value": 8,"Stype": "Atk","Mtype": "Flat"}
 		],
 		"Projectile": false,
 		"SkillEftArray": []
