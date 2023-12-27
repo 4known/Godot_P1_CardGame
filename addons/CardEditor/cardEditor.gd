@@ -97,10 +97,10 @@ func refresh():
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
-		print(file_name)
-		while file_name.ends_with(".tres"):
-			var card = ResourceLoader.load(folder+file_name)
-			createCardPanel(card)
+		while file_name != "": 
+			if file_name.ends_with(".tres"):
+				var card = ResourceLoader.load(folder+file_name)
+				createCardPanel(card)
 			file_name = dir.get_next()
 		dir.list_dir_end()
 
@@ -114,6 +114,7 @@ func refreshFiles():
 	get_editor_interface().get_resource_filesystem().scan()
 
 func readFile():
+	clearDirectory()
 	var file = FileAccess.open("res://ResourceDatas.json", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
@@ -154,3 +155,13 @@ func createStatusEffect(data):
 		statmod.mtype = StatMod.T.get(mod["Mtype"])
 		newCard.statModArr.append(statmod)
 	ResourceSaver.save(newCard, savePath)
+
+func clearDirectory():
+	var dir = DirAccess.open(folder)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			dir.remove_absolute(folder+file_name)
+			file_name = dir.get_next()
+		dir.list_dir_end()
