@@ -1,7 +1,6 @@
 extends Area2D
 class_name Card
 
-@onready var stat = $EntityStat
 @onready var status = $EntityStatus
 @onready var skill = $EntitySkill
 
@@ -67,8 +66,6 @@ func setPath(paths : Array[Vector2i]):
 	move = true
 func setType(type_ : types):
 	type = type_
-func getStat() -> EntityStat:
-	return stat
 func getStatus()-> EntityStatus:
 	return status
 func getSkill() -> EntitySkill:

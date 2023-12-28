@@ -2,7 +2,6 @@ extends Node
 class_name EntityStatus
 
 @onready var healthBar : ProgressBar = $"../Healthbar"
-@onready var stat : EntityStat = $"../EntityStat"
 
 var entityData : Entity
 var statusDict : Dictionary = {} #Stat.T : Stat
@@ -18,7 +17,7 @@ func _ready():
 
 func initStatus():
 	for t in entityData.statDict.keys():
-		statusDict[t] = Stat.new(stat.getStatValue(t))
+		statusDict[t] = Stat.new(entityData.getStatValue(t))
 
 func updateHealth(value : int):
 	if value == 0: return

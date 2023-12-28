@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo8edkyecynsp"]
+[gd_scene load_steps=8 format=3 uid="uid://bo8edkyecynsp"]
 
 [ext_resource type="Script" path="res://scene/card.gd" id="1_2savt"]
 [ext_resource type="Texture2D" uid="uid://dmjp305rmsfkr" path="res://imports/Frames.png" id="2_fv0kf"]
-[ext_resource type="Script" path="res://components/EntityStat.gd" id="3_3r0p4"]
 [ext_resource type="Script" path="res://components/EntityStatus.gd" id="4_q2kxn"]
 [ext_resource type="Script" path="res://components/EntitySkill.gd" id="5_o6yhq"]
 [ext_resource type="PackedScene" uid="uid://okv00ugg3v2l" path="res://ui/healthbar.tscn" id="6_6entd"]
@@ -26,9 +25,6 @@ texture = ExtResource("2_fv0kf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_ru2u0")
-
-[node name="EntityStat" type="Node" parent="."]
-script = ExtResource("3_3r0p4")
 
 [node name="EntityStatus" type="Node" parent="."]
 script = ExtResource("4_q2kxn")
