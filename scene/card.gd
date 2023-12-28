@@ -5,6 +5,8 @@ class_name Card
 @onready var status = $EntityStatus
 @onready var skill = $EntitySkill
 
+var entityData : Entity
+
 var type : types
 enum types{player,enemy}
 
@@ -54,6 +56,8 @@ func _on_input_event(_viewport, _event, _shape_idx):
 		_viewport.set_input_as_handled()
 
 #Setter/Getter
+func setEntity(e : Entity):
+	entityData = e
 func setTarget(card : Card):
 	target = card
 func setTerrain(t : Terrain):

@@ -3,19 +3,19 @@
 [ext_resource type="Script" path="res://resourceScripts/StatBased/statusEffect.gd" id="1_7ex32"]
 [ext_resource type="Script" path="res://resourceScripts/StatBased/statModifier.gd" id="2_xqcdv"]
 
-[sub_resource type="Resource" id="Resource_r0x44"]
+[sub_resource type="Resource" id="Resource_7x22b"]
 script = ExtResource("2_xqcdv")
 value = -10
 stype = 1
 mtype = 1
 
-[sub_resource type="Resource" id="Resource_kdeq7"]
+[sub_resource type="Resource" id="Resource_nurb7"]
 script = ExtResource("2_xqcdv")
 value = -25
 stype = 1
 mtype = 1
 
-[sub_resource type="Resource" id="Resource_4r10l"]
+[sub_resource type="Resource" id="Resource_0dodh"]
 script = ExtResource("2_xqcdv")
 value = -40
 stype = 1
@@ -23,7 +23,7 @@ mtype = 1
 
 [resource]
 script = ExtResource("1_7ex32")
-statModArr = Array[ExtResource("2_xqcdv")]([SubResource("Resource_r0x44"), SubResource("Resource_kdeq7"), SubResource("Resource_4r10l")])
+statModArr = Array[ExtResource("2_xqcdv")]([SubResource("Resource_7x22b"), SubResource("Resource_nurb7"), SubResource("Resource_0dodh")])
 type = 1
 buff = false
 id = 1

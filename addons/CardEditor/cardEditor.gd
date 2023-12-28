@@ -145,7 +145,7 @@ func createActiveSkill(data):
 	newCard.projectile = data["Projectile"]
 	for eft in data["SkillEftArray"]:
 		var skilleffect = SkillEffect.new()
-		skilleffect.statusEffect = cardDict[eft["StatusEffect"]]
+		skilleffect.statusEffect = cardDict[int(eft["StatusEffect"])]
 		skilleffect.tier = eft["Tier"]
 		skilleffect.turns = eft["Turn"]
 		skilleffect.chance = eft["Chance"]

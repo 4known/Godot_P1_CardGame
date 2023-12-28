@@ -1,3 +1,12 @@
 res://resources/DefenseBreak.tres
 res://scene/world.tscn
 res://scene/water.gdshader
+res://resources/Weakness.tres
+res://scene/card.tscn
+res://scene/terrain.tscn
+res://addons/CardEditor/cardEditorMain.tscn
+res://script/Pathfinding/Pathfinding.cs
+res://script/TerrainGeneration/TerrainGeneration.cs
+res://addons/CardEditor/cardEditor.gd
+res://resources/ShootArrow.tres
+res://scene/card.gd

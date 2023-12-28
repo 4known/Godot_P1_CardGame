@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=11 format=3 uid="uid://pmbv7uen4l3q"]
+
+[ext_resource type="Script" path="res://resourceScripts/StatBased/activeSkill.gd" id="1_ygjvr"]
+[ext_resource type="Script" path="res://resourceScripts/StatBased/skillEffect.gd" id="2_enoqu"]
+[ext_resource type="Script" path="res://resourceScripts/StatBased/statusEffect.gd" id="3_yuqm1"]
+[ext_resource type="Script" path="res://resourceScripts/StatBased/statModifier.gd" id="4_8kufn"]
+
+[sub_resource type="Resource" id="Resource_dto2q"]
+script = ExtResource("4_8kufn")
+value = -20
+stype = 2
+mtype = 1
+
+[sub_resource type="Resource" id="Resource_eaivn"]
+script = ExtResource("4_8kufn")
+value = -30
+stype = 2
+mtype = 1
+
+[sub_resource type="Resource" id="Resource_aln5t"]
+script = ExtResource("4_8kufn")
+value = -40
+stype = 2
+mtype = 1
+
+[sub_resource type="Resource" id="Resource_2vnh2"]
+script = ExtResource("3_yuqm1")
+statModArr = Array[ExtResource("4_8kufn")]([SubResource("Resource_dto2q"), SubResource("Resource_eaivn"), SubResource("Resource_aln5t")])
+type = 2
+buff = false
+id = 0
+
+[sub_resource type="Resource" id="Resource_tlrie"]
+script = ExtResource("2_enoqu")
+statusEffect = SubResource("Resource_2vnh2")
+tier = 1
+turns = 0
+chance = 30.0
+
+[sub_resource type="Resource" id="Resource_pf8av"]
+script = ExtResource("4_8kufn")
+value = 15
+stype = 1
+mtype = 0
+
+[resource]
+script = ExtResource("1_ygjvr")
+skillEftArr = Array[ExtResource("2_enoqu")]([SubResource("Resource_tlrie")])
+projectile = false
+statModArr = Array[ExtResource("4_8kufn")]([SubResource("Resource_pf8av")])
+coolDown = 0
+range_ = 5
+type = 1
+id = 3
