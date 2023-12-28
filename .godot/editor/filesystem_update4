@@ -11,3 +11,4 @@ res://scene/terrain.tscn
 res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
 res://components/EntitySkill.gd
+res://resourceScripts/entity.gd
