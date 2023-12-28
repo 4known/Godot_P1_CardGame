@@ -1,3 +1,5 @@
+CanvasLayer
+Control
 Button
 Inventory
 TerrainGeneration
@@ -7,4 +9,3 @@ Node
 Panel
 TextEdit
 ScrollContainer
-Control

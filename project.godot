@@ -23,6 +23,8 @@ Signals="*res://global/globalSignals.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=640
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 

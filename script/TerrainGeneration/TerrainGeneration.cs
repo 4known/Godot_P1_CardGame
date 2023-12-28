@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class TerrainGeneration : Node
 {   
+    
     public Godot.Collections.Array<Vector2I> CreateGrid(int radius, Vector2I position){
         var grid = new Godot.Collections.Array<Vector2I>();
         List<Vector2I> outer = new List<Vector2I>();

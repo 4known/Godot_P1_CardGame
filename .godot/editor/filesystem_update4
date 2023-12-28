@@ -3,3 +3,10 @@ res://resources/ShootArrow.tres
 res://scene/water.gdshader
 res://scene/card.gd
 res://components/EntityStatus.gd
+res://scene/terrain.tscn
+res://scene/world.tscn
+res://addons/CardEditor/cardEditorMain.tscn
+res://script/Pathfinding/Pathfinding.cs
+res://script/TerrainGeneration/TerrainGeneration.cs
+res://components/GameState.gd
+res://scene/world.gd
