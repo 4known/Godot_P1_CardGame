@@ -4,18 +4,20 @@ class_name EntityStatus
 @onready var healthBar : ProgressBar = $"../Healthbar"
 @onready var stat : EntityStat = $"../EntityStat"
 
+var entityData : Entity
 var statusDict : Dictionary = {} #Stat.T : Stat
 
 var buff : Dictionary = {} #id : Effect
 var debuff : Dictionary = {} #id : Effect
 
 func _ready():
+	entityData = get_parent().entityData
 	initStatus()
 	healthBar.max_value = statusDict[Stat.T.hp].getValue()
 	healthBar.value = statusDict[Stat.T.hp].currentValue
 
 func initStatus():
-	for t in stat.statDict.keys():
+	for t in entityData.statDict.keys():
 		statusDict[t] = Stat.new(stat.getStatValue(t))
 
 func updateHealth(value : int):

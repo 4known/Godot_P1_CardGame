@@ -3,12 +3,13 @@ class_name EntitySkill
 
 @onready var status : EntityStatus = $"../EntityStatus"
 
-var skillDict : Dictionary #ID : ActiveSkill
+var entityData : Entity
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
 const ski : ActiveSkill = preload("res://resources/ShootArrow.tres")
 var skill = ski
 func _ready():
+	entityData = get_parent().entityData
 	initSkillQueue()
 
 func attackTarget(target : Card):
@@ -19,8 +20,8 @@ func attackTarget(target : Card):
 			target.getStatus().addDebuff(eft.statusEffect,eft.tier,eft.turns)
 
 func initSkillQueue():
-	if skillDict.is_empty(): return
-	for s in skillDict.values():
+	if entityData.skillDict.is_empty(): return
+	for s in entityData.skillDict.values():
 		if skillQueue.has(s.coolDown):
 			skillQueue[s.coolDown].append(s)
 		else:

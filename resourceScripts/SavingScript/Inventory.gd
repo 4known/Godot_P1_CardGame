@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Inventory
 
 var inventory : Dictionary = {} #id int : amount

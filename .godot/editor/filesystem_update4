@@ -10,3 +10,7 @@ res://script/TerrainGeneration/TerrainGeneration.cs
 res://addons/CardEditor/cardEditor.gd
 res://resources/ShootArrow.tres
 res://scene/card.gd
+res://components/EntityStatus.gd
+res://components/EntitySkill.gd
+res://resourceScripts/SavingScript/inventorySave.gd
+res://components/Inventory.gd

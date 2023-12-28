@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://scene/water.gdshader" id="3_8bht5"]
 [ext_resource type="Script" path="res://components/TurnManager.gd" id="4_8kbl4"]
 [ext_resource type="Texture2D" uid="uid://dmjp305rmsfkr" path="res://imports/Frames.png" id="4_nwyl2"]
-[ext_resource type="Script" path="res://components/Inventory.gd" id="8_to71n"]
+[ext_resource type="Script" path="res://resourceScripts/SavingScript/Inventory.gd" id="8_to71n"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_glfbe"]
 frequency = 0.0282
