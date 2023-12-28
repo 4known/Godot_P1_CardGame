@@ -1,21 +1,21 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703729386
+::res://::1703730898
 icon.svg::CompressedTexture2D::3706262505618609191::1701141226::1701141238::1::::<><>::
 Note.txt::TextFile::-1::1703540394::0::1::::<><>::
 README.md::TextFile::-1::1701141386::0::1::::<><>::
 ResourceDatas.json::JSON::-1::1703700702::0::1::::<><>::
 ::res://addons/::1701141244
-::res://addons/CardEditor/::1703702992
+::res://addons/CardEditor/::1703730666
 cardEditor.gd::GDScript::-1::1703702488::0::1::::<>EditorPlugin<>::
-cardEditorMain.tscn::PackedScene::3485099753674631590::1703702992::0::1::::<><>::
+cardEditorMain.tscn::PackedScene::3485099753674631590::1703730666::0::1::::<><>::
 cardPanel.gd::GDScript::-1::1701400184::0::1::::CardPanel<>Control<>::
 cardPanel.tscn::PackedScene::9006689603491760806::1701400184::0::1::::<><>::res://addons/CardEditor/cardPanel.gd<>uid://bs2lup5b7fcrv
 plugin.cfg::TextFile::-1::1701134126::0::1::::<><>::
 ::res://addons/CardEditor/PropertyBoxes/::1701231432
 EnumValue.tscn::PackedScene::7120601239683299765::1701230410::0::1::::<><>::
 StatMod.tscn::PackedScene::4403098978061613926::1701231432::0::1::::<><>::
-::res://components/::1703702991
-EntitySkill.gd::GDScript::-1::1703702991::0::1::::EntitySkill<>Node<>::
+::res://components/::1703730825
+EntitySkill.gd::GDScript::-1::1703730825::0::1::::EntitySkill<>Node<>::
 EntityStat.gd::GDScript::-1::1701891527::0::1::::EntityStat<>Node<>::
 EntityStatus.gd::GDScript::-1::1703637767::0::1::::EntityStatus<>Node<>::
 GameState.gd::GDScript::-1::1703641461::0::1::::GameState<>Node<>::
@@ -32,13 +32,13 @@ Isometric test.png::CompressedTexture2D::5181482608142643367::1699232116::170114
 ::res://resources/::1703729386
 DefenseBreak.tres::Resource/StatusEffect::7152254655649083475::1703729386::0::1::::<><>::res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
 Shoot Arrow.tres::Resource/ActiveSkill::6573818883219682108::1703729386::0::1::::<><>::res://resourceScripts/StatBased/activeSkill.gd<>res://resourceScripts/StatBased/statModifier.gd
-::res://resourceScripts/::1703730493
+::res://resourceScripts/::1703730499
 cardBase.gd::GDScript::-1::1701048196::0::1::::CardBase<>Resource<>::
 consumable.gd::GDScript::-1::1701049843::0::1::::Consumable<>ItemBase<>::
-entity.gd::GDScript::-1::1703730448::0::1::::Entity<>Resource<>::
 equipment.gd::GDScript::-1::1701049923::0::1::::Equipment<>ItemBase<>::
 item.gd::GDScript::-1::1703643779::0::1::::ItemBase<>CardBase<>::
-::res://resourceScripts/SavingScript/::1703730493
+::res://resourceScripts/SavingScript/::1703730640
+entity.gd::GDScript::-1::1703730640::0::1::::Entity<>Resource<>::
 ::res://resourceScripts/StatBased/::1703729386
 activeSkill.gd::GDScript::-1::1701833129::0::1::::ActiveSkill<>Skill<>::
 passiveSkill.gd::GDScript::-1::1701224126::0::1::::PassiveSkill<>Skill<>::
@@ -47,16 +47,16 @@ skillEffect.gd::GDScript::-1::1701832119::0::1::::SkillEffect<>Resource<>::
 stat.gd::GDScript::-1::1703563716::0::1::::Stat<>Node<>::
 statModifier.gd::GDScript::-1::1701480434::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1701892789::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1703730448
+::res://scene/::1703730876
 card.gd::GDScript::-1::1703637715::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1703702992::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
+card.tscn::PackedScene::3437437748356488327::1703730666::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStat.gd<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
 projectile.gd::GDScript::-1::1703558883::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1701052688::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl
 terrain.gd::GDScript::-1::1703633208::0::1::::Terrain<>TileMap<>::
-terrain.tscn::PackedScene::5610510281185814687::1703702992::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
-water.gdshader::Shader::-1::1703730448::0::1::::<><>::
+terrain.tscn::PackedScene::5610510281185814687::1703730666::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
+water.gdshader::Shader::-1::1703730876::0::1::::<><>::
 world.gd::GDScript::-1::1701897277::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1703730448::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/Inventory.gd
+world.tscn::PackedScene::1142251505819120208::1703730825::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://scene/water.gdshader<>res://components/TurnManager.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/Inventory.gd
 ::res://script/::1703527830
 MoveCamera.gd::GDScript::-1::1703527830::0::1::::<>Camera2D<>::
 ::res://script/Pathfinding/::1702174540

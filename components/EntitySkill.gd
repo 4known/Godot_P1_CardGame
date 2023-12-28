@@ -6,7 +6,7 @@ class_name EntitySkill
 var skillDict : Dictionary #ID : ActiveSkill
 var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
-const ski : ActiveSkill = preload("res://resources/Shoot Arrow.tres")
+const ski : ActiveSkill = preload("res://resources/ShootArrow.tres")
 var skill = ski
 func _ready():
 	initSkillQueue()
@@ -53,12 +53,6 @@ func resetSkill(s : ActiveSkill):
 				skillQueue[turn].append(s)
 			else:
 				skillQueue[turn] = [s] 
-
-func addSkill(s : ActiveSkill):
-	skillDict[s.id] = s
-
-func removeSkill(s : ActiveSkill):
-	skillDict[s.id] = s
 
 func vampireEffect():
 	if status.statusDict[Stat.T.vampire] > 0:

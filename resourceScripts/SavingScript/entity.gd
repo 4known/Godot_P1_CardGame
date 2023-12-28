@@ -27,3 +27,9 @@ func addModToStat(id: int, mod : StatMod):
 
 func removeModfromStat(id: int, mod : StatMod):
 	statDict[mod.stype].removeModifier(id)
+
+func addSkill(s : ActiveSkill):
+	skillDict[s.id] = s
+
+func removeSkill(s : ActiveSkill):
+	skillDict[s.id] = s
