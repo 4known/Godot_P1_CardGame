@@ -6,7 +6,7 @@ func loadInventory()-> Inventory:
 	var inventoryData : Inventory
 	if !FileAccess.file_exists(inventoryPath):
 		inventoryData = Inventory.new()
-		pass
+		var file = FileAccess.open(inventoryPath, FileAccess.WRITE)
 	else:
 		var file = FileAccess.open(inventoryPath, FileAccess.READ)
 		var content = file.get_as_text()
