@@ -10,8 +10,8 @@ var inventoryData : Inventory
 const slot = preload("res://ui/slots.tscn")
 
 func _ready():
-	get_parent().loadInventory()
-	inventoryData = get_parent().inventoryData
+	inventoryData = SaveManager.loadInventory()
+	get_parent().inventoryData = inventoryData
 	displayItem()
 	displayEntity()
 	displayTeam()
