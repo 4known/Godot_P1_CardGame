@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dw7fpcydhrywu"]
+
+[node name="Slots" type="LineEdit"]
+custom_minimum_size = Vector2(100, 100)
+placeholder_text = "ID"
+alignment = 1
+editable = false
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.0625
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+placeholder_text = "Am"
+alignment = 2
+editable = false

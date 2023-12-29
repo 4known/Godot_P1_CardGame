@@ -10,3 +10,5 @@ res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
 res://components/GameState.gd
 res://scene/world.gd
+res://ui/MainUI.gd
+res://ui/inventory.tscn

@@ -1,4 +1,7 @@
+LineEdit
 Button
+Panel
+GridContainer
 CanvasLayer
 Control
 Inventory
@@ -6,6 +9,5 @@ TerrainGeneration
 Sprite2D
 Pathfinding
 Node
-Panel
 TextEdit
 ScrollContainer
