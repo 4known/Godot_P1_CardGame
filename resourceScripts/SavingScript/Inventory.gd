@@ -1,10 +1,15 @@
 extends Resource
 class_name Inventory
 
-var inventory : Dictionary = {} #id int : amount
+var inventory : Dictionary #id int : amount
 var maxteamsize : int = 5
-var team : Array[Entity] = []
-var entities : Array[Entity] = []
+var team : Array[Entity]
+var entities : Array[Entity]
+
+func _init():
+	inventory = {}
+	team = []
+	entities = []
 
 func addToInventory(id : int, amount : int):
 	if inventory.has(id):
@@ -29,3 +34,6 @@ func addToEntities(entity : Entity):
 	entities.append(entity)
 func removeFromEntities(entity : Entity):
 	entities.erase(entity)
+
+func createNewEntity():
+	addToEntities(Entity.new())

@@ -1,6 +1,7 @@
 extends Resource
 class_name Entity
 
+@export var name : String
 @export var statDict = {} #Stat.type : Stat
 @export var skillDict = {} #ID : ActiveSkill
 

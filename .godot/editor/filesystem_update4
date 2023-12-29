@@ -13,3 +13,5 @@ res://scene/world.gd
 res://ui/MainUI.gd
 res://ui/inventory.tscn
 res://ui/inventoryUI.gd
+res://resourceScripts/SavingScript/Inventory.gd
+res://resourceScripts/SavingScript/entity.gd
