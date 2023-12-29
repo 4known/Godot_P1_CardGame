@@ -18,7 +18,7 @@ script = ExtResource("2_1251s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="Control" type="Control" parent="Camera2D/CanvasLayer"]
+[node name="MainUI" type="Control" parent="Camera2D/CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
 anchors_preset = 15
@@ -30,40 +30,30 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_xkos2")
 
-[node name="InvBTN" type="Button" parent="Camera2D/CanvasLayer/Control"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Inv
-"
-
-[node name="Data" type="Panel" parent="Camera2D/CanvasLayer/Control"]
-custom_minimum_size = Vector2(200, 200)
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/MainUI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -200.0
-offset_bottom = 200.0
+offset_left = -40.0
+offset_bottom = 40.0
 grow_horizontal = 0
-metadata/_edit_use_anchors_ = true
+alignment = 2
 
-[node name="TextEdit" type="TextEdit" parent="Camera2D/CanvasLayer/Control/Data"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "111111111111111111110"
-placeholder_text = "Enter"
-editable = false
-drag_and_drop_selection_enabled = false
+[node name="InvBTN" type="Button" parent="Camera2D/CanvasLayer/MainUI/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "Inv
+"
 
-[node name="Inventory" parent="Camera2D/CanvasLayer/Control" instance=ExtResource("4_wah5p")]
+[node name="SetBTN" type="Button" parent="Camera2D/CanvasLayer/MainUI/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "Set
+"
+
+[node name="Inventory" parent="Camera2D/CanvasLayer/MainUI" instance=ExtResource("4_wah5p")]
+visible = false
 layout_mode = 1
 
 [node name="Terrain" parent="." instance=ExtResource("2_5fmie")]
