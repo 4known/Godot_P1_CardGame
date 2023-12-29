@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://df123uhl5ujqi"]
+[gd_scene load_steps=3 format=3 uid="uid://df123uhl5ujqi"]
+
+[ext_resource type="Script" path="res://ui/inventoryUI.gd" id="1_klt7l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54kpi"]
 bg_color = Color(0.027451, 0.227451, 0.372549, 1)
@@ -10,9 +12,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_54kpi")
+script = ExtResource("1_klt7l")
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="."]
+[node name="CloseBTN" type="Button" parent="."]
 layout_mode = 1
 offset_right = 60.0
 offset_bottom = 60.0

@@ -64,9 +64,7 @@ editable = false
 drag_and_drop_selection_enabled = false
 
 [node name="Inventory" parent="Camera2D/CanvasLayer/Control" instance=ExtResource("4_wah5p")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 
 [node name="Terrain" parent="." instance=ExtResource("2_5fmie")]
 

@@ -5,8 +5,8 @@ extends Control
 
 func _ready():
 	inv.visible = false
-	invBTN.pressed.connect(openInventory())
-
+	invBTN.pressed.connect(openInventory)
+	inv.closeBTN.pressed.connect(closeInventory)
 
 func openInventory():
 	inv.visible = true

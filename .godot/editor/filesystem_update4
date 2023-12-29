@@ -12,3 +12,4 @@ res://components/GameState.gd
 res://scene/world.gd
 res://ui/MainUI.gd
 res://ui/inventory.tscn
+res://ui/inventoryUI.gd
