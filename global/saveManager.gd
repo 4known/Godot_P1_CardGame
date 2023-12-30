@@ -34,6 +34,7 @@ func loadItems():
 		items = {}
 		file.store_var(items)
 		file.close()
+	print("ItemSize: " + str(items.size()))
 
 func loadEntities():
 	if FileAccess.file_exists(entitiesPath):
@@ -46,6 +47,7 @@ func loadEntities():
 		entities = {}
 		file.store_var(entities)
 		file.close()
+	print("Entities: " + str(entities.size()))
 
 func saveItems():
 	var file = FileAccess.open(itemsPath, FileAccess.WRITE)
