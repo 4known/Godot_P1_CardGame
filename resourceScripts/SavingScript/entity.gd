@@ -5,7 +5,8 @@ class_name Entity
 @export var statDict = {} #Stat.type : Stat
 @export var skillDict = {} #ID : ActiveSkill
 
-func _init():
+func _init(name_ : String):
+	name = name_
 	statDict = {
 		Stat.T.hp : Stat.new(100), 
 		Stat.T.atk : Stat.new(10), 
@@ -18,7 +19,7 @@ func _init():
 		Stat.T.ignoreDef : Stat.new(0),
 		Stat.T.reflectAtk : Stat.new(0)
 	}
-	skillDict.clear()
+	skillDict = {}
 
 func getStatValue(type : Stat.T) -> int:
 	return statDict[type].getValue()

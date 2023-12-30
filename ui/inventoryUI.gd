@@ -11,6 +11,7 @@ func _ready():
 	displayItem()
 	displayEntity()
 	addBTN.pressed.connect(newEntity)
+	SaveManager.removeFromEntities("Hell")
 
 func displayEntity():
 	for entity in SaveManager.entities.keys():
@@ -25,5 +26,7 @@ func displayItem():
 		newSlot.text = item
 
 func newEntity():
-	SaveManager.inventoryData.addToEntities(Entity.new())
+	SaveManager.addToEntities(Entity.new("Hell"))
+	print(SaveManager.entities["Hell"])
+	SaveManager.saveEntities()
 	displayEntity()

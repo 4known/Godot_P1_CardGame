@@ -26,14 +26,9 @@ func loadResources():
 func loadItems():
 	if FileAccess.file_exists(itemsPath):
 		var file = FileAccess.open(itemsPath, FileAccess.READ)
-		var content = file.get_as_text()
+		var content = file.get_var()
 		file.close()
-		var json = JSON.new()
-		var error = json.parse(content)
-		if error != OK:
-			print("ItemsError") 
-			return
-		items = json.data
+		items = content
 	else:
 		var file = FileAccess.open(itemsPath, FileAccess.WRITE)
 		items = {}
@@ -43,25 +38,22 @@ func loadItems():
 func loadEntities():
 	if FileAccess.file_exists(entitiesPath):
 		var file = FileAccess.open(entitiesPath, FileAccess.READ)
-		var content = file.get_as_text()
+		var content = file.get_var()
 		file.close()
-		var json = JSON.new()
-		var error = json.parse(content)
-		if error != OK:
-			print("EntitiesError") 
-			return
-		entities = json.data
+		entities = content
 	else:
 		var file = FileAccess.open(entitiesPath, FileAccess.WRITE)
 		entities = {}
 		file.store_var(entities)
 		file.close()
 
-func save():
+func saveItems():
 	var file = FileAccess.open(itemsPath, FileAccess.WRITE)
 	file.store_var(items)
 	file.close()
-	file = FileAccess.open(entitiesPath, FileAccess.WRITE)
+
+func saveEntities():
+	var file = FileAccess.open(entitiesPath, FileAccess.WRITE)
 	file.store_var(entities)
 	file.close()
 
@@ -80,13 +72,14 @@ func removeFromItems(id : int, amount : int):
 
 func addToEntities(entity : Entity):
 	entities[entity.name] = entityToString(entity)
-func removeFromEntities(entity : Entity):
-	entities.erase(entity.name)
+func removeFromEntities(name : String):
+	entities.erase(name)
 
-func entityToString(entity : Entity):
+func entityToString(entity : Entity) -> Dictionary:
 	var entityStr = {"statDict": {},"skillDict": []}
 	for stat in entity.statDict.keys():
 		entityStr["statDict"][str(stat)] = entity.statDict[stat]
 	for id in entity.skillDict.keys():
 		entityStr["skillDict"].append(id)
+	return entityStr
 
