@@ -78,8 +78,13 @@ func removeFromEntities(name : String):
 func entityToString(entity : Entity) -> Dictionary:
 	var entityStr = {"statDict": {},"skillDict": []}
 	for stat in entity.statDict.keys():
-		entityStr["statDict"][str(stat)] = entity.statDict[stat]
+		entityStr["statDict"][str(stat)] = statToString(entity.statDict[stat])
 	for id in entity.skillDict.keys():
 		entityStr["skillDict"].append(id)
 	return entityStr
 
+func statToString(stat : Stat) -> Dictionary:
+	var statStr = {"BaseValue": stat.basevalue, "StatModDict" : []}
+	for mod in stat.statModDict.keys():
+		statStr["StatModDict"].append(mod)
+	return statStr

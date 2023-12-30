@@ -10,3 +10,4 @@ res://ui/inventoryUI.gd
 res://addons/CardEditor/cardEditor.gd
 res://ui/MainUI.gd
 res://resourceScripts/SavingScript/entity.gd
+res://resourceScripts/StatBased/stat.gd
