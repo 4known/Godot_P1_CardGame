@@ -1,17 +1,27 @@
 
 const itemsPath = "user://items.dat"
 const entitiesPath = "user://entities.dat"
-const teamPath = "user://team.dat"
+const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
-var items : Dictionary #
-var entities : Dictionary
-var maxTeamSize : int = 5
-var team : Dictionary
+var resources : Array
+var items : Dictionary #ID : Amount
+var entities : Dictionary #Name
 
 func _ready():
+	loadResources()
 	loadItems()
 	loadEntities()
-	loadTeam()
+
+func loadResources():
+	var file = FileAccess.open(resourcePath, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	var json = JSON.new()
+	var error = json.parse(content)
+	if error != OK:
+		print(error) 
+		return
+	resources = json.data
 
 func loadItems():
 	if FileAccess.file_exists(itemsPath):
@@ -23,7 +33,7 @@ func loadItems():
 		if error != OK:
 			print(error) 
 			return
-		items = content
+		items = json.data
 	else:
 		var file = FileAccess.open(itemsPath, FileAccess.WRITE)
 		items = {}
@@ -40,28 +50,11 @@ func loadEntities():
 		if error != OK:
 			print(error) 
 			return
-		entities = content
+		entities = json.data
 	else:
 		var file = FileAccess.open(entitiesPath, FileAccess.WRITE)
 		entities = {}
 		file.store_var(entities)
-		file.close()
-
-func loadTeam():
-	if FileAccess.file_exists(teamPath):
-		var file = FileAccess.open(teamPath, FileAccess.READ)
-		var content = file.get_as_text()
-		file.close()
-		var json = JSON.new()
-		var error = json.parse(content)
-		if error != OK:
-			print(error) 
-			return
-		team = content
-	else:
-		var file = FileAccess.open(teamPath, FileAccess.WRITE)
-		team = {}
-		file.store_var(team)
 		file.close()
 
 func save():
@@ -70,9 +63,6 @@ func save():
 	file.close()
 	file = FileAccess.open(entitiesPath, FileAccess.WRITE)
 	file.store_var(entities)
-	file.close()
-	file = FileAccess.open(teamPath, FileAccess.WRITE)
-	file.store_var(team)
 	file.close()
 
 func addToItems(id : int, amount : int):
@@ -88,20 +78,15 @@ func removeFromItems(id : int, amount : int):
 	else:
 		print("No item")
 
-func addToTeam(entity : Entity):
-	if team.size() <= maxTeamSize:
-		team[entity.name] = entity
-func removeFromTeam(entity : Entity):
-	team.erase(entity)
-
 func addToEntities(entity : Entity):
-	entities[entity.name] = entity
+	entities[entity.name] = entityToString(entity)
 func removeFromEntities(entity : Entity):
-	entities.erase(entity)
-
-func createNewEntity():
-	addToEntities(Entity.new())
+	entities.erase(entity.name)
 
 func entityToString(entity : Entity):
-	var entityStr = {"Name": entity.name}
-	entityStr["statDict"] = entity.statDict
+	var entityStr = {"statDict": {},"skillDict": []}
+	for stat in entity.statDict.keys():
+		entityStr["statDict"][str(stat)] = entity.statDict[stat]
+	for id in entity.skillDict.keys():
+		entityStr["skillDict"].append(id)
+

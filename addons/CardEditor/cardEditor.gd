@@ -116,7 +116,7 @@ func refreshFiles():
 
 func readFile():
 	clearDirectory()
-	var file = FileAccess.open("res://ResourceDatas.json", FileAccess.READ)
+	var file = FileAccess.open("res://JsonFiles/ResourceDatas.json", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
 	var json = JSON.new()

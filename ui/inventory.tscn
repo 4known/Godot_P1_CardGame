@@ -56,9 +56,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Team" type="FlowContainer" parent="Scroll/Vertical"]
-layout_mode = 2
-
 [node name="Entity" type="FlowContainer" parent="Scroll/Vertical"]
 layout_mode = 2
 
