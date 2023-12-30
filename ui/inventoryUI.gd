@@ -8,15 +8,15 @@ extends Panel
 const slot = preload("res://ui/slots.tscn")
 
 func _ready():
-	#displayItem()
-	#displayEntity()
+	displayItem()
+	displayEntity()
 	addBTN.pressed.connect(newEntity)
 
 func displayEntity():
-	for entity in SaveManager.entities:
+	for entity in SaveManager.entities.keys():
 		var newSlot = slot.instantiate()
 		entities.add_child(newSlot)
-		newSlot.text = entity.name
+		newSlot.text = entity
 
 func displayItem():
 	for item in SaveManager.items.keys():

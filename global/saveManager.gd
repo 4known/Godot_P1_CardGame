@@ -1,11 +1,11 @@
-
+extends Node
 const itemsPath = "user://items.dat"
 const entitiesPath = "user://entities.dat"
 const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
-var resources : Array
-var items : Dictionary #ID : Amount
-var entities : Dictionary #Name
+var resources : Array = []
+var items : Dictionary = {} #ID : Amount
+var entities : Dictionary = {} #Name : EntityData in string
 
 func _ready():
 	loadResources()
@@ -19,7 +19,7 @@ func loadResources():
 	var json = JSON.new()
 	var error = json.parse(content)
 	if error != OK:
-		print(error) 
+		print("Resourceerror") 
 		return
 	resources = json.data
 
@@ -31,7 +31,7 @@ func loadItems():
 		var json = JSON.new()
 		var error = json.parse(content)
 		if error != OK:
-			print(error) 
+			print("ItemsError") 
 			return
 		items = json.data
 	else:
@@ -48,7 +48,7 @@ func loadEntities():
 		var json = JSON.new()
 		var error = json.parse(content)
 		if error != OK:
-			print(error) 
+			print("EntitiesError") 
 			return
 		entities = json.data
 	else:

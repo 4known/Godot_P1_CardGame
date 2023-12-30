@@ -8,3 +8,4 @@ res://script/Pathfinding/Pathfinding.cs
 res://script/TerrainGeneration/TerrainGeneration.cs
 res://ui/inventoryUI.gd
 res://addons/CardEditor/cardEditor.gd
+res://ui/MainUI.gd

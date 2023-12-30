@@ -1,6 +1,6 @@
 extends Control
 
-@onready var invBTN : Button = $InvBTN
+@onready var invBTN : Button = $HBoxContainer/InvBTN
 @onready var inv : Panel = $Inventory
 
 func _ready():
