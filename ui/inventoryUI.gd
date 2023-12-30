@@ -9,9 +9,9 @@ extends Panel
 const slot = preload("res://ui/slots.tscn")
 
 func _ready():
-	displayItem()
-	displayEntity()
-	displayTeam()
+	#displayItem()
+	#displayEntity()
+	#displayTeam()
 	addBTN.pressed.connect(newEntity)
 
 func displayTeam():
