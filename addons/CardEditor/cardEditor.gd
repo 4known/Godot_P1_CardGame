@@ -45,7 +45,6 @@ func _get_plugin_icon():
 
 func setButtons():
 	refreshBTN = screen.get_node("Tool/HBoxContainer/Refresh")
-	createBTN = screen.get_node("Tool/HBoxContainer/Create")
 	readBTN = screen.get_node("Tool/HBoxContainer/ReadFile")
 	type = screen.get_node("Tool/HBoxContainer/ResourceType")
 	contents = screen.get_node("ScrollContainer/Content")
@@ -61,11 +60,6 @@ func clearCallBacks():
 		refreshBTN.pressed.disconnect(self.refresh)
 	if readBTN:
 		readBTN.pressed.disconnect(self.readFile)
-
-func deleteCard(card : CardBase):
-	if !card : return
-	cardDict.erase(card)
-	refreshFiles()
 
 func createCardPanel(card : CardBase):
 	var newPanel = cardPanel.instantiate()

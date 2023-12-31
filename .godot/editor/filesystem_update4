@@ -2,3 +2,4 @@ res://ui/inventory.tscn
 res://resources/ShootArrow.tres
 res://scene/water.gdshader
 res://resourceScripts/SavingScript/Inventory.gd
+res://addons/CardEditor/cardEditor.gd
