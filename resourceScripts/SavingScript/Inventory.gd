@@ -35,5 +35,3 @@ func addToEntities(entity : Entity):
 func removeFromEntities(entity : Entity):
 	entities.erase(entity)
 
-func createNewEntity():
-	addToEntities(Entity.new())

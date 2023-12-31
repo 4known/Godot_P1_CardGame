@@ -51,34 +51,16 @@ func setButtons():
 	contents = screen.get_node("ScrollContainer/Content")
 
 func setCallBacks():
-	if createBTN: 
-		createBTN.pressed.connect(self.createCard)
 	if refreshBTN:
 		refreshBTN.pressed.connect(self.refresh)
 	if readBTN:
 		readBTN.pressed.connect(self.readFile)
 
 func clearCallBacks():
-	if createBTN: 
-		createBTN.pressed.disconnect(self.createCard)
 	if refreshBTN: 
 		refreshBTN.pressed.disconnect(self.refresh)
 	if readBTN:
 		readBTN.pressed.disconnect(self.readFile)
-
-func createCard():
-	var newCard
-	match type.get_selected_id():
-		0:
-			newCard = Entity.new()
-		1:
-			newCard = ItemBase.new()
-		2:
-			newCard = ActiveSkill.new()
-	var savePath = folder + str(newCard.get_instance_id()) + ".tres"
-	ResourceSaver.save(newCard, savePath)
-	cardDict[newCard.id] = newCard
-	createCardPanel(newCard)
 
 func deleteCard(card : CardBase):
 	if !card : return
