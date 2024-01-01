@@ -85,12 +85,12 @@ func entityTurn():
 	turnM.processPathRequest()
 
 func spawnPlayer():
-	for i in range(playernum):
+	for i in SaveManager.entities.keys():
 		var pos : Vector2i = ter.pickInsideRadius(ter.currentRoom)
 		while ter.pf.IsOccupied(pos):
 			pos = ter.pickInsideRadius(ter.currentRoom)
 		var newCard = initilizeCard(ter.map_to_local(pos), Card.types.player)
-		newCard.name = "Player" + str(i)
+		newCard.name = i
 		players.add_child(newCard)
 
 func spawnEnemy():

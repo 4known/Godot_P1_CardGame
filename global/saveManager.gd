@@ -5,7 +5,7 @@ const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
 var resources : Dictionary = {}
 var items : Dictionary = {} #ID : Amount
-var entities : Dictionary = {} #Name : EntityData in string
+var entities : Dictionary = {} #Name : EntityData in Dictionary
 
 func _ready():
 	loadResources()
@@ -73,27 +73,32 @@ func removeFromItems(id : String, amount : int):
 		print("No item")
 
 func addToEntities(entity : Entity):
-	entities[entity.name] = entityToString(entity)
+	entities[entity.name] = entityToData(entity)
 func removeFromEntities(name : String):
 	entities.erase(name)
 
-func entityToString(entity : Entity) -> Dictionary:
-	var entityStr = {"statDict": {},"skillDict": []}
+func entityToData(entity : Entity) -> Dictionary:
+	var entityData = {"statDict": {},"skillDict": []}
 	for stat in entity.statDict.keys():
-		entityStr["statDict"][str(stat)] = statToString(entity.statDict[stat])
+		entityData["statDict"][str(stat)] = statToData(entity.statDict[stat])
 	for id in entity.skillDict.keys():
-		entityStr["skillDict"].append(id)
-	return entityStr
+		entityData["skillDict"].append(id)
+	return entityData
 
-func statToString(stat : Stat) -> Dictionary:
-	var statStr = {"BaseValue": stat.basevalue, "StatModDict" : []}
+func dataToEntity(entityData : Dictionary, entityName : String) -> Entity:
+	var entity := Entity.new(entityName)
+	
+	return entity
+
+func statToData(stat : Stat) -> Dictionary:
+	var statData = {"BaseValue": stat.basevalue, "StatModDict" : []}
 	for mod in stat.statModDict.keys():
-		statStr["StatModDict"].append(mod)
-	return statStr
+		statData["StatModDict"].append(mod)
+	return statData
 
-func stringToStat(statStr : Dictionary) -> Stat:
-	var stat := Stat.new(statStr["BaseValue"])
-	for mod in statStr["StatModDict"]:
+func dataToStat(statData : Dictionary) -> Stat:
+	var stat := Stat.new(statData["BaseValue"])
+	for mod in statData["StatModDict"]:
 		if resources[mod]["CardType"] == "ActiveSkill":
 			var skillEftArr = resources[mod]["SkillEftArray"]
 			stat.addModifier(mod,resources[skillEftArr["StatusEffect"]]["StatModArray"][skillEftArr["Tier"]])
