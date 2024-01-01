@@ -4,3 +4,7 @@ res://scene/water.gdshader
 res://JsonFiles/ResourceDatas.json
 res://global/saveManager.gd
 res://resourceScripts/StatBased/stat.gd
+res://scene/card.tscn
+res://ui/inventory.tscn
+res://script/Pathfinding/Pathfinding.cs
+res://script/TerrainGeneration/TerrainGeneration.cs

@@ -93,5 +93,8 @@ func statToString(stat : Stat) -> Dictionary:
 
 func stringToStat(statStr : Dictionary) -> Stat:
 	var stat := Stat.new(statStr["BaseValue"])
-	
+	for mod in statStr["StatModDict"]:
+		if resources[mod]["CardType"] == "ActiveSkill":
+			var skillEftArr = resources[mod]["SkillEftArray"]
+			stat.addModifier(mod,resources[skillEftArr["StatusEffect"]]["StatModArray"][skillEftArr["Tier"]])
 	return stat

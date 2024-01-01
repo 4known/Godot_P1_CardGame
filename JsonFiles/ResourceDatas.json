@@ -29,7 +29,7 @@
 		],
 		"Projectile": false,
 		"SkillEftArray": [
-			{"StatusEffect": 0, "Tier": 0, "Turn": 0, "Chance": 30}
+			{"StatusEffect": "DefenseBreak", "Tier": 0, "Turn": 0, "Chance": 30}
 		]
 	},
 	"ShootArrowII":{
@@ -42,7 +42,7 @@
 		],
 		"Projectile": false,
 		"SkillEftArray": [
-			{"StatusEffect": 0, "Tier": 1, "Turn": 0, "Chance": 30}
+			{"StatusEffect": "DefenseBreak", "Tier": 1, "Turn": 0, "Chance": 30}
 		]
 	}
 }
