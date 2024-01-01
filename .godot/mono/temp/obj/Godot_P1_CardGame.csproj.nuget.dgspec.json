@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj": {}
+    "C:\\Users\\Kewen\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj": {
+    "C:\\Users\\Kewen\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj",
+        "projectUniqueName": "C:\\Users\\Kewen\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj",
         "projectName": "Godot_P1_CardGame",
-        "projectPath": "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj",
+        "projectPath": "C:\\Users\\Kewen\\Documents\\Godot\\Godot_P1_CardGame\\Godot_P1_CardGame.csproj",
         "packagesPath": "C:\\Users\\Kewen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kewen\\OneDrive\\Documents\\Godot\\Godot_P1_CardGame\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\Kewen\\Documents\\Godot\\Godot_P1_CardGame\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kewen\\AppData\\Roaming\\NuGet\\NuGet.Config"
