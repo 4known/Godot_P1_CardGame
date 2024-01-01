@@ -4,3 +4,4 @@ res://scene/water.gdshader
 res://components/GameState.gd
 res://global/saveManager.gd
 res://resourceScripts/SavingScript/entity.gd
+res://components/EntitySkill.gd

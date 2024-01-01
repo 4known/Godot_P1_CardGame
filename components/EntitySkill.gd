@@ -8,6 +8,7 @@ var skillQueue : Dictionary #Turn : Array[ActiveSkill]
 
 const ski : ActiveSkill = preload("res://resources/ShootArrow.tres")
 var skill = ski
+
 func _ready():
 	entityData = get_parent().entityData
 	initSkillQueue()

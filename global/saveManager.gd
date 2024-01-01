@@ -87,7 +87,10 @@ func entityToData(entity : Entity) -> Dictionary:
 
 func dataToEntity(entityData : Dictionary, entityName : String) -> Entity:
 	var entity := Entity.new(entityName)
-	
+	for stat in entityData["statDict"].keys():
+		entity.statDict[stat] = dataToStat(entityData["statDict"][stat])
+	for skill in entityData["skillDict"]:
+		entity.skillDict.
 	return entity
 
 func statToData(stat : Stat) -> Dictionary:
