@@ -4,7 +4,7 @@ class_name EntitySkill
 @onready var status : EntityStatus = $"../EntityStatus"
 
 var entityData : Entity
-var skillQueue : Dictionary #Turn : Array[ActiveSkill]
+var skillQueue : Dictionary #CoolDown : Array[ActiveSkill]
 
 const ski : ActiveSkill = preload("res://resources/ShootArrow.tres")
 var skill = ski
@@ -23,6 +23,8 @@ func attackTarget(target : Card):
 func initSkillQueue():
 	if entityData.skillDict.is_empty(): return
 	for s in entityData.skillDict.values():
+		if s.type != Skill.T.Active: 
+			continue
 		if skillQueue.has(s.coolDown):
 			skillQueue[s.coolDown].append(s)
 		else:
@@ -37,7 +39,8 @@ func _on_card_turn():
 		for a in skillQueue[s]:
 			if !newQueue.has(s-1):
 				newQueue[s-1] = []
-			newQueue[s-1].append(a)
+			else:
+				newQueue[s-1].append(a)
 	skillQueue.clear()
 	skillQueue = newQueue
 	newQueue.clear()
