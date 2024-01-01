@@ -26,4 +26,4 @@ script = ExtResource("1_6rx61")
 statModArr = Array[ExtResource("2_h1vrt")]([SubResource("Resource_dto2q"), SubResource("Resource_eaivn"), SubResource("Resource_aln5t")])
 type = 2
 buff = false
-id = 0
+name = ""

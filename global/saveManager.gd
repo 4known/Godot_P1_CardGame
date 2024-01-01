@@ -90,7 +90,7 @@ func dataToEntity(entityData : Dictionary, entityName : String) -> Entity:
 	for stat in entityData["statDict"].keys():
 		entity.statDict[stat] = dataToStat(entityData["statDict"][stat])
 	for skill in entityData["skillDict"]:
-		entity.skillDict[skill] = resources[skill]
+		entity.skillDict[skill] = dataToActiveSkill(resources[skill], skill)
 	return entity
 
 func statToData(stat : Stat) -> Dictionary:
@@ -107,36 +107,34 @@ func dataToStat(statData : Dictionary) -> Stat:
 			stat.addModifier(mod,resources[skillEftArr["StatusEffect"]]["StatModArray"][skillEftArr["Tier"]])
 	return stat
 
-func dataToActiveSkill(skillData : Dictionary, skillName : String):
+func dataToActiveSkill(skillData : Dictionary, skillName : String) -> ActiveSkill:
 	var skill := ActiveSkill.new()
-	
-
-func createActiveSkill(data):
-	var newCard = ActiveSkill.new()
-	newCard.id = data["ID"]
-	newCard.type = Skill.T.get(data["Type"])
-	newCard.range_ = data["Range"]
-	newCard.coolDown = data["CD"]
-	for mod in data["StatModArray"]:
+	skill.name = skillName
+	skill.type = Skill.T.get(skillData["Type"])
+	skill.range_ = skillData["Range"]
+	skill.coolDown = skillData["CD"]
+	for mod in skillData["StatModArray"]:
 		var statmod = StatMod.new(mod["Value"])
 		statmod.stype = Stat.T.get(mod["Stype"])
 		statmod.mtype = StatMod.T.get(mod["Mtype"])
-		newCard.statModArr.append(statmod)
-	newCard.projectile = data["Projectile"]
-	for eft in data["SkillEftArray"]:
+		skill.statModArr.append(statmod)
+	skill.projectile = skillData["Projectile"]
+	for eft in skillData["SkillEftArray"]:
 		var skilleffect = SkillEffect.new()
-		skilleffect.statusEffect = resources[int(eft["StatusEffect"])]
+		skilleffect.statusEffect = dataToStatusEffect(resources[eft["StatusEffect"]], eft["StatusEffect"])
 		skilleffect.tier = eft["Tier"]
 		skilleffect.turns = eft["Turn"]
 		skilleffect.chance = eft["Chance"]
-		newCard.skillEftArr.append(skilleffect)
+		skill.skillEftArr.append(skilleffect)
+	return skill
 
-func createStatusEffect(data):
-	var newCard = StatusEffect.new()
-	newCard.id = data["ID"]
-	newCard.type = Stat.T.get(data["Type"])
-	for mod in data["StatModArray"]:
+func dataToStatusEffect(effectData : Dictionary, effectName : String) -> StatusEffect:
+	var statusEffect = StatusEffect.new()
+	statusEffect.name = effectName
+	statusEffect.type = Stat.T.get(effectData["Type"])
+	for mod in effectData["StatModArray"]:
 		var statmod = StatMod.new(mod["Value"])
 		statmod.stype = Stat.T.get(mod["Stype"])
 		statmod.mtype = StatMod.T.get(mod["Mtype"])
-		newCard.statModArr.append(statmod)
+		statusEffect.statModArr.append(statmod)
+	return statusEffect
