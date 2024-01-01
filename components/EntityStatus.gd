@@ -18,7 +18,6 @@ func initStatus():
 	if entityData == null:
 		entityData = get_parent().entityData
 	for t in entityData.statDict.keys():
-		print(typeof(t))
 		statusDict[t] = Stat.new(entityData.getStatValue(t))
 
 func updateHealth(value : int):
