@@ -16,7 +16,7 @@ func _init(initialvalue : int):
 	currentValue = initialvalue
 	statModDict = {}
 
-func getValue():
+func getValue() -> int:
 	if recalc:
 		MAXVALUE = basevalue + modificationValue()
 		if currentValue > MAXVALUE:

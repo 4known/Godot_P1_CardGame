@@ -15,11 +15,11 @@ monitoring = false
 script = ExtResource("1_2savt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -12)
 texture = ExtResource("2_i3cu8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -11.5)
+position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_ru2u0")
 
 [node name="EntityStatus" type="Node" parent="."]

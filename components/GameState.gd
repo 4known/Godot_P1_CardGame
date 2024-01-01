@@ -91,6 +91,7 @@ func spawnPlayer():
 			pos = ter.pickInsideRadius(ter.currentRoom)
 		var newCard = initilizeCard(ter.map_to_local(pos), Card.types.player)
 		newCard.name = i
+		newCard.entityData = SaveManager.dataToEntity(SaveManager.entities[i],i)
 		players.add_child(newCard)
 
 func spawnEnemy():
@@ -98,6 +99,7 @@ func spawnEnemy():
 	for pos in ter.currentRoom.enemiesPosition:
 		var newCard = initilizeCard(ter.map_to_local(pos), Card.types.enemy)
 		newCard.name = "Enemy" + str(i)
+		newCard.entityData = Entity.new(newCard.name)
 		enemies.add_child(newCard)
 		i += 1
 

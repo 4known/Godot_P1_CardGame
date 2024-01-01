@@ -55,8 +55,6 @@ func _on_input_event(_viewport, _event, _shape_idx):
 		_viewport.set_input_as_handled()
 
 #Setter/Getter
-func setEntity(e : Entity):
-	entityData = e
 func setTarget(card : Card):
 	target = card
 func setTerrain(t : Terrain):

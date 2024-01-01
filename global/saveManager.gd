@@ -1,6 +1,6 @@
 extends Node
-const itemsPath = "user://items.dat"
-const entitiesPath = "user://entities.dat"
+const itemsPath = "user://items.json"
+const entitiesPath = "user://entities.json"
 const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
 var resources : Dictionary = {}
@@ -88,7 +88,7 @@ func entityToData(entity : Entity) -> Dictionary:
 func dataToEntity(entityData : Dictionary, entityName : String) -> Entity:
 	var entity := Entity.new(entityName)
 	for stat in entityData["statDict"].keys():
-		entity.statDict[stat] = dataToStat(entityData["statDict"][stat])
+		entity.statDict[Stat.T.get(stat)] = dataToStat(entityData["statDict"][stat])
 	for skill in entityData["skillDict"]:
 		entity.skillDict[skill] = dataToActiveSkill(resources[skill], skill)
 	return entity

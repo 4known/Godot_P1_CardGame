@@ -10,13 +10,15 @@ var buff : Dictionary = {} #id : Effect
 var debuff : Dictionary = {} #id : Effect
 
 func _ready():
-	entityData = get_parent().entityData
 	initStatus()
 	healthBar.max_value = statusDict[Stat.T.hp].getValue()
 	healthBar.value = statusDict[Stat.T.hp].currentValue
 
 func initStatus():
+	if entityData == null:
+		entityData = get_parent().entityData
 	for t in entityData.statDict.keys():
+		print(typeof(t))
 		statusDict[t] = Stat.new(entityData.getStatValue(t))
 
 func updateHealth(value : int):

@@ -7,3 +7,10 @@ res://resourceScripts/SavingScript/entity.gd
 res://components/EntitySkill.gd
 res://resourceScripts/cardBase.gd
 res://resources/DefenseBreak.tres
+res://scene/card.tscn
+res://ui/inventory.tscn
+res://script/Pathfinding/Pathfinding.cs
+res://script/TerrainGeneration/TerrainGeneration.cs
+res://scene/card.gd
+res://components/EntityStatus.gd
+res://resourceScripts/StatBased/stat.gd
