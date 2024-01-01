@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704069537
+::res://::1704070785
 icon.svg::CompressedTexture2D::3706262505618609191::1703987753::1703987753::1::::<><>::
 Note.txt::TextFile::-1::1703987753::0::1::::<><>::
 README.md::TextFile::-1::1703987753::0::1::::<><>::
@@ -13,25 +13,26 @@ plugin.cfg::TextFile::-1::1703987753::0::1::::<><>::
 ::res://addons/CardEditor/PropertyBoxes/::1703987753
 EnumValue.tscn::PackedScene::7120601239683299765::1703987753::0::1::::<><>::
 StatMod.tscn::PackedScene::4403098978061613926::1703987753::0::1::::<><>::
-::res://components/::1703987753
+::res://components/::1704070391
 EntitySkill.gd::GDScript::-1::1703987753::0::1::::EntitySkill<>Node<>::
 EntityStatus.gd::GDScript::-1::1703987753::0::1::::EntityStatus<>Node<>::
-GameState.gd::GDScript::-1::1703987753::0::1::::GameState<>Node<>::
+GameState.gd::GDScript::-1::1704070391::0::1::::GameState<>Node<>::
 TurnManager.gd::GDScript::-1::1703987753::0::1::::TurnManager<>Node<>::
-::res://global/::1703987753
+::res://global/::1704070772
 globalSignals.gd::GDScript::-1::1703987753::0::1::::<>Node<>::
-saveManager.gd::GDScript::-1::1703987753::0::1::::<>Node<>::
-::res://imports/::1703987753
+saveManager.gd::GDScript::-1::1704070772::0::1::::<>Node<>::
+::res://imports/::1704070230
 Arrow.png::CompressedTexture2D::8229095664224096973::1703987753::1703987753::1::::<><>::
 Frame - Copy.png::CompressedTexture2D::4664009251824944535::1703987753::1703987753::1::::<><>::
 Frames.png::CompressedTexture2D::8021069691860101737::1703987753::1703987753::1::::<><>::
 iso dirt.png::CompressedTexture2D::5612398424688804908::1703987753::1703987753::1::::<><>::
 Isometric test.png::CompressedTexture2D::5181482608142643367::1703987753::1703987753::1::::<><>::
+Sprite-0001.png::CompressedTexture2D::8303688301663251001::1704070189::1704070230::1::::<><>::
 ::res://JsonFiles/::1703987753
 ResourceDatas.json::JSON::-1::1703987753::0::1::::<><>::
-::res://resources/::1704042465
+::res://resources/::1704070263
 DefenseBreak.tres::Resource/Resource::7152254655649083475::1703987753::0::1::::<><>::res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
-ShootArrow.tres::Resource/ActiveSkill::3821073393106087609::1704042465::0::1::::<><>::res://resourceScripts/StatBased/activeSkill.gd<>res://resourceScripts/StatBased/skillEffect.gd<>res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
+ShootArrow.tres::Resource/ActiveSkill::3821073393106087609::1704070263::0::1::::<><>::res://resourceScripts/StatBased/activeSkill.gd<>res://resourceScripts/StatBased/skillEffect.gd<>res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
 ShootArrowII.tres::Resource/Resource::1077705118127532844::1703987753::0::1::::<><>::res://resourceScripts/StatBased/activeSkill.gd<>res://resourceScripts/StatBased/skillEffect.gd<>res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
 Weakness.tres::Resource/Resource::1261155317965044502::1703987753::0::1::::<><>::res://resourceScripts/StatBased/statusEffect.gd<>res://resourceScripts/StatBased/statModifier.gd
 ::res://resourceScripts/::1703987753
@@ -49,16 +50,16 @@ skillEffect.gd::GDScript::-1::1703987753::0::1::::SkillEffect<>Resource<>::
 stat.gd::GDScript::-1::1703987753::0::1::::Stat<>Resource<>::
 statModifier.gd::GDScript::-1::1703987753::0::1::::StatMod<>Resource<>::
 statusEffect.gd::GDScript::-1::1703987753::0::1::::StatusEffect<>CardBase<>::
-::res://scene/::1704068520
+::res://scene/::1704070773
 card.gd::GDScript::-1::1703987753::0::1::::Card<>Area2D<>::
-card.tscn::PackedScene::3437437748356488327::1703987753::0::1::::<><>::res://scene/card.gd<>uid://dmjp305rmsfkr::::res://imports/Frames.png<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
+card.tscn::PackedScene::3437437748356488327::1704070772::0::1::::<><>::res://scene/card.gd<>uid://dqkmsekx8ubmn::::res://imports/Sprite-0001.png<>res://components/EntityStatus.gd<>res://components/EntitySkill.gd<>uid://okv00ugg3v2l::::res://ui/healthbar.tscn
 projectile.gd::GDScript::-1::1703987753::0::1::::Projectile<>Area2D<>::
 projectile.tscn::PackedScene::8902964292426053124::1703987753::0::1::::<><>::res://scene/projectile.gd<>uid://dpiiad24bysvl::::res://imports/Arrow.png
 terrain.gd::GDScript::-1::1703987753::0::1::::Terrain<>TileMap<>::
 terrain.tscn::PackedScene::5610510281185814687::1703987753::0::1::::<><>::uid://cl7xm8w83us8c::::res://imports/iso dirt.png<>res://scene/terrain.gd<>res://script/Pathfinding/Pathfinding.cs<>res://script/TerrainGeneration/TerrainGeneration.cs
-water.gdshader::Shader::-1::1704068520::0::1::::<><>::
+water.gdshader::Shader::-1::1704070773::0::1::::<><>::
 world.gd::GDScript::-1::1703987753::0::1::::<>Node2D<>::
-world.tscn::PackedScene::1142251505819120208::1703987753::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://ui/MainUI.gd<>res://components/TurnManager.gd<>uid://df123uhl5ujqi::::res://ui/inventory.tscn
+world.tscn::PackedScene::1142251505819120208::1704070772::0::1::::<><>::res://scene/world.gd<>uid://cl61jxa6ccyuh::::res://scene/terrain.tscn<>res://script/MoveCamera.gd<>res://components/GameState.gd<>res://ui/MainUI.gd<>res://components/TurnManager.gd<>uid://df123uhl5ujqi::::res://ui/inventory.tscn
 ::res://script/::1703987753
 MoveCamera.gd::GDScript::-1::1703987753::0::1::::<>Camera2D<>::
 ::res://script/Pathfinding/::1703987753
@@ -67,9 +68,9 @@ Node_PF.cs::CSharpScript::-1::1703987753::0::1::::<><>::
 Pathfinding.cs::CSharpScript::-1::1703987753::0::1::::Pathfinding<>Node<>::
 ::res://script/TerrainGeneration/::1703987753
 TerrainGeneration.cs::CSharpScript::-1::1703987753::0::1::::TerrainGeneration<>Node<>::
-::res://ui/::1704044099
+::res://ui/::1704070772
 healthbar.tscn::PackedScene::1004608634430367477::1703987753::0::1::::<><>::
-inventory.tscn::PackedScene::7565570513730361452::1704044099::0::1::::<><>::res://ui/inventoryUI.gd
+inventory.tscn::PackedScene::7565570513730361452::1704070772::0::1::::<><>::res://ui/inventoryUI.gd
 inventoryUI.gd::GDScript::-1::1703987753::0::1::::<>Panel<>::
 MainUI.gd::GDScript::-1::1703987753::0::1::::<>Control<>::
 slots.tscn::PackedScene::8769807213386697784::1703987753::0::1::::<><>::

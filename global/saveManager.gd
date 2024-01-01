@@ -3,7 +3,7 @@ const itemsPath = "user://items.dat"
 const entitiesPath = "user://entities.dat"
 const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
-var resources : Array = []
+var resources : Dictionary = {}
 var items : Dictionary = {} #ID : Amount
 var entities : Dictionary = {} #Name : EntityData in string
 
@@ -59,12 +59,12 @@ func saveEntities():
 	file.store_var(entities)
 	file.close()
 
-func addToItems(id : int, amount : int):
+func addToItems(id : String, amount : int):
 	if items.has(id):
 		items[id] += amount
 	else:
 		items[id] = amount
-func removeFromItems(id : int, amount : int):
+func removeFromItems(id : String, amount : int):
 	if items.has(id):
 		items[id] -= amount
 		if items[id] <= 0:
@@ -90,3 +90,8 @@ func statToString(stat : Stat) -> Dictionary:
 	for mod in stat.statModDict.keys():
 		statStr["StatModDict"].append(mod)
 	return statStr
+
+func stringToStat(statStr : Dictionary) -> Stat:
+	var stat := Stat.new(statStr["BaseValue"])
+	
+	return stat

@@ -1,8 +1,6 @@
-[
-	{
+{
+	"DefenseBreak":{
 		"CardType": "StatusEffect",
-		"Name": "DefenseBreak",
-		"ID": 0,
 		"Buff": false,
 		"Type": "def",
 		"StatModArray": [
@@ -11,10 +9,8 @@
 			{"Value": -40,"Stype": "def","Mtype": "percent"}
 		]
 	},
-	{
+	"Weakness":{
 		"CardType": "StatusEffect",
-		"Name": "Weakness",
-		"ID": 1,
 		"Buff": false,
 		"Type": "atk",
 		"StatModArray": [
@@ -23,10 +19,8 @@
 			{"Value": -40,"Stype": "atk","Mtype": "percent"}
 		]
 	},
-	{
+	"ShootArrow":{
 		"CardType": "ActiveSkill",
-		"Name": "ShootArrow",
-		"ID": 2,
 		"Type": "Active",
 		"Range": 4,
 		"CD": 0,
@@ -38,10 +32,8 @@
 			{"StatusEffect": 0, "Tier": 0, "Turn": 0, "Chance": 30}
 		]
 	},
-	{
+	"ShootArrowII":{
 		"CardType": "ActiveSkill",
-		"Name": "ShootArrowII",
-		"ID": 3,
 		"Type": "Active",
 		"Range": 5,
 		"CD": 0,
@@ -53,4 +45,4 @@
 			{"StatusEffect": 0, "Tier": 1, "Turn": 0, "Chance": 30}
 		]
 	}
-]
+}

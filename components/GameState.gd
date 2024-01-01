@@ -69,8 +69,8 @@ func updateState():
 func loadGame():
 	#Terrain Generation
 	ter.initGeneration()
-	#spawnEnemy()
-	#spawnPlayer()
+	spawnEnemy()
+	spawnPlayer()
 
 func playerTurn(onlyPath : bool):
 	for p in players.get_children():

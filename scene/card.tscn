@@ -1,17 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo8edkyecynsp"]
+[gd_scene load_steps=7 format=3 uid="uid://bo8edkyecynsp"]
 
 [ext_resource type="Script" path="res://scene/card.gd" id="1_2savt"]
-[ext_resource type="Texture2D" uid="uid://dmjp305rmsfkr" path="res://imports/Frames.png" id="2_fv0kf"]
+[ext_resource type="Texture2D" uid="uid://dqkmsekx8ubmn" path="res://imports/Sprite-0001.png" id="2_i3cu8"]
 [ext_resource type="Script" path="res://components/EntityStatus.gd" id="4_q2kxn"]
 [ext_resource type="Script" path="res://components/EntitySkill.gd" id="5_o6yhq"]
 [ext_resource type="PackedScene" uid="uid://okv00ugg3v2l" path="res://ui/healthbar.tscn" id="6_6entd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ru2u0"]
-size = Vector2(24, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_cjujv"]
-font_size = 22
-font_color = Color(0, 0, 0, 1)
+size = Vector2(11, 17)
 
 [node name="Card" type="Area2D"]
 z_index = 1
@@ -20,10 +16,10 @@ script = ExtResource("1_2savt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("2_fv0kf")
+texture = ExtResource("2_i3cu8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(-0.5, -11.5)
 shape = SubResource("RectangleShape2D_ru2u0")
 
 [node name="EntityStatus" type="Node" parent="."]
@@ -39,14 +35,6 @@ offset_right = 135.0
 offset_bottom = -20.0
 scale = Vector2(0.2, 0.2)
 value = 0.5
-
-[node name="Label" type="Label" parent="."]
-offset_left = -7.0
-offset_top = -33.0
-offset_right = 33.0
-offset_bottom = 1.0
-text = "0"
-label_settings = SubResource("LabelSettings_cjujv")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="turn" from="." to="EntityStatus" method="_on_card_turn"]

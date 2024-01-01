@@ -1,5 +1,6 @@
-res://ui/inventory.tscn
+res://scene/world.tscn
 res://resources/ShootArrow.tres
 res://scene/water.gdshader
-res://resourceScripts/SavingScript/Inventory.gd
-res://addons/CardEditor/cardEditor.gd
+res://JsonFiles/ResourceDatas.json
+res://global/saveManager.gd
+res://resourceScripts/StatBased/stat.gd

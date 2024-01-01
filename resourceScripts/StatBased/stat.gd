@@ -5,7 +5,7 @@ var basevalue : int
 var MAXVALUE: int
 var currentValue : int
 
-var statModDict = {} #index : StatModifier
+var statModDict = {} #String ID : StatModifier
 var recalc = false
 
 enum T{hp,atk,def,agi,regen,vampire,revival,threat,ignoreDef,reflectAtk}
@@ -14,7 +14,7 @@ func _init(initialvalue : int):
 	basevalue = initialvalue
 	MAXVALUE = initialvalue
 	currentValue = initialvalue
-	statModDict.clear()
+	statModDict = {}
 
 func getValue():
 	if recalc:
@@ -24,12 +24,12 @@ func getValue():
 		recalc = false
 	return MAXVALUE
 
-func addModifier(index : int, mod : StatMod):
-	statModDict[index] = mod
+func addModifier(id : String, mod : StatMod):
+	statModDict[id] = mod
 	recalc = true
 
-func removeModifier(index : int):
-	statModDict.erase(index)
+func removeModifier(id : String):
+	statModDict.erase(id)
 	recalc = true
 
 func modificationValue():
