@@ -20,7 +20,9 @@ func _init(name_ : String, data : Dictionary = {}):
 			Stat.T.ignoreDef : Stat.new(0),
 			Stat.T.reflectAtk : Stat.new(0)
 		}
-		skillDict = []
+	else:
+		statDict = {}
+	skillDict = {}
 
 func getStatValue(type : Stat.T) -> int:
 	return statDict[type].getValue()

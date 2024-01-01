@@ -90,7 +90,7 @@ func dataToEntity(entityData : Dictionary, entityName : String) -> Entity:
 	for stat in entityData["statDict"].keys():
 		entity.statDict[stat] = dataToStat(entityData["statDict"][stat])
 	for skill in entityData["skillDict"]:
-		entity.skillDict.
+		entity.skillDict[skill] = resources[skill]
 	return entity
 
 func statToData(stat : Stat) -> Dictionary:
@@ -106,3 +106,37 @@ func dataToStat(statData : Dictionary) -> Stat:
 			var skillEftArr = resources[mod]["SkillEftArray"]
 			stat.addModifier(mod,resources[skillEftArr["StatusEffect"]]["StatModArray"][skillEftArr["Tier"]])
 	return stat
+
+func dataToActiveSkill(skillData : Dictionary, skillName : String):
+	var skill := ActiveSkill.new()
+	
+
+func createActiveSkill(data):
+	var newCard = ActiveSkill.new()
+	newCard.id = data["ID"]
+	newCard.type = Skill.T.get(data["Type"])
+	newCard.range_ = data["Range"]
+	newCard.coolDown = data["CD"]
+	for mod in data["StatModArray"]:
+		var statmod = StatMod.new(mod["Value"])
+		statmod.stype = Stat.T.get(mod["Stype"])
+		statmod.mtype = StatMod.T.get(mod["Mtype"])
+		newCard.statModArr.append(statmod)
+	newCard.projectile = data["Projectile"]
+	for eft in data["SkillEftArray"]:
+		var skilleffect = SkillEffect.new()
+		skilleffect.statusEffect = resources[int(eft["StatusEffect"])]
+		skilleffect.tier = eft["Tier"]
+		skilleffect.turns = eft["Turn"]
+		skilleffect.chance = eft["Chance"]
+		newCard.skillEftArr.append(skilleffect)
+
+func createStatusEffect(data):
+	var newCard = StatusEffect.new()
+	newCard.id = data["ID"]
+	newCard.type = Stat.T.get(data["Type"])
+	for mod in data["StatModArray"]:
+		var statmod = StatMod.new(mod["Value"])
+		statmod.stype = Stat.T.get(mod["Stype"])
+		statmod.mtype = StatMod.T.get(mod["Mtype"])
+		newCard.statModArr.append(statmod)

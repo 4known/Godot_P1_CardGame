@@ -5,3 +5,4 @@ res://components/GameState.gd
 res://global/saveManager.gd
 res://resourceScripts/SavingScript/entity.gd
 res://components/EntitySkill.gd
+res://resourceScripts/cardBase.gd
