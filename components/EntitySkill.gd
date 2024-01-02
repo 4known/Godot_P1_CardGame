@@ -14,11 +14,12 @@ func _ready():
 	initSkillQueue()
 
 func attackTarget(target : Card):
-	for eft in skill.skillEftArr:
-		if eft.statusEffect.buff:
-			target.getStatus().addBuff(eft.statusEffect,eft.tier,eft.turns)
-		else:
-			target.getStatus().addDebuff(eft.statusEffect,eft.tier,eft.turns)
+	pass
+	#for eft in skill.skillEftArr:
+		#if eft.statusEffect.buff:
+			#target.getStatus().addBuff(eft.statusEffect,eft.tier,eft.turns)
+		#else:
+			#target.getStatus().addDebuff(eft.statusEffect,eft.tier,eft.turns)
 
 func initSkillQueue():
 	if entityData.skillDict.is_empty(): return

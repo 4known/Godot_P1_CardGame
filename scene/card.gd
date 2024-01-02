@@ -69,4 +69,4 @@ func getStatus()-> EntityStatus:
 func getSkill() -> EntitySkill:
 	return skill
 func getSpritePos()-> Vector2:
-	return get_child(0).global_position
+	return get_child(3).global_position
