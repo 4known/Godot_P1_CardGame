@@ -1,6 +1,6 @@
 extends Node
-const itemsPath = "user://items.json"
-const entitiesPath = "user://entities.json"
+const itemsPath = "user://items.dat"
+const entitiesPath = "user://entities.dat"
 const resourcePath = "res://JsonFiles/ResourceDatas.json"
 
 var resources : Dictionary = {}
